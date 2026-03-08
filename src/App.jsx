@@ -1,7 +1,7 @@
 import React from "react";
 
 const App = () => {
-  return <div className="p-10 text-5xl text-rose-500 font-bold underline"> Uomo-UI</div>;
+  return <div className="p-10  text-rose-500  headBold"> Uomo-UI</div>;
 };
 
 export default App;
