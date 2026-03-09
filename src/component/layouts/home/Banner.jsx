@@ -24,7 +24,7 @@ const Banner = () => {
                   SUMMER SALE STYLISH{" "}
                   <span className="head_70_bold">WOMENS</span>
                 </h1>
-                <Button btnText={"DISCOVER MORE"} />
+                <Button className={'hover:after:w-24'} btnText={"DISCOVER MORE"} />
                 {/* Slider */}
                 <div className="mt-48.75 mb-13.75"></div>
                 {/* Slider */}
