@@ -17,6 +17,7 @@ const Banner = () => {
                 <h1 className="head_70_regular">
                   SUMMER SALE STYLISH <span className="head_70_bold">WOMENS</span>
                 </h1>
+                <button></button>
               </div>
               <div className="rightContent">
                 <Images imgSrc={bannerRightImg} />
