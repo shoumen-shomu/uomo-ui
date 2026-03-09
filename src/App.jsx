@@ -4,6 +4,7 @@ import Rootlayout from "@/rootlayout/Rootlayout";
 import Home from "@/page/Home";
 import Shop from "@/page/Shop";
 import Cart from "./component/Cart";
+import Shopsingle from "./page/Shopsingle";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "/shop", element: <Shop /> },
       { path: "/Cart", element: <Cart /> },
+      { path: "/shop-single", element: <Shopsingle /> },
     ],
   },
 ]);
