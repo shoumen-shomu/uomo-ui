@@ -3,6 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { IoCloseOutline } from "react-icons/io5";
 import { motion, AnimatePresence } from 'framer-motion';
 import { create } from 'zustand';
+import { FiPlus } from "react-icons/fi";
+import { FaMinus } from "react-icons/fa6";
+import { LiaDollarSignSolid } from "react-icons/lia";
 
 // ─── Dummy Products ────────────────────────────────────────────────────────────
 const DUMMY_ITEMS = [
@@ -74,20 +77,20 @@ const StepIndicator = ({ currentStep = 0 }) => {
                         key={step.num}
                         onClick={() => isClickable && navigate(step.path)}
                         style={{ flex: 1 }}
-                        className={`relative pb-5 transition-all duration-200 ${isClickable ? 'cursor-pointer' : 'cursor-default'}`}
+                        className={`relative pb-5 transition-all duration-200 text-head ${isClickable ? 'cursor-pointer' : 'cursor-default text-gray-400'}`}
                     >
                         {/* Active underline — sits on top of the shared border-b */}
                         {isActive && (
-                            <span className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-[#222222]" />
+                            <span className="absolute -bottom-px left-0 right-0 h-0.5 bg-head" />
                         )}
 
                         <div className={`flex items-baseline gap-2 ${isClickable ? 'hover:opacity-60' : ''}`}>
-                            <span className="text-[12px] text-gray-400 font-medium">{step.num}</span>
-                            <span className={`text-[18px] font-medium tracking-wide ${isActive ? 'text-[#222222]' : 'text-gray-400'}`}>
+                            <span className="text-[18px] font-medium">{step.num}</span>
+                            <span className={`text-[18px] font-medium ${isActive ? 'text-head' : 'text-gray-400'}`}>
                                 {step.label}
                             </span>
                         </div>
-                        <p className="text-[12px] text-gray-400 mt-1 ml-5">{step.sub}</p>
+                        <p className="text-[14px] text-[#767676] mt-1 ml-7">{step.sub}</p>
                     </div>
                 );
             })}
@@ -107,11 +110,11 @@ const Cart = () => {
     const total    = subtotal + vat;
 
     return (
-        <section className="pt-10 md:pt-[90px] pb-[100px]">
+        <section className="pt-10 md:pt-22.5 pb-25">
             <div className="container px-6">
 
                 {/* Title */}
-                <h1 className="head_35_bold pb-[48px]">CART</h1>
+                <h1 className="text-[35px] text-head font-bold pb-12">CART</h1>
 
                 {/* Steps */}
                 <StepIndicator currentStep={0} />
@@ -123,9 +126,9 @@ const Cart = () => {
                         <div className="flex-1 min-w-0">
 
                             {/* Table Header */}
-                            <div className="grid grid-cols-[2.5fr_1fr_1.5fr_1fr_auto] gap-4 pb-4 mb-2">
+                            <div className="grid grid-cols-[2.5fr_1fr_1.5fr_1fr_auto] gap-4 pb-2.25">
                                 {['PRODUCT', 'PRICE', 'QUANTITY', 'SUBTOTAL', ''].map((h) => (
-                                    <span key={h} className="text-[12px] font-semibold text-gray-500 tracking-widest">{h}</span>
+                                    <span key={h} className="text-[14px] font-medium leading-6 text-head">{h}</span>
                                 ))}
                             </div>
 
@@ -139,41 +142,41 @@ const Cart = () => {
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, scale: 0.96 }}
                                         transition={{ delay: index * 0.04 }}
-                                        className="grid grid-cols-[2.5fr_1fr_1.5fr_1fr_auto] gap-4 items-center py-6 border-b border-gray-200"
+                                        className="grid grid-cols-[2.5fr_1fr_1.5fr_1fr_auto] gap-4 items-center py-7.5 border-b border-[#E4E4E4] border-t"
                                     >
                                         {/* Product */}
                                         <div className="flex gap-4 items-center">
-                                            <div className="flex-shrink-0">
+                                            <div className="shrink-0">
                                                 <img
-                                                    className="w-20 h-20 object-cover bg-gray-200 rounded-sm"
+                                                    className="w-30 h-30 object-cover bg-gray-200 rounded-sm"
                                                     src={cart.thumbnail}
                                                     alt={cart.title}
                                                 />
                                             </div>
                                             <div>
-                                                <h3 className="text-[14px] font-medium">{cart.title}</h3>
+                                                <h3 className="text-[16px] font-normal text-head">{cart.title}</h3>
                                                 {cart.color && <p className="text-[13px] text-gray-500 mt-0.5">Color:  {cart.color}</p>}
                                                 {cart.size  && <p className="text-[13px] text-gray-500">Size: {cart.size}</p>}
                                             </div>
                                         </div>
 
                                         {/* Price */}
-                                        <span className="text-[14px] text-gray-700">${cart.price}</span>
+                                        <span className="text-[16px] font-normal text-[#767676] flex  items-center"><LiaDollarSignSolid/>{cart.price}</span>
 
                                         {/* Quantity — minus / number / plus */}
-                                        <div className="flex items-center border border-gray-300 rounded-sm w-[110px] h-10">
+                                        <div className="flex items-center border-2 border-[#E4E4E4] w-27.5 h-12.5">
                                             <button
                                                 onClick={() => decrement(cart)}
-                                                className="w-9 h-full flex items-center justify-center text-gray-500 hover:text-[#DB4444] text-lg select-none border-r border-gray-300"
+                                                className="w-9 h-full flex items-center justify-center text-gray-500 hover:text-[#DB4444] text-[16px] select-none cursor-pointer"
                                             >
-                                                −
+                                                <FaMinus/>
                                             </button>
                                             <span className="flex-1 text-center text-[14px] select-none">{cart.quantity}</span>
                                             <button
                                                 onClick={() => increment(cart)}
-                                                className="w-9 h-full flex items-center justify-center text-gray-500 hover:text-[#DB4444] text-lg select-none border-l border-gray-300"
+                                                className="w-9 h-full flex items-center justify-center text-gray-500 hover:text-[#DB4444] text-[16px] select-none cursor-pointer"
                                             >
-                                                +
+                                                <FiPlus/>
                                             </button>
                                         </div>
 
@@ -183,7 +186,7 @@ const Cart = () => {
                                         {/* Remove */}
                                         <button
                                             onClick={() => removeCart(cart.id)}
-                                            className="text-gray-400 hover:text-[#DB4444] transition-colors"
+                                            className="text-gray-400 hover:text-[#DB4444] transition-colors cursor-pointer"
                                         >
                                             <IoCloseOutline className="text-[20px]" />
                                         </button>
@@ -200,7 +203,7 @@ const Cart = () => {
                                         placeholder="Coupon Code"
                                         className="flex-1 px-4 text-[13px] outline-none h-full text-gray-500 placeholder-gray-400"
                                     />
-                                    <button className="px-5 h-full text-[12px] font-bold tracking-widest text-gray-700 bg-gray-100 hover:bg-gray-200 border-l border-gray-300 transition-colors whitespace-nowrap">
+                                    <button className="px-5 h-full text-[12px] font-bold text-gray-700 bg-gray-100 hover:bg-gray-200 border-l border-gray-300 transition-colors whitespace-nowrap">
                                         APPLY COUPON
                                     </button>
                                 </div>
@@ -209,7 +212,7 @@ const Cart = () => {
                                 <motion.button
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="h-12 px-10 border border-gray-300 rounded-sm text-[12px] font-bold tracking-widest text-gray-700 bg-gray-100 hover:bg-[#DB4444] hover:text-white hover:border-[#DB4444] transition-all select-none"
+                                    className="h-12 px-10 border border-gray-300 rounded-sm text-[12px] font-bold text-gray-700 bg-gray-100 hover:bg-[#DB4444] hover:text-white hover:border-[#DB4444] transition-all select-none"
                                 >
                                     UPDATE CART
                                 </motion.button>
@@ -217,25 +220,25 @@ const Cart = () => {
                         </div>
 
                         {/* ── Right: Totals ── */}
-                        <div style={{ width: '470px', minWidth: '320px', maxWidth: '100%' }} className="flex-shrink-0 w-full lg:w-auto">
+                        <div style={{ width: '470px', minWidth: '320px', maxWidth: '100%' }} className="shrink-0 w-full lg:w-auto">
                             {/* Box */}
                             <motion.div
                                 initial={{ opacity: 0, y: 16 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="border-2 border-[#222222] rounded-sm px-7 pt-7 pb-8"
+                                className="border-2 border-head rounded-sm px-7 pt-7 pb-8"
                             >
                                 <h3 className="text-[13px] font-bold tracking-[0.15em] mb-6 uppercase">Cart Totals</h3>
 
                                 {/* Subtotal */}
                                 <div className="flex justify-between items-center py-4 border-b border-gray-200">
-                                    <span className="text-[12px] font-semibold tracking-widest text-gray-700 uppercase">Subtotal</span>
+                                    <span className="text-[12px] font-semibold text-gray-700 uppercase">Subtotal</span>
                                     <span className="text-[14px] font-medium">${subtotal}</span>
                                 </div>
 
                                 {/* Shipping */}
                                 <div className="py-4 border-b border-gray-200">
                                     <div className="flex justify-between items-start">
-                                        <span className="text-[12px] font-semibold tracking-widest text-gray-700 uppercase pt-0.5">Shipping</span>
+                                        <span className="text-[12px] font-semibold text-gray-700 uppercase pt-0.5">Shipping</span>
                                         <div className="space-y-2.5 text-right">
                                             {[
                                                 { id: 'free',  label: 'Free shipping' },
@@ -246,7 +249,7 @@ const Cart = () => {
                                                     <span className="text-[13px] text-gray-600">{opt.label}</span>
                                                     <input
                                                         type="checkbox"
-                                                        className="w-4 h-4 border border-gray-300 rounded-none accent-[#222222] cursor-pointer"
+                                                        className="w-4 h-4 border border-gray-300 rounded-none accent-head cursor-pointer"
                                                     />
                                                 </label>
                                             ))}
@@ -254,7 +257,7 @@ const Cart = () => {
                                     </div>
                                     <div className="flex justify-between items-center mt-3">
                                         <span className="text-[13px] text-gray-500">Shipping to AL.</span>
-                                        <button className="text-[12px] font-bold tracking-wider underline underline-offset-2 text-gray-800 hover:text-[#DB4444] transition-colors">
+                                        <button className="text-[12px] font-bold underline underline-offset-2 text-gray-800 hover:text-[#DB4444] transition-colors">
                                             CHANGE ADDRESS
                                         </button>
                                     </div>
@@ -262,13 +265,13 @@ const Cart = () => {
 
                                 {/* VAT */}
                                 <div className="flex justify-between items-center py-4 border-b border-gray-200">
-                                    <span className="text-[12px] font-semibold tracking-widest text-gray-700 uppercase">VAT</span>
+                                    <span className="text-[12px] font-semibold text-gray-700 uppercase">VAT</span>
                                     <span className="text-[14px] font-medium">${vat}</span>
                                 </div>
 
                                 {/* Total */}
                                 <div className="flex justify-between items-center py-4">
-                                    <span className="text-[12px] font-bold tracking-widest text-gray-900 uppercase">Total</span>
+                                    <span className="text-[12px] font-bold text-gray-900 uppercase">Total</span>
                                     <span className="text-[14px] font-bold">${total}</span>
                                 </div>
                             </motion.div>
@@ -276,7 +279,7 @@ const Cart = () => {
                             {/* Checkout Button — outside the box, full width */}
                             <Link
                                 to="/checkout"
-                                className="mt-0 block text-center py-4 bg-[#222222] text-white text-[12px] font-bold tracking-[0.2em] hover:bg-[#DB4444] transition-all"
+                                className="mt-0 block text-center py-4 bg-head text-white text-[12px] font-bold hover:bg-[#DB4444] transition-all"
                             >
                                 PROCEED TO CHECKOUT
                             </Link>
@@ -297,7 +300,7 @@ const Cart = () => {
                         </div>
                         <h2 className="text-[22px] font-bold text-gray-800 mb-2">Your Cart is Empty</h2>
                         <p className="text-gray-500 mb-8 text-center">Add some products to your cart to see them here.</p>
-                        <Link to="/" className="bg-[#DB4444] text-white px-10 py-3 rounded-sm hover:bg-black transition-all text-[13px] font-bold tracking-wider">
+                        <Link to="/" className="bg-[#DB4444] text-white px-10 py-3 rounded-sm hover:bg-black transition-all text-[13px] font-bold">
                             Go Shopping
                         </Link>
                     </motion.div>
