@@ -114,7 +114,7 @@ const Cart = () => {
             <div className="container px-6">
 
                 {/* Title */}
-                <h1 className="text-[35px] text-head font-bold pb-12">CART</h1>
+                <h1 className="text-[35px] text-[#222222] font-bold pb-12">CART</h1>
 
                 {/* Steps */}
                 <StepIndicator currentStep={0} />
