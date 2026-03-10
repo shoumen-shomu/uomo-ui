@@ -135,12 +135,12 @@ const Shopsingle = () => {
                   +
                 </button>
               </div>
-              <button className="w-70 h-15 bg-head flex justify-center items-center text-white texts_14_medium">
+              <button className="w-70 h-15 bg-head flex justify-center items-center text-white texts_14_medium  cursor-pointer">
                 ADD TO CART
               </button>
             </div>
-            <div className="flex justify-center lg:justify-start gap-x-7.75 py-1">
-              <h4 className="text-head text-[13px] font-medium flex gap-x-2.5">
+            <div className="flex justify-center lg:justify-start gap-x-7.75 py-1 mb-[32px]">
+              <h4 className="text-head text-[13px] font-medium flex gap-x-2.5 relative hover:text-head after:content-[''] after:block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:w-[90px] after:bg-head after:transition-all after:duration-300">
                 <FaRegHeart /> ADD TO WISHLIST
               </h4>
               <h4 className="text-head text-[13px] font-medium flex gap-x-2.5">
@@ -148,7 +148,7 @@ const Shopsingle = () => {
                 SHARE
               </h4>
             </div>
-            <div className="w-22.5 h-0.5 bg-head mt-0.75 mb-8 hidden lg:block"></div>
+          
             <h5 className="texts_13_regular text-[#767676]">
               SKU: <span className="text-head"> N/A</span>
             </h5>

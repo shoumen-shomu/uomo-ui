@@ -1,14 +1,14 @@
+import Add_review from "@/component/shopMain/shopSingle/Add_review";
 import Shopsingle from "@/component/shopMain/shopSingle/Shopsingle";
+import Tabs_desc from "@/component/shopMain/shopSingle/tabs_desc";
 import React from "react";
 
 const ShopSinglePg = () => {
   return (
     <>
       <Shopsingle />
-      {/**
-       * name : Jaber
-       * message : akhane apni ./component/shopSingle theke all jaja related component ache  akhane import hobe....
-       */}
+      <Tabs_desc/>
+      <Add_review/>
     </>
   );
 };
