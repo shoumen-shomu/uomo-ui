@@ -4,7 +4,6 @@ import Images from "@/component/common/Images";
 import reviewOne from "@/assets/images/clientReviewsOne.png";
 
 const Tabs_desc = () => {
-  // কোন ট্যাবটি একটিভ থাকবে তা নিয়ন্ত্রণ করার জন্য স্টেট
   const [activeTab, setActiveTab] = useState("description");
 
   return (
@@ -126,14 +125,14 @@ const Tabs_desc = () => {
           {/* ADDITIONAL INFORMATION CONTENT */}
           {activeTab === "additional" && (
             <div className="flex gap-x-22.5 my-12.5 animate-fadeIn">
-              <div className="w-[82px] space-y-[31px]">
+              <div className="w-20.5 space-y-7.75">
                 <h4 className="texts_16_medium text-head">Weight</h4>
                 <h4 className="texts_16_medium text-head">Dimensions</h4>
                 <h4 className="texts_16_medium text-head">Size</h4>
                 <h4 className="texts_16_medium text-head">Color</h4>
                 <h4 className="texts_16_medium text-head">Storage</h4>
               </div>
-              <div className=" space-y-[31px]">
+              <div className=" space-y-7.75">
                 <h5 className="texts_14_regular text-head">1.25 kg</h5>
                 <h5 className="texts_14_regular text-head">90 x 60 x 90 cm</h5>
                 <h5 className="texts_14_regular text-head">XS, S, M, L, XL</h5>

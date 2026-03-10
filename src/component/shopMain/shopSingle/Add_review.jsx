@@ -57,7 +57,6 @@ const Add_review = () => {
             <div className="flex items-start gap-3">
               <input type="checkbox" id="save-info" className="mt-1 w-4 h-4" />
               <label
-                htmlFor="save-info"
                 className="texts_14_regular text-[#767676]"
               >
                 Save my name, email, and website in this browser for the next
@@ -68,7 +67,7 @@ const Add_review = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="bg-head text-white px-[74px] py-[22px] texts_14_medium"
+              className="bg-head text-white px-[74px] py-[22px] texts_14_medium cursor-pointer"
             >
               SUBMIT
             </button>
