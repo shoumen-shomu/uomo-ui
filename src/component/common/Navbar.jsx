@@ -20,10 +20,15 @@ const Navbar = () => {
               imgAlt={navLogo}
               className={"w-[111px] h-[27px]"}
             />
-
             <ul className=" flex gap-x-[37px]">
               {navItems.map((items, index) => {
-                return (
+                return items.label === "LOOKBOOK" ? (
+                  <li key={index} >
+                    <Link to={items.path} className="texts_14_medium text-head relative  after:absolute after:content-[''] after:w-[40%] after:h-[1.5px] after:bg-head after:bottom-[-3px] after:left-0 hover:after:w-full  after:duration-500 after:ease-in-out">
+                      {items.label}
+                    </Link>
+                  </li>
+                ) : (
                   <li key={index}>
                     <Link to={items.path} className="texts_14_medium text-head">
                       {items.label}
