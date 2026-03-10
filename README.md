@@ -1,16 +1,219 @@
-# React + Vite
+# UomoUI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+UomoUI is a **modern, responsive, and pixel-perfect eCommerce frontend UI** built using **React JS**, **Vite**, and **Tailwind CSS**.
+The project focuses on reusable components, clean architecture, and scalable UI design for modern eCommerce applications.
 
-Currently, two official plugins are available:
+🌐 **Live Preview:** https://uomo-ui.vercel.app
+📦 **GitHub Repository:** https://github.com/basudevkumer/uomo-ui
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+# ✨ Features
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+* Modern **React 19** based frontend
+* **Vite** for fast development and build
+* **Tailwind CSS** for modern styling
+* Fully **Responsive Design**
+* Reusable **UI Components**
+* Smooth animations with **Framer Motion**
+* Product sliders using **Swiper / React Slick**
+* **State Management with Zustand**
+* **API Caching with TanStack React Query**
+* **Virtualized Rendering with TanStack Virtual**
+* **Firebase Integration**
+* Clean **React Router DOM navigation**
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# 🧩 Pages Included
+
+* Home
+* Shop
+* Product Single
+* Cart
+* Checkout
+* Order Tracking
+* Shop Info
+* Collection
+* Journal
+* LookBook
+* Dashboard
+* Wishlist
+* Account Details
+* Address Management
+* Orders
+* Logout
+* 404 Not Found Page
+
+---
+
+# 🗺️ Routing Structure
+
+Routing is handled using **React Router DOM**.
+
+```
+/
+├── Home
+├── Collection
+├── Journal
+├── LookBook
+├── Shop
+├── Cart
+├── Shop Single
+├── Order Tracking
+├── Checkout
+├── Shop Info
+│
+└── Dashboard
+    ├── Account
+    ├── Orders
+    ├── Address
+    ├── Account Details
+    ├── Wishlist
+    └── Logout
+```
+
+---
+
+# 🧱 Project Structure
+
+```
+src
+│
+├── component
+│   ├── common
+│   ├── shopMain
+│   ├── navbar
+│   ├── sliders
+│   └── mainDashboard
+│
+├── page
+│   ├── Home
+│   ├── Shop
+│   ├── CollectionPg
+│   ├── Journal
+│   ├── LookBook
+│   └── NotFound
+│
+├── rootlayout
+│   └── Rootlayout.jsx
+│
+├── App.jsx
+└── main.jsx
+```
+
+---
+
+# ⚙️ Tech Stack
+
+| Technology           | Usage                       |
+| -------------------- | --------------------------- |
+| React                | Frontend Library            |
+| Vite                 | Development Build Tool      |
+| Tailwind CSS         | Utility-first CSS Framework |
+| React Router DOM     | Client-side Routing         |
+| Framer Motion        | Animation                   |
+| Firebase             | Backend Service             |
+| TanStack React Query | Data Fetching               |
+| TanStack Virtual     | Virtualized Lists           |
+| Zustand              | State Management            |
+| Swiper / React Slick | Product Sliders             |
+
+---
+
+# 📦 Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/basudevkumer/uomo-ui.git
+```
+
+Go to project directory
+
+```bash
+cd uomo-ui
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Run development server
+
+```bash
+npm run dev
+```
+
+---
+
+# 🏗️ Build Project
+
+Create production build
+
+```bash
+npm run build
+```
+
+Preview production build
+
+```bash
+npm run preview
+```
+
+---
+
+# 👨‍💻 Team
+
+This project is developed by **Creative IT Institute Internship Program**.
+
+**Batch:** EBT-WEB-1
+
+### Team Leader
+
+* **Jhulon Kumar Ray**
+  GitHub: https://github.com/basudevkumer
+
+### Collaborators
+
+* **Al Mahmud**
+  GitHub: https://github.com/almahmud-dev
+
+* **Muhammad Jihad**
+  GitHub: https://github.com/jihadcodes
+
+* **MD Jaber**
+  GitHub: https://github.com/mdjaberdev
+
+* **Moazzem Hossain**
+  GitHub: https://github.com/Moazzem-Rafi
+
+* **Shoumen Biswas**
+  GitHub: https://github.com/shoumen-shomu
+
+---
+
+# 🚧 Project Status
+
+🟡 **Current Status:** Running
+
+The project is actively under development. New UI components and pages are being added.
+
+---
+
+# 🤝 Contribution
+
+If you want to contribute:
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Submit a Pull Request
+
+---
+
+# 📄 License
+
+This project is licensed under the **MIT License**.
