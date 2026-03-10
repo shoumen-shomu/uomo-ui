@@ -38,6 +38,12 @@
 .head_70_regular {
   @apply font-normal text-[70px]/[80px];
 }
+.head_35_regular {
+  @apply font-normal text-[35px];
+}
+.head_35_bold {
+  @apply font-bold text-[35px];
+}
 .head_26_bold {
   @apply font-bold text-[26px];
 }
