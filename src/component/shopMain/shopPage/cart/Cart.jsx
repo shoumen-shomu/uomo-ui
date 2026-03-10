@@ -95,7 +95,7 @@ const StepIndicator = ({ currentStep = 0 }) => {
             className={`relative pb-5 transition-all duration-200 text-head ${isClickable ? "cursor-pointer" : "cursor-default text-gray-400"}`}
           >
             {/* Active underline — sits on top of the shared border-b */}
-            {isActive && (
+            {idx <= currentStep && (
               <span className="absolute -bottom-px left-0 right-0 h-0.5 bg-head" />
             )}
 
@@ -329,7 +329,9 @@ const Cart = () => {
                   <span className="text-sm text-head leading-6 font-medium uppercase">
                     VAT
                   </span>
-                  <span className="text-sm text-head leading-6 font-medium">${vat}</span>
+                  <span className="text-sm text-head leading-6 font-medium">
+                    ${vat}
+                  </span>
                 </div>
 
                 {/* Total */}
@@ -337,13 +339,15 @@ const Cart = () => {
                   <span className="text-sm text-head leading-6 font-medium uppercase">
                     Total
                   </span>
-                  <span className="text-sm text-head leading-6 font-medium">${total}</span>
+                  <span className="text-sm text-head leading-6 font-medium">
+                    ${total}
+                  </span>
                 </div>
               </motion.div>
 
               {/* Checkout Button — outside the box, full width */}
               <Link
-                to="/ShopCheckout"
+                to="/shop-checkout"
                 className="mt-5 block text-center pt-5.25 pb-3.75 bg-head text-white text-sm font-medium leading-6 hover:bg-[#DB4444] transition-all"
               >
                 PROCEED TO CHECKOUT
