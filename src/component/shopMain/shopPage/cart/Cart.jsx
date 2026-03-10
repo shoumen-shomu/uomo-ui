@@ -203,7 +203,7 @@ const Cart = () => {
                     </span>
 
                     {/* Quantity — minus / number / plus */}
-                    <div className="flex items-center border-2 border-[#E4E4E4] w-full max-w-[110px] h-12.5">
+                    <div className="flex items-center border-2 border-[#E4E4E4] w-full max-w-27.5 h-12.5">
                       <button
                         onClick={() => decrement(cart)}
                         className="w-9 h-full flex items-center justify-center text-gray-500 hover:text-[#DB4444] text-[16px] select-none cursor-pointer"
@@ -223,7 +223,8 @@ const Cart = () => {
 
                     {/* Subtotal */}
                     <span className="text-[16px] font-medium flex items-center text-head justify-start">
-                      <LiaDollarSignSolid />{(cart.price * cart.quantity).toFixed(0)}
+                      <LiaDollarSignSolid />
+                      {(cart.price * cart.quantity).toFixed(0)}
                     </span>
 
                     {/* Remove */}
@@ -240,13 +241,13 @@ const Cart = () => {
               {/* Bottom actions */}
               <div className="flex flex-col sm:flex-row justify-between gap-3 mt-8">
                 {/* Coupon */}
-                <div className="flex items-center border border-[#E4E4E4] overflow-hidden h-12 w-92.5">
+                <div className="flex items-center border border-[#E4E4E4] h-12 w-92.5 bg-white">
                   <input
                     type="text"
                     placeholder="Coupon Code"
-                    className="flex-1 me-5.25 text-[14px] outline-none h-full text-[#767676]"
+                    className="flex-1 pl-4 text-sm text-[#767676] outline-none h-full border-none bg-transparent"
                   />
-                  <button className="">
+                  <button className="px-4 h-full text-sm font-medium text-head cursor-pointer">
                     APPLY COUPON
                   </button>
                 </div>
@@ -255,7 +256,7 @@ const Cart = () => {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="h-12 px-10 border border-gray-300 rounded-sm text-[12px] font-bold text-gray-700 bg-gray-100 hover:bg-[#DB4444] hover:text-white hover:border-[#DB4444] transition-all select-none"
+                  className="pt-5.5 pb-3.5 px-13.75 text-sm font-medium text-head bg-[#E4E4E4] hover:bg-[#DB4444] hover:text-white transition-all select-none"
                 >
                   UPDATE CART
                 </motion.button>
@@ -264,34 +265,37 @@ const Cart = () => {
 
             {/* ── Right: Totals ── */}
             <div
-              style={{ width: "470px", minWidth: "320px", maxWidth: "100%" }}
+              style={{ width: "420px" }}
               className="shrink-0 w-full lg:w-auto"
             >
               {/* Box */}
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="border-2 border-head rounded-sm px-7 pt-7 pb-8"
+                className="border-2 border-head pl-10.25 pr-12.5 pt-9.5 pb-5.5"
               >
-                <h3 className="text-[13px] font-bold tracking-[0.15em] mb-6 uppercase">
+                <h3 className="text-[16px] font-medium leading-[100%] mb-8 uppercase">
                   Cart Totals
                 </h3>
 
                 {/* Subtotal */}
-                <div className="flex justify-between items-center py-4 border-b border-gray-200">
-                  <span className="text-[12px] font-semibold text-gray-700 uppercase">
+                <div className="flex items-center gap-33.5 border-b border-[#E4E4E4]">
+                  <span className="text-sm font-medium text-head leading-6 uppercase">
                     Subtotal
                   </span>
-                  <span className="text-[14px] font-medium">${subtotal}</span>
+                  <span className="text-[14px] font-medium flex items-center pb-3.25">
+                    <LiaDollarSignSolid />
+                    {subtotal}
+                  </span>
                 </div>
 
                 {/* Shipping */}
-                <div className="py-4 border-b border-gray-200">
+                <div className="pb-5 border-b border-[#E4E4E4]">
                   <div className="flex justify-between items-start">
-                    <span className="text-[12px] font-semibold text-gray-700 uppercase pt-0.5">
+                    <span className="text-sm font-medium text-head uppercase pt-3.75">
                       Shipping
                     </span>
-                    <div className="space-y-2.5 text-right">
+                    <div className="flex flex-col items-start space-y-2.5 pt-3.75">
                       {[
                         { id: "free", label: "Free shipping" },
                         { id: "flat", label: "Flat rate: $49" },
@@ -299,50 +303,48 @@ const Cart = () => {
                       ].map((opt) => (
                         <label
                           key={opt.id}
-                          className="flex items-center gap-2 justify-end cursor-pointer"
+                          className="flex items-center gap-2 cursor-pointer"
                         >
-                          <span className="text-[13px] text-gray-600">
-                            {opt.label}
-                          </span>
                           <input
                             type="checkbox"
-                            className="w-4 h-4 border border-gray-300 rounded-none accent-head cursor-pointer"
+                            className="w-4 h-4 border border-gray-300 rounded-none accent-head cursor-pointer shrink-0"
                           />
+                          <span className="text-sm text-head leading-6 font-medium">
+                            {opt.label}
+                          </span>
                         </label>
                       ))}
+                      <span className="text-sm text-head leading-6 font-medium pl-0">
+                        Shipping to AL.
+                      </span>
+                      <button className="texts_14_medium text-head relative after:absolute after:content-[''] after:w-[59%] after:h-0.5 after:bg-head after:-bottom-0.75 after:left-0 hover:after:w-full after:duration-500 after:ease-in-out">
+                        CHANGE ADDRESS
+                      </button>
                     </div>
-                  </div>
-                  <div className="flex justify-between items-center mt-3">
-                    <span className="text-[13px] text-gray-500">
-                      Shipping to AL.
-                    </span>
-                    <button className="text-[12px] font-bold underline underline-offset-2 text-gray-800 hover:text-[#DB4444] transition-colors">
-                      CHANGE ADDRESS
-                    </button>
                   </div>
                 </div>
 
                 {/* VAT */}
-                <div className="flex justify-between items-center py-4 border-b border-gray-200">
-                  <span className="text-[12px] font-semibold text-gray-700 uppercase">
+                <div className="flex gap-43.75 items-center py-3.5 border-b border-[#E4E4E4]">
+                  <span className="text-sm text-head leading-6 font-medium uppercase">
                     VAT
                   </span>
-                  <span className="text-[14px] font-medium">${vat}</span>
+                  <span className="text-sm text-head leading-6 font-medium">${vat}</span>
                 </div>
 
                 {/* Total */}
-                <div className="flex justify-between items-center py-4">
-                  <span className="text-[12px] font-bold text-gray-900 uppercase">
+                <div className="flex gap-39.75 items-center py-3.5">
+                  <span className="text-sm text-head leading-6 font-medium uppercase">
                     Total
                   </span>
-                  <span className="text-[14px] font-bold">${total}</span>
+                  <span className="text-sm text-head leading-6 font-medium">${total}</span>
                 </div>
               </motion.div>
 
               {/* Checkout Button — outside the box, full width */}
               <Link
-                to="/checkout"
-                className="mt-0 block text-center py-4 bg-head text-white text-[12px] font-bold hover:bg-[#DB4444] transition-all"
+                to="/ShopCheckout"
+                className="mt-5 block text-center pt-5.25 pb-3.75 bg-head text-white text-sm font-medium leading-6 hover:bg-[#DB4444] transition-all"
               >
                 PROCEED TO CHECKOUT
               </Link>
