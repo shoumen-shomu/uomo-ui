@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Rootlayout from "@/rootlayout/Rootlayout";
 import Home from "@/page/Home";
 import Shop from "@/page/Shop";
-import Shopsingle from "./component/shopMain/shopSingle/Shopsingle";
 import Cart from "./component/shopMain/shopPage/cart/Cart";
 import CollectionPg from "./page/CollectionPg";
 import Journal from "./page/Journal";
@@ -20,6 +19,7 @@ import DashboardAddress from "./component/mainDashboard/dashborarAllComponent/Da
 import DashboardAccDetails from "./component/mainDashboard/dashborarAllComponent/DashboardAccDetails";
 import DashboardWishlist from "./component/mainDashboard/dashborarAllComponent/DashboardWishlist";
 import LogOut from "./component/mainDashboard/dashborarAllComponent/LogOut";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
       // for journal route
       { path: "journal", element: <Journal /> },
 
-      //for lookbook route 
+      //for lookbook route
       { path: "lookbook", element: <LookBook /> },
 
       // for shop page route
@@ -68,8 +68,15 @@ const router = createBrowserRouter([
   },
 ]);
 
+// Create a client
+const queryClient = new QueryClient();
+
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />;
+    </QueryClientProvider>
+  );
 };
 
 export default App;
