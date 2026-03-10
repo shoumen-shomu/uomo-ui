@@ -1,7 +1,7 @@
 import Container from "@/component/common/Container";
-import FeaturedProducts from "@/component/common/featuredProducts";
 import React from "react";
 import product from "@/assets/images/feaureProducts.png";
+import FeaturedProducts from "@/component/common/FeaturedProducts";
 
 const Feature = () => {
   return (
