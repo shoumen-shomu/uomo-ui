@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
 import { create } from "zustand";
@@ -58,65 +58,6 @@ export const useCartStore = create((set) => ({
   clearCart: () => set({ items: [] }),
 }));
 
-// ─── Step Indicator ────────────────────────────────────────────────────────────
-const steps = [
-  {
-    num: "01",
-    label: "SHOPPING BAG",
-    sub: "Manage Your Items List",
-    path: "/cart",
-  },
-  {
-    num: "02",
-    label: "SHIPPING AND CHECKOUT",
-    sub: "Checkout Your Items List",
-    path: "/checkout",
-  },
-  {
-    num: "03",
-    label: "CONFIRMATION",
-    sub: "Review And Submit Your Order",
-    path: "/confirmation",
-  },
-];
-
-const StepIndicator = ({ currentStep = 0 }) => {
-  const navigate = useNavigate();
-  return (
-    <div className="flex mb-10 border-b border-gray-200">
-      {steps.map((step, idx) => {
-        const isActive = idx === currentStep;
-        const isClickable = idx > currentStep;
-        return (
-          <div
-            key={step.num}
-            onClick={() => isClickable && navigate(step.path)}
-            style={{ flex: 1 }}
-            className={`relative pb-5 transition-all duration-200 text-head ${isClickable ? "cursor-pointer" : "cursor-default text-gray-400"}`}
-          >
-            {/* Active underline — sits on top of the shared border-b */}
-            {idx <= currentStep && (
-              <span className="absolute -bottom-px left-0 right-0 h-0.5 bg-head" />
-            )}
-
-            <div
-              className={`flex items-baseline gap-2 ${isClickable ? "hover:opacity-60" : ""}`}
-            >
-              <span className="text-[18px] font-medium">{step.num}</span>
-              <span
-                className={`text-[18px] font-medium ${isActive ? "text-head" : "text-gray-400"}`}
-              >
-                {step.label}
-              </span>
-            </div>
-            <p className="text-[14px] text-[#767676] mt-1 ml-7">{step.sub}</p>
-          </div>
-        );
-      })}
-    </div>
-  );
-};
-
 // ─── Main Cart ─────────────────────────────────────────────────────────────────
 const Cart = () => {
   const { items: cartItems, removeCart, updateQuantity } = useCartStore();
@@ -133,264 +74,254 @@ const Cart = () => {
   const vat = Math.round(subtotal * 0.015);
   const total = subtotal + vat;
 
+  // ── CartLayout already provides: <section>, <div className="container">, <h1>, <StepIndicator>
+  // So Cart only renders its own content below the step indicator.
   return (
-    <section className="pt-10 md:pt-22.5 pb-25">
-      <div className="container px-6">
-        {/* Title */}
-        <h1 className="text-[35px] text-head font-bold pb-12">CART</h1>
-
-        {/* Steps */}
-        <StepIndicator currentStep={0} />
-
-        {cartItems.length > 0 ? (
-          <div className="flex flex-col lg:flex-row gap-10 items-start">
-            {/* ── Left ── */}
-            <div className="flex-1 min-w-0">
-              {/* Table Header */}
-              <div className="grid grid-cols-[3fr_0.8fr_1.2fr_0.8fr_30px] gap-4 pb-2.25">
-                {["PRODUCT", "PRICE", "QUANTITY", "SUBTOTAL", ""].map((h) => (
-                  <span
-                    key={h}
-                    className="text-[14px] font-medium leading-6 text-head"
-                  >
-                    {h}
-                  </span>
-                ))}
-              </div>
-
-              {/* Items */}
-              <AnimatePresence mode="popLayout">
-                {cartItems.map((cart, index) => (
-                  <motion.div
-                    key={cart.id}
-                    layout
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, scale: 0.96 }}
-                    transition={{ delay: index * 0.04 }}
-                    className="grid grid-cols-[3fr_0.8fr_1.2fr_0.8fr_30px] gap-4 items-center py-7.5 border-b border-[#E4E4E4] border-t"
-                  >
-                    {/* Product */}
-                    <div className="flex gap-4 items-center">
-                      <div className="shrink-0">
-                        <img
-                          className="w-30 h-30 object-cover bg-gray-200 rounded-sm"
-                          src={cart.thumbnail}
-                          alt={cart.title}
-                        />
-                      </div>
-                      <div>
-                        <h3 className="text-[16px] font-normal text-head">
-                          {cart.title}
-                        </h3>
-                        {cart.color && (
-                          <p className="text-[13px] text-gray-500 mt-0.5">
-                            Color: {cart.color}
-                          </p>
-                        )}
-                        {cart.size && (
-                          <p className="text-[13px] text-gray-500">
-                            Size: {cart.size}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Price */}
-                    <span className="text-[16px] font-normal text-[#767676] flex  items-center">
-                      <LiaDollarSignSolid />
-                      {cart.price}
-                    </span>
-
-                    {/* Quantity — minus / number / plus */}
-                    <div className="flex items-center border-2 border-[#E4E4E4] w-full max-w-27.5 h-12.5">
-                      <button
-                        onClick={() => decrement(cart)}
-                        className="w-9 h-full flex items-center justify-center text-gray-500 hover:text-[#DB4444] text-[16px] select-none cursor-pointer"
-                      >
-                        <FaMinus />
-                      </button>
-                      <span className="flex-1 text-center text-[14px] select-none">
-                        {cart.quantity}
-                      </span>
-                      <button
-                        onClick={() => increment(cart)}
-                        className="w-9 h-full flex items-center justify-center text-gray-500 hover:text-[#DB4444] text-[16px] select-none cursor-pointer"
-                      >
-                        <FiPlus />
-                      </button>
-                    </div>
-
-                    {/* Subtotal */}
-                    <span className="text-[16px] font-medium flex items-center text-head justify-start">
-                      <LiaDollarSignSolid />
-                      {(cart.price * cart.quantity).toFixed(0)}
-                    </span>
-
-                    {/* Remove */}
-                    <button
-                      onClick={() => removeCart(cart.id)}
-                      className="text-gray-400 hover:text-[#DB4444] transition-colors cursor-pointer"
-                    >
-                      <IoCloseOutline className="text-[20px]" />
-                    </button>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-
-              {/* Bottom actions */}
-              <div className="flex flex-col sm:flex-row justify-between gap-3 mt-8">
-                {/* Coupon */}
-                <div className="flex items-center border border-[#E4E4E4] h-12 w-92.5 bg-white">
-                  <input
-                    type="text"
-                    placeholder="Coupon Code"
-                    className="flex-1 pl-4 text-sm text-[#767676] outline-none h-full border-none bg-transparent"
-                  />
-                  <button className="px-4 h-full text-sm font-medium text-head cursor-pointer">
-                    APPLY COUPON
-                  </button>
-                </div>
-
-                {/* Update Cart */}
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="pt-5.5 pb-3.5 px-13.75 text-sm font-medium text-head bg-[#E4E4E4] hover:bg-[#DB4444] hover:text-white transition-all select-none"
+    <>
+      {cartItems.length > 0 ? (
+        <div className="flex flex-col lg:flex-row gap-10 items-start">
+          {/* ── Left ── */}
+          <div className="flex-1 min-w-0">
+            {/* Table Header */}
+            <div className="grid grid-cols-[3fr_0.8fr_1.2fr_0.8fr_30px] gap-4 pb-2.25">
+              {["PRODUCT", "PRICE", "QUANTITY", "SUBTOTAL", ""].map((h) => (
+                <span
+                  key={h}
+                  className="text-[14px] font-medium leading-6 text-head"
                 >
-                  UPDATE CART
-                </motion.button>
-              </div>
+                  {h}
+                </span>
+              ))}
             </div>
 
-            {/* ── Right: Totals ── */}
-            <div
-              style={{ width: "420px" }}
-              className="shrink-0 w-full lg:w-auto"
-            >
-              {/* Box */}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="border-2 border-head pl-10.25 pr-12.5 pt-9.5 pb-5.5"
-              >
-                <h3 className="text-[16px] font-medium leading-[100%] mb-8 uppercase">
-                  Cart Totals
-                </h3>
-
-                {/* Subtotal */}
-                <div className="flex items-center gap-33.5 border-b border-[#E4E4E4]">
-                  <span className="text-sm font-medium text-head leading-6 uppercase">
-                    Subtotal
-                  </span>
-                  <span className="text-[14px] font-medium flex items-center pb-3.25">
-                    <LiaDollarSignSolid />
-                    {subtotal}
-                  </span>
-                </div>
-
-                {/* Shipping */}
-                <div className="pb-5 border-b border-[#E4E4E4]">
-                  <div className="flex justify-between items-start">
-                    <span className="text-sm font-medium text-head uppercase pt-3.75">
-                      Shipping
-                    </span>
-                    <div className="flex flex-col items-start space-y-2.5 pt-3.75">
-                      {[
-                        { id: "free", label: "Free shipping" },
-                        { id: "flat", label: "Flat rate: $49" },
-                        { id: "local", label: "Local pickup: $8" },
-                      ].map((opt) => (
-                        <label
-                          key={opt.id}
-                          className="flex items-center gap-2 cursor-pointer"
-                        >
-                          <input
-                            type="checkbox"
-                            className="w-4 h-4 border border-gray-300 rounded-none accent-head cursor-pointer shrink-0"
-                          />
-                          <span className="text-sm text-head leading-6 font-medium">
-                            {opt.label}
-                          </span>
-                        </label>
-                      ))}
-                      <span className="text-sm text-head leading-6 font-medium pl-0">
-                        Shipping to AL.
-                      </span>
-                      <button className="texts_14_medium text-head relative after:absolute after:content-[''] after:w-[59%] after:h-0.5 after:bg-head after:-bottom-0.75 after:left-0 hover:after:w-full after:duration-500 after:ease-in-out">
-                        CHANGE ADDRESS
-                      </button>
+            {/* Items */}
+            <AnimatePresence mode="popLayout">
+              {cartItems.map((cart, index) => (
+                <motion.div
+                  key={cart.id}
+                  layout
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ delay: index * 0.04 }}
+                  className="grid grid-cols-[3fr_0.8fr_1.2fr_0.8fr_30px] gap-4 items-center py-7.5 border-b border-[#E4E4E4] border-t"
+                >
+                  {/* Product */}
+                  <div className="flex gap-4 items-center">
+                    <div className="shrink-0">
+                      <img
+                        className="w-30 h-30 object-cover bg-gray-200 rounded-sm"
+                        src={cart.thumbnail}
+                        alt={cart.title}
+                      />
+                    </div>
+                    <div>
+                      <h3 className="text-[16px] font-normal text-head">
+                        {cart.title}
+                      </h3>
+                      {cart.color && (
+                        <p className="text-[13px] text-gray-500 mt-0.5">
+                          Color: {cart.color}
+                        </p>
+                      )}
+                      {cart.size && (
+                        <p className="text-[13px] text-gray-500">
+                          Size: {cart.size}
+                        </p>
+                      )}
                     </div>
                   </div>
-                </div>
 
-                {/* VAT */}
-                <div className="flex gap-43.75 items-center py-3.5 border-b border-[#E4E4E4]">
-                  <span className="text-sm text-head leading-6 font-medium uppercase">
-                    VAT
+                  {/* Price */}
+                  <span className="text-[16px] font-normal text-[#767676] flex items-center">
+                    <LiaDollarSignSolid />
+                    {cart.price}
                   </span>
-                  <span className="text-sm text-head leading-6 font-medium">
-                    ${vat}
-                  </span>
-                </div>
 
-                {/* Total */}
-                <div className="flex gap-39.75 items-center py-3.5">
-                  <span className="text-sm text-head leading-6 font-medium uppercase">
-                    Total
-                  </span>
-                  <span className="text-sm text-head leading-6 font-medium">
-                    ${total}
-                  </span>
-                </div>
-              </motion.div>
+                  {/* Quantity */}
+                  <div className="flex items-center border-2 border-[#E4E4E4] w-full max-w-27.5 h-12.5">
+                    <button
+                      onClick={() => decrement(cart)}
+                      className="w-9 h-full flex items-center justify-center text-gray-500 hover:text-[#DB4444] text-[16px] select-none cursor-pointer"
+                    >
+                      <FaMinus />
+                    </button>
+                    <span className="flex-1 text-center text-[14px] select-none">
+                      {cart.quantity}
+                    </span>
+                    <button
+                      onClick={() => increment(cart)}
+                      className="w-9 h-full flex items-center justify-center text-gray-500 hover:text-[#DB4444] text-[16px] select-none cursor-pointer"
+                    >
+                      <FiPlus />
+                    </button>
+                  </div>
 
-              {/* Checkout Button — outside the box, full width */}
-              <Link
-                to="/shop-checkout"
-                className="mt-5 block text-center pt-5.25 pb-3.75 bg-head text-white text-sm font-medium leading-6 hover:bg-[#DB4444] transition-all"
+                  {/* Subtotal */}
+                  <span className="text-[16px] font-medium flex items-center text-head justify-start">
+                    <LiaDollarSignSolid />
+                    {(cart.price * cart.quantity).toFixed(0)}
+                  </span>
+
+                  {/* Remove */}
+                  <button
+                    onClick={() => removeCart(cart.id)}
+                    className="text-gray-400 hover:text-[#DB4444] transition-colors cursor-pointer"
+                  >
+                    <IoCloseOutline className="text-[20px]" />
+                  </button>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+
+            {/* Bottom actions */}
+            <div className="flex flex-col sm:flex-row justify-between gap-3 mt-8">
+              {/* Coupon */}
+              <div className="flex items-center border border-[#E4E4E4] h-12 w-92.5 bg-white">
+                <input
+                  type="text"
+                  placeholder="Coupon Code"
+                  className="flex-1 pl-4 text-sm text-[#767676] outline-none h-full border-none bg-transparent"
+                />
+                <button className="px-4 h-full text-sm font-medium text-head cursor-pointer">
+                  APPLY COUPON
+                </button>
+              </div>
+
+              {/* Update Cart */}
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="pt-5.5 pb-3.5 px-13.75 text-sm font-medium text-head bg-[#E4E4E4] hover:bg-[#DB4444] hover:text-white transition-all select-none"
               >
-                PROCEED TO CHECKOUT
-              </Link>
+                UPDATE CART
+              </motion.button>
             </div>
           </div>
-        ) : (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex flex-col items-center justify-center py-20 px-6 bg-[#f9f9f9] rounded-lg border-2 border-dashed border-gray-300"
-          >
-            <div className="mb-6 bg-white p-5 rounded-full shadow-md">
-              <svg
-                className="w-16 h-16 text-gray-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>
-            </div>
-            <h2 className="text-[22px] font-bold text-gray-800 mb-2">
-              Your Cart is Empty
-            </h2>
-            <p className="text-gray-500 mb-8 text-center">
-              Add some products to your cart to see them here.
-            </p>
-            <Link
-              to="/"
-              className="bg-[#DB4444] text-white px-10 py-3 rounded-sm hover:bg-black transition-all text-[13px] font-bold"
+
+          {/* ── Right: Totals ── */}
+          <div style={{ width: "420px" }} className="shrink-0 w-full lg:w-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="border-2 border-head pl-10.25 pr-12.5 pt-9.5 pb-5.5"
             >
-              Go Shopping
+              <h3 className="text-[16px] font-medium leading-[100%] mb-8 uppercase">
+                Cart Totals
+              </h3>
+
+              {/* Subtotal */}
+              <div className="flex items-center gap-33.5 border-b border-[#E4E4E4]">
+                <span className="text-sm font-medium text-head leading-6 uppercase">
+                  Subtotal
+                </span>
+                <span className="text-[14px] font-medium flex items-center pb-3.25">
+                  <LiaDollarSignSolid />
+                  {subtotal}
+                </span>
+              </div>
+
+              {/* Shipping */}
+              <div className="pb-5 border-b border-[#E4E4E4]">
+                <div className="flex justify-between items-start">
+                  <span className="text-sm font-medium text-head uppercase pt-3.75">
+                    Shipping
+                  </span>
+                  <div className="flex flex-col items-start space-y-2.5 pt-3.75">
+                    {[
+                      { id: "free", label: "Free shipping" },
+                      { id: "flat", label: "Flat rate: $49" },
+                      { id: "local", label: "Local pickup: $8" },
+                    ].map((opt) => (
+                      <label
+                        key={opt.id}
+                        className="flex items-center gap-2 cursor-pointer"
+                      >
+                        <input
+                          type="checkbox"
+                          className="w-4 h-4 border border-gray-300 rounded-none accent-head cursor-pointer shrink-0"
+                        />
+                        <span className="text-sm text-head leading-6 font-medium">
+                          {opt.label}
+                        </span>
+                      </label>
+                    ))}
+                    <span className="text-sm text-head leading-6 font-medium pl-0">
+                      Shipping to AL.
+                    </span>
+                    <button className="texts_14_medium text-head relative after:absolute after:content-[''] after:w-[59%] after:h-0.5 after:bg-head after:-bottom-0.75 after:left-0 hover:after:w-full after:duration-500 after:ease-in-out">
+                      CHANGE ADDRESS
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* VAT */}
+              <div className="flex gap-43.75 items-center py-3.5 border-b border-[#E4E4E4]">
+                <span className="text-sm text-head leading-6 font-medium uppercase">
+                  VAT
+                </span>
+                <span className="text-sm text-head leading-6 font-medium">
+                  ${vat}
+                </span>
+              </div>
+
+              {/* Total */}
+              <div className="flex gap-39.75 items-center py-3.5">
+                <span className="text-sm text-head leading-6 font-medium uppercase">
+                  Total
+                </span>
+                <span className="text-sm text-head leading-6 font-medium">
+                  ${total}
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Checkout Button */}
+            <Link
+              to="/cart/shoping-and-checkout"
+              className="mt-5 block text-center pt-5.25 pb-3.75 bg-head text-white text-sm font-medium leading-6 hover:bg-[#DB4444] transition-all"
+            >
+              PROCEED TO CHECKOUT
             </Link>
-          </motion.div>
-        )}
-      </div>
-    </section>
+          </div>
+        </div>
+      ) : (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex flex-col items-center justify-center py-20 px-6 bg-[#f9f9f9] rounded-lg border-2 border-dashed border-gray-300"
+        >
+          <div className="mb-6 bg-white p-5 rounded-full shadow-md">
+            <svg
+              className="w-16 h-16 text-gray-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+              />
+            </svg>
+          </div>
+          <h2 className="text-[22px] font-bold text-gray-800 mb-2">
+            Your Cart is Empty
+          </h2>
+          <p className="text-gray-500 mb-8 text-center">
+            Add some products to your cart to see them here.
+          </p>
+          <Link
+            to="/"
+            className="bg-[#DB4444] text-white px-10 py-3 rounded-sm hover:bg-black transition-all text-[13px] font-bold"
+          >
+            Go Shopping
+          </Link>
+        </motion.div>
+      )}
+    </>
   );
 };
 

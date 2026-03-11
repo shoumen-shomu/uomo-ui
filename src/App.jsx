@@ -20,6 +20,7 @@ import DashboardAccDetails from "./component/mainDashboard/dashborarAllComponent
 import DashboardWishlist from "./component/mainDashboard/dashborarAllComponent/DashboardWishlist";
 import DashboardDownload from "./component/mainDashboard/dashborarAllComponent/DashboardDownload";
 import LogOut from "./component/mainDashboard/dashborarAllComponent/LogOut";
+import CartLayout from "./component/shopMain/shopPage/cartLayout/CartLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const router = createBrowserRouter([
@@ -41,11 +42,20 @@ const router = createBrowserRouter([
 
       // for shop page route
       { path: "shop", element: <Shop /> },
-      { path: "cart", element: <Cart /> },
       { path: "shop-single", element: <ShopSinglePg /> },
-      { path: "order-tracking", element: <OrderTracking /> },
-      { path: "shop-checkout", element: <ShopCheckout /> },
-      { path: "shop-info", element: <ShopInfo /> },
+
+
+      // for shopping cart route
+      {
+        path: "cart",
+        element: <CartLayout />,
+        children: [
+          { index: true, element: <Cart /> },
+          { path: "/cart/shoping-and-checkout", element: <ShopCheckout /> },
+          { path: "/cart/order-recived", element: <ShopInfo /> },
+          { path: "/cart/order-tracking", element: <OrderTracking /> },
+        ],
+      },
 
       //  for dashboard route
       {

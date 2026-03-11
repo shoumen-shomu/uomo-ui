@@ -1,0 +1,76 @@
+import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
+// ─── Step config ───────────────────────────────────────────────────────────────
+const steps = [
+  {
+    num: "01",
+    label: "SHOPPING BAG",
+    sub: "Manage Your Items List",
+    path: "/cart",
+  },
+  {
+    num: "02",
+    label: "SHIPPING AND CHECKOUT",
+    sub: "Checkout Your Items List",
+    path: "/cart/shoping-and-checkout",
+  },
+  {
+    num: "03",
+    label: "CONFIRMATION",
+    sub: "Review And Submit Your Order",
+    path: "/cart/order-recived",
+  },
+];
+
+// Derive which step index is active from the current URL
+const getStepIndex = (pathname) => {
+  if (pathname.includes("order-recived") || pathname.includes("order-tracking"))
+    return 2;
+  if (pathname.includes("shoping-and-checkout")) return 1;
+  return 0;
+};
+
+// ─── StepIndicator ─────────────────────────────────────────────────────────────
+const StepIndicator = () => {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const currentStep = getStepIndex(pathname);
+
+  return (
+    <div className="flex mb-10 border-b border-gray-200">
+      {steps.map((step, idx) => {
+        const isActive = idx === currentStep;
+
+        return (
+          <div
+            key={step.num}
+            onClick={() => navigate(step.path)}
+            style={{ flex: 1 }}
+            className="relative pb-5 transition-all duration-200 text-head cursor-pointer"
+          >
+            {/* Active / completed underline */}
+            {idx <= currentStep && (
+              <span className="absolute -bottom-px left-0 right-0 h-0.5 bg-head" />
+            )}
+
+            <div className="flex items-baseline gap-2 hover:opacity-60 transition-opacity duration-200">
+              <span className="text-[18px] font-medium">{step.num}</span>
+              <span
+                className={`text-[18px] font-medium ${
+                  isActive ? "text-head" : "text-gray-400"
+                }`}
+              >
+                {step.label}
+              </span>
+            </div>
+
+            <p className="text-[14px] text-[#767676] mt-1 ml-7">{step.sub}</p>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export default StepIndicator;
