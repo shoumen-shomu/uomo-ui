@@ -1,37 +1,27 @@
-
-
-
-
-import { useState } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
-
+import { useState } from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 const menuItems = [
-  { label: "DASHBOARD",       path: "/dashboard" },
-  { label: "ORDERS",          path: "order" },
-  { label: "DOWNLOADS",       path: "downloads" },
-  { label: "ADDRESSES",       path: "address" },
+  { label: "DASHBOARD", path: "/dashboard" },
+  { label: "ORDERS", path: "order" },
+  { label: "DOWNLOADS", path: "downloads" },
+  { label: "ADDRESSES", path: "address" },
   { label: "ACCOUNT DETAILS", path: "account-details" },
-  { label: "WISHLIST",        path: "wishlist" },
-  { label: "LOGOUT",          path: "logout" },
+  { label: "WISHLIST", path: "wishlist" },
+  { label: "LOGOUT", path: "logout" },
 ];
 
-
 const DashboardItems = () => {
-
   const location = useLocation();
-  const [headerTitle, setHeaderTitle] =useState("MY ACCOUNT");
-
+  const [headerTitle, setHeaderTitle] = useState("MY ACCOUNT");
 
   return (
     <div className="container">
       <div className="flex pt-22.5 pb-25">
-
-
         {/* Sidebar */}
         <div className="w-81.5 shrink-0">
           <h2 className="font-bold text-[35px] text-[rgb(34,34,34)] mb-9">
-           {headerTitle}
+            {headerTitle}
           </h2>
           <ul className="flex flex-col gap-3.5">
             {menuItems.map((item) => {
@@ -39,14 +29,17 @@ const DashboardItems = () => {
               return (
                 <li key={item.path}>
                   <Link
-                  onClick={() => setHeaderTitle(item.label  === "DASHBOARD" ? "MY ACCOUNT" : item.label)}
+                    onClick={() =>
+                      setHeaderTitle(
+                        item.label === "DASHBOARD" ? "MY ACCOUNT" : item.label,
+                      )
+                    }
                     to={item.path}
                     style={{
                       fontWeight: "500",
                       fontSize: "14px",
                       lineHeight: "50px",
                       color: isActive ? "#C32929" : "#222",
-                      
                     }}
                   >
                     {item.label}
@@ -57,19 +50,13 @@ const DashboardItems = () => {
           </ul>
         </div>
 
-
         {/* Active page render here */}
         <div className="">
           <Outlet />
         </div>
-
-
       </div>
     </div>
   );
 };
 
-
 export default DashboardItems;
-
-
