@@ -17,9 +17,11 @@ const CartLayout = () => {
 
   return (
     <section className="pt-10 md:pt-22.5 pb-25">
-      <div className="container px-6">
+      <div className="container px-4 sm:px-6">
         {/* Dynamic page title */}
-        <h1 className="text-[35px] text-head font-bold pb-12">{title}</h1>
+        <h1 className="text-[22px] sm:text-[28px] md:text-[35px] text-head font-bold pb-6 sm:pb-9 md:pb-12">
+          {title}
+        </h1>
 
         {/* Shared step indicator — auto-highlights based on current route */}
         <StepIndicator />
