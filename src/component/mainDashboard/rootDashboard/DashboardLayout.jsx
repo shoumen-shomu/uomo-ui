@@ -11,9 +11,9 @@ const DashboardLayout = () => {
           <aside>
             <DashborardItems />
           </aside>
-          <main className="col-span-3">
+          {/* <main className="col-span-3">
             <Outlet />
-          </main>
+          </main> */}
         </div>
       </Container>
     </section>
