@@ -22,7 +22,7 @@ const DashboardItems = () => {
 
   return (
     <div className="container">
-      <div className="flex gap-12 pt-22.5 pb-25">
+      <div className="flex pt-22.5 pb-25">
 
 
         {/* Sidebar */}
@@ -55,7 +55,7 @@ const DashboardItems = () => {
 
 
         {/* Active page render here */}
-        <div className="flex-1 pt-2">
+        <div className="">
           <Outlet />
         </div>
 
