@@ -130,8 +130,6 @@ const Shopsingle = () => {
                   +
                 </button>
               </div>
-
-              {/* Add to Cart Button - Fixed width logic fixed here */}
               <button className="h-12 lg:w-[280px] lg:h-[60px] bg-[#111111] text-white text-[12px] lg:text-[14px] font-medium tracking-widest cursor-pointer uppercase px-10 lg:px-0  hover:bg-black/90 transition-all active:scale-[0.98]">
                 ADD TO CART
               </button>
