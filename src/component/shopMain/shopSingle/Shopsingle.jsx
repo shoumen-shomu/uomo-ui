@@ -29,16 +29,16 @@ const Shopsingle = () => {
     // Top
     <div className="mt-12.5 mb-25">
       <Container>
-        <div className="flex flex-col lg:flex-row gap-x-15">
+        <div className="flex gap-x-15">
           {/* Flex One  */}
           <div className="flex gap-x-2.5">
-            <div className="space-y-2.5 hidden lg:block">
+            <div className="space-y-2.5">
               <Images imgSrc={sssOne} />
               <Images imgSrc={sssOne} />
               <Images imgSrc={sssOne} />
               <Images imgSrc={sssOne} />
             </div>
-            <div className="w-full lg:w-170 relative group">
+            <div className="w-170 relative group">
               {/* Slider */}
               <Swiper
                 modules={[Navigation]}
@@ -60,7 +60,7 @@ const Shopsingle = () => {
                   <Images
                     imgSrc={zoomIcon}
                     className={
-                      "absolute bottom-4 right-4 lg:bottom-7.5 lg:right-7.5 w-6 h-6 lg:w-auto"
+                      "absolute  bottom-7.5 right-7.5 h-6 l"
                     }
                   />
                 </SwiperSlide>
@@ -72,7 +72,7 @@ const Shopsingle = () => {
                   <Images
                     imgSrc={zoomIcon}
                     className={
-                      "absolute bottom-4 right-4 lg:bottom-7.5 lg:right-7.5 w-6 h-6 lg:w-auto"
+                      "absolute bottom-7.5 right-7.5  h-6 "
                     }
                   />
                 </SwiperSlide>
@@ -84,14 +84,14 @@ const Shopsingle = () => {
                   <Images
                     imgSrc={zoomIcon}
                     className={
-                      "absolute bottom-4 right-4 lg:bottom-7.5 lg:right-7.5 w-6 h-6 lg:w-auto"
+                      "absolute bottom-7.5 right-7.5  h-6 "
                     }
                   />
                 </SwiperSlide>
               </Swiper>
 
               {/* slider next prev buttons */}
-              <div className="button-prev-custom absolute left-2 lg:left-7.5 top-1/2 -translate-y-1/2 z-10 cursor-pointer bg-white text-[#767676] p-2 lg:p-4 rounded-full shadow-md flex items-center justify-center">
+              <div className="button-prev-custom absolute left-2 lg:left-7.5 top-1/2 -translate-y-1/2 z-10 cursor-pointer bg-white text-[#767676]  p-4 rounded-full shadow-md flex items-center justify-center">
                 <GrFormPrevious size={24} />
               </div>
               <div className="button-next-custom absolute right-2 lg:right-7.5 top-1/2 -translate-y-1/2 z-10 cursor-pointer bg-white text-[#767676] p-2 lg:p-4 rounded-full shadow-md flex items-center justify-center">

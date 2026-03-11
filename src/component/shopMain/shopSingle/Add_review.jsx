@@ -3,7 +3,7 @@ import React from "react";
 
 const Add_review = () => {
   return (
-    <div className="px-60 mt-[54px]">
+    <div className="px-60 mt-[54px] hidden lg:block">
       <Container>
         <div className="">
           <h3 className="texts_18_medium text-head">
