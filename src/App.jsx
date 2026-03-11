@@ -18,6 +18,7 @@ import DashboardOrder from "./component/mainDashboard/dashborarAllComponent/Dash
 import DashboardAddress from "./component/mainDashboard/dashborarAllComponent/DashboardAddress";
 import DashboardAccDetails from "./component/mainDashboard/dashborarAllComponent/DashboardAccDetails";
 import DashboardWishlist from "./component/mainDashboard/dashborarAllComponent/DashboardWishlist";
+import DashboardDownload from "./component/mainDashboard/dashborarAllComponent/DashboardDownload";
 import LogOut from "./component/mainDashboard/dashborarAllComponent/LogOut";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -60,6 +61,7 @@ const router = createBrowserRouter([
           },
           { path: "/dashboard/wishlist", element: <DashboardWishlist /> },
           { path: "/dashboard/logout", element: <LogOut /> },
+          { path: "/dashboard/downloads", element: <DashboardDownload /> },
         ],
       },
       // 404 not found
