@@ -66,7 +66,7 @@ const Products = () => {
           </div>
           <div
             ref={containerRef}
-            className="mt-5.5 flex flex-wrap justify-center gap-7.5 justify-center"
+            className="mt-5.5 flex flex-wrap justify-center gap-7.5 "
           >
             <div className="mix all newArrivals bestSeller">
               <Product
