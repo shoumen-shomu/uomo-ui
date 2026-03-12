@@ -12,7 +12,7 @@ const Banner = () => {
   const swiperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const sliderData = [1, 2, 3]; 
+  const sliderData = [1, 2, 3, 4]; 
 
   return (
     <section>
@@ -46,7 +46,7 @@ const Banner = () => {
                       <Button className={"hover:after:w-24"} btnText={"DISCOVER MORE"} />
 
                       {/* Slider Dots Start */}
-                      <div className="mt-48.75 mb-13.75 flex gap-4.5">
+                      <div className="mt-48.75 mb-13.75 flex gap-1.5">
                         {sliderData.map((_, index) => (
                           <div
                             onClick={() => swiperRef.current?.slideToLoop(index)}
@@ -54,7 +54,7 @@ const Banner = () => {
                             className="group relative flex items-center justify-center p-3 cursor-pointer"
                           >
                             <div className={`w-1.5 h-1.5 rounded-full transition-all duration-300 
-                              ${activeIndex === index ? "bg-black" : "bg-[#D9D9D9] group-hover:bg-black"}`}>
+                              ${activeIndex === index ? "bg-black" : "bg-[#DDC2B9] group-hover:bg-black"}`}>
                             </div>
                             <div className={`absolute inset-0 border-2 border-black rounded-full transition-all duration-300 
                               ${activeIndex === index ? "scale-100" : "scale-0 group-hover:scale-100"}`}>

@@ -13,17 +13,30 @@ const Product = ({
   const [isLiked, setIsLiked] = useState(false);
   return (
     <>
-      <div className="w-82.5">
-        <Images className={""} imgSrc={imgSrc} imgAlt={imgAlt} />
+      <div className="w-82.5 relative group">
+        <div className="relativec overflow-hidden ">
+          <Images className={""} imgSrc={imgSrc} imgAlt={imgAlt} />
+          {/* Badge Start */}
+
+          {/* Badge End */}
+
+          {/* Add To Cart Start */}
+          <div className="w-77.5 bg-white pt-4 pb-2.5 text-center mx-auto absolute bottom-[20%] left-1/2 -translate-x-1/2 translate-y-[50%] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 ease-in-out duration-500">
+            <h2 className="texts_14_medium text-head">ADD TO CART</h2>
+          </div>
+          {/* Add To Cart End*/}
+        </div>
+
+        {/* Product Description Start */}
         <div className="mt-3.5">
           <div className="flex justify-between items-center">
             <p className="texts_14_regular text-[#767676]">{catagory}</p>
 
-            <div onClick={()=>setIsLiked(!isLiked)} className="cursor-pointer">
+            <div onClick={() => setIsLiked(!isLiked)} className="cursor-pointer">
               {isLiked ? (
-                <FaHeart  className="text-red cursor-pointer" size={14} />
+                <FaHeart className="text-red cursor-pointer" size={14} />
               ) : (
-                <FaHeart 
+                <FaHeart
                   className="text-[#767676] cursor-pointer"
                   size={14}
                 />
@@ -46,6 +59,8 @@ const Product = ({
             )}
           </div>
         </div>
+        {/* Product Description End */}
+
       </div>
     </>
   );
