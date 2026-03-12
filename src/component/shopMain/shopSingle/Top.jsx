@@ -137,7 +137,7 @@ const Top = () => {
 
             {/* Wishlist & Share */}
             <div className="flex gap-x-8 lg:pb-8">
-              <button className="text-head text-[13px] font-medium flex items-center gap-x-2 uppercase relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-[80%] after:border-b-2 after:border-black">
+              <button className="text-head text-[13px] font-medium flex items-center gap-x-2 uppercase relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-[80%] after:border-b-2 after:border-head">
                 <FaRegHeart /> Add to wishlist
               </button>
 
