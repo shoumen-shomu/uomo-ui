@@ -1,13 +1,10 @@
-
-
 import { GoSearch } from "react-icons/go";
 import { FaRegUser } from "react-icons/fa6";
 import { FiHeart } from "react-icons/fi";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 
 import { HiMiniBars3CenterLeft } from "react-icons/hi2";
-
-
+import { IoMdClose } from "react-icons/io";
 
 const allIcons = {
   navIconItems: [
@@ -22,7 +19,7 @@ const allIcons = {
       id: 2,
       name: "Account",
       icon: <FaRegUser />,
-      link: "/account",
+      link: "#",
       badge: null,
     },
     {
@@ -36,17 +33,18 @@ const allIcons = {
       id: 4,
       name: "Cart",
       icon: <HiOutlineShoppingBag />,
-      link: "/cart",
+      link: "#",
       badge: 3,
     },
     {
       id: 5,
       name: "Mobile Menu",
       icon: <HiMiniBars3CenterLeft />,
-      link: "/dashboard",
+      link: "#",
       badge: null,
     },
   ],
+  close: <IoMdClose />,
 };
 
 export default allIcons;

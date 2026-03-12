@@ -8,9 +8,11 @@
     font-family: "Jost", sans-serif;
   }
 }
+
 .container {
   @apply max-w-[1410px] mx-auto;
 }
+
 @theme {
   /* for color */
 
@@ -24,7 +26,7 @@
   /* for Background */
   --color-primary: #faf9f8;
   --color-slide: #f5e6e0;
-  --color-second: #eeeeee;
+  --color-secondbg: #eeeeee;
   --color-footer: #e4e4e4;
 }
 
@@ -34,21 +36,27 @@
 .head_70_bold {
   @apply font-bold text-[70px]/[80px];
 }
+
 .head_70_regular {
   @apply font-normal text-[70px]/[80px];
 }
+
 .head_35_regular {
   @apply font-normal text-[35px];
 }
+
 .head_35_bold {
   @apply font-bold text-[35px];
 }
+
 .head_26_bold {
   @apply font-bold text-[26px];
 }
+
 .head_26_medium {
   @apply font-medium text-[26px];
 }
+
 .head_26_regular {
   @apply font-normal text-[26px];
 }
@@ -57,24 +65,31 @@
 .texts_18_medium {
   @apply font-medium text-lg;
 }
+
 .texts_18_regular {
   @apply font-normal text-lg;
 }
+
 .texts_16_medium {
   @apply font-medium text-base;
 }
+
 .texts_16_regular {
   @apply font-normal text-base;
 }
+
 .texts_15_medium {
   @apply font-medium text-[15px];
 }
+
 .texts_15_regular {
   @apply font-normal text-[15px];
 }
+
 .texts_14_medium {
   @apply font-medium text-[14px]/[24px];
 }
+
 .texts_14_regular {
   @apply font-normal text-[14px]/[24px];
 }
@@ -83,6 +98,16 @@
   @apply font-normal text-[13px]/[24px];
 }
 
-.table-head th{
+.table-head th {
   @apply font-medium text-sm text-[#222] leading-6
+}
+
+/* for input css */
+
+input:focus-visible {
+  outline: none;
+}
+
+.c {
+  color: #22222258;
 }

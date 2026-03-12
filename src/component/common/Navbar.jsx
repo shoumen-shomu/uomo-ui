@@ -2,21 +2,40 @@ import React, { useState } from "react";
 import Container from "./Container";
 import allImages from "@/helper/imagesProvider";
 import Images from "./Images";
-import { navItems } from "@/helper/projectArrayObj";
+import { navItems, quickLinks } from "@/helper/projectArrayObj";
 import { Link } from "react-router-dom";
 import allIcons from "@/helper/iconProvider";
+import NavDownImg from "@/assets/images/nav-dropImage.png";
+import Button from "./Button";
+import Login from "../auth/Login";
+import Register from "../auth/Register";
+import AddToCart from "../shopMain/addToCart/AddToCart";
+import NavTabs from "../navtabs/NavTabs";
 
 const Navbar = () => {
   // for icon and images
   const { navLogo } = allImages;
-  const { navIconItems } = allIcons;
+  const { navIconItems, close } = allIcons;
 
   // for manage state
 
   const [hoverItems, setHoverITems] = useState(null);
+  const [open, setIsOpen] = useState(null);
+
+  //  for handle evetnt
+
+  const handleclicked = (id) => {
+    setIsOpen((prev) => (prev === id ? null : id));
+  };
+
+  const handleUnMount = (value) => {
+    setIsOpen(value);
+    console.log(value);
+
+  };
 
   return (
-    <nav className="pt-[29px] pb-[19px]">
+    <nav className="pt-[29px] pb-[19px] relative !z-[999]">
       <Container>
         <div className="flex justify-between">
           <div className="flex  items-center  gap-x-[56px] ">
@@ -25,7 +44,7 @@ const Navbar = () => {
               imgAlt={navLogo}
               className={"w-[111px] h-[27px]"}
             />
-            <ul className=" flex gap-x-[37px]">
+            <ul className=" flex gap-x-[37px] ">
               {navItems.map((items, index) => {
                 return items.label === "LOOKBOOK" ? (
                   <li key={index}>
@@ -41,17 +60,254 @@ const Navbar = () => {
                     key={index}
                     onMouseEnter={() => setHoverITems(items.label)}
                     onMouseLeave={() => setHoverITems(null)}
-                    className="relative "
+                    className=""
                   >
-                    <Link to={items.path} className="texts_14_medium text-head">
+                    <Link
+                      to={items.path}
+                      className="texts_14_medium text-head pb-6 "
+                    >
                       {items.label}
                     </Link>
 
-                    {items.hasMegaMenu && items.label === hoverItems && (
-                      <div className=" absolute bg-red-500">
-                        This is shop page...
-                      </div>
-                    )}
+                    {/* for shop */}
+                    {items.hasMegaMenu &&
+                      hoverItems === items.label &&
+                      hoverItems === "SHOP" && (
+                        <div className=" bg-white absolute w-full top-[100%] shadow-[0_10px_25px_-10px_rgba(0,0,0,0.18)] left-0 ">
+                          <Container>
+                            <div className="  border-t border-footer pt-[40px] pb-[44px] grid grid-cols-12 ">
+                              <div className="col-span-9 grid grid-cols-6">
+                                <div>
+                                  <div className="">
+                                    <p className="texts_14_medium text-second pb-3">
+                                      {items.megaMenuData[0]?.title}
+                                    </p>
+                                    <ul>
+                                      {items.megaMenuData[0]?.links.map(
+                                        (items, index) => {
+                                          return (
+                                            <li
+                                              key={index}
+                                              className="texts_14_regular text-head !leading-[35px] w-fit   relative  after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[5px] after:left-0 hover:after:w-[50%]  after:duration-500 after:ease-in-out"
+                                            >
+                                              <Link to={items.link}>
+                                                {items.name}
+                                              </Link>
+                                            </li>
+                                          );
+                                        },
+                                      )}
+                                    </ul>
+                                  </div>
+                                  <div className="mt-[29px]">
+                                    <p className="texts_14_medium text-second pb-3">
+                                      {items.megaMenuData[1]?.title}
+                                    </p>
+                                    <ul>
+                                      {items.megaMenuData[1]?.links.map(
+                                        (items, index) => {
+                                          return (
+                                            <li
+                                              key={index}
+                                              className="texts_14_regular text-head !leading-[35px] w-fit   relative  after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[5px] after:left-0 hover:after:w-[50%]  after:duration-500 after:ease-in-out"
+                                            >
+                                              <Link to={items.link}>
+                                                {items.name}
+                                              </Link>
+                                            </li>
+                                          );
+                                        },
+                                      )}
+                                    </ul>
+                                  </div>
+                                </div>
+                                <div className=" col-span-2 flex justify-center ">
+                                  <div className="">
+                                    <p className="texts_14_medium text-second pb-3">
+                                      {items.megaMenuData[2]?.title}
+                                    </p>
+                                    <ul>
+                                      {items.megaMenuData[2]?.links.map(
+                                        (items, index) => {
+                                          return (
+                                            <li
+                                              key={index}
+                                              className="texts_14_regular text-head !leading-[35px] w-fit   relative  after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[5px] after:left-0 hover:after:w-[50%]  after:duration-500 after:ease-in-out"
+                                            >
+                                              <Link to={items.link}>
+                                                {items.name}
+                                              </Link>
+                                            </li>
+                                          );
+                                        },
+                                      )}
+                                    </ul>
+                                  </div>
+                                </div>
+                                <div className="col-span-3 grid grid-cols-2">
+                                  <div className="flex justify-center">
+                                    <div>
+                                      <p className="texts_14_medium text-second pb-3">
+                                        {items.megaMenuData[3]?.title}
+                                      </p>
+                                      <ul>
+                                        {items.megaMenuData[3]?.links
+                                          .slice(0, 12)
+                                          .map((items, index) => {
+                                            return (
+                                              <li
+                                                key={index}
+                                                className="texts_14_regular text-head !leading-[35px] w-fit   relative  after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[5px] after:left-0 hover:after:w-[50%]  after:duration-500 after:ease-in-out"
+                                              >
+                                                <Link to={items.link}>
+                                                  {items.name}
+                                                </Link>
+                                              </li>
+                                            );
+                                          })}
+                                      </ul>
+                                    </div>
+                                  </div>
+                                  <div className="ml-10 mt-[41px]">
+                                    <ul>
+                                      {items.megaMenuData[3]?.links
+                                        .slice(12)
+                                        .map((items, index) => {
+                                          return (
+                                            <li
+                                              key={index}
+                                              className="texts_14_regular text-head !leading-[35px] w-fit   relative  after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[5px] after:left-0 hover:after:w-[50%]  after:duration-500 after:ease-in-out"
+                                            >
+                                              <Link to={items.link}>
+                                                {items.name}
+                                              </Link>
+                                            </li>
+                                          );
+                                        })}
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="col-span-3 relative ">
+                                <Images
+                                  imgAlt={"navdropDownImage"}
+                                  imgSrc={NavDownImg}
+                                  className={"w-[410px] h-[450px] object-cover"}
+                                />
+                                <div className=" absolute bottom-[30px] left-[30px]">
+                                  <h4 className="text-[28px] font-medium  text-head">
+                                    NEW <br />
+                                    HORIZONS
+                                  </h4>
+                                  <Button
+                                    btnText={"SHOP NOW"}
+                                    className={
+                                      " mt-[2px] relative  after:absolute after:content-[''] after:w-[40%] after:h-[2px] after:bg-head after:bottom-[-1px] after:left-0 hover:after:w-full  after:duration-500 after:ease-in-out"
+                                    }
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </Container>
+                        </div>
+                      )}
+
+                    {/* for journal */}
+
+                    {items.hasMegaMenu &&
+                      hoverItems === items.label &&
+                      hoverItems === "JOURNAL" && (
+                        <div className=" shadow-[0_10px_25px_-10px_rgba(0,0,0,0.18)]  bg-white absolute top-[102%]  w-[795px] left-1/2  translate-x-[-36%] pt-[40px] pb-[32px] px-[59px] grid grid-cols-3">
+                          <div className=" ">
+                            <p className="texts_14_medium text-second pb-3">
+                              {items.megaMenuData[0]?.title}
+                            </p>
+                            <ul>
+                              {items.megaMenuData[0]?.links.map(
+                                (items, index) => {
+                                  return (
+                                    <li
+                                      key={index}
+                                      className="texts_14_regular text-head !leading-[35px] w-fit   relative  after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[5px] after:left-0 hover:after:w-[50%]  after:duration-500 after:ease-in-out"
+                                    >
+                                      <Link to={items.link}>{items.name}</Link>
+                                    </li>
+                                  );
+                                },
+                              )}
+                            </ul>
+                          </div>
+                          <div className="flex justify-center">
+                            <div className=" ">
+                              <p className="texts_14_medium text-second pb-3">
+                                {items.megaMenuData[1]?.title}
+                              </p>
+                              <ul>
+                                {items.megaMenuData[1]?.links.map(
+                                  (items, index) => {
+                                    return (
+                                      <li
+                                        key={index}
+                                        className="texts_14_regular text-head !leading-[35px] w-fit   relative  after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[5px] after:left-0 hover:after:w-[50%]  after:duration-500 after:ease-in-out"
+                                      >
+                                        <Link to={items.link}>
+                                          {items.name}
+                                        </Link>
+                                      </li>
+                                    );
+                                  },
+                                )}
+                              </ul>
+                            </div>
+                          </div>
+                          <div className="flex justify-end">
+                            <div className=" ">
+                              <p className="texts_14_medium text-second pb-3">
+                                {items.megaMenuData[2]?.title}
+                              </p>
+                              <ul>
+                                {items.megaMenuData[2]?.links.map(
+                                  (items, index) => {
+                                    return (
+                                      <li
+                                        key={index}
+                                        className="texts_14_regular text-head !leading-[35px] w-fit   relative  after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[5px] after:left-0 hover:after:w-[50%]  after:duration-500 after:ease-in-out"
+                                      >
+                                        <Link to={items.link}>
+                                          {items.name}
+                                        </Link>
+                                      </li>
+                                    );
+                                  },
+                                )}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                    {/* for pages */}
+
+                    {items.dropdownData &&
+                      items.label === "PAGES" &&
+                      hoverItems === "PAGES" && (
+                        <div className=" shadow-[0_10px_25px_-10px_rgba(0,0,0,0.18)]  bg-white absolute top-[102%]  w-[260px] left-1/2  translate-x-[-28%] pt-[23px] pb-[17px] px-[30px] ">
+                          <div className=" ">
+                            <ul>
+                              {items.dropdownData?.map((items, index) => {
+                                return (
+                                  <li
+                                    key={index}
+                                    className="texts_14_regular text-head !leading-[35px] w-fit   relative  after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[5px] after:left-0 hover:after:w-[50%]  after:duration-500 after:ease-in-out"
+                                  >
+                                    <Link to={items.link}>{items.name}</Link>
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          </div>
+                        </div>
+                      )}
                   </li>
                 );
               })}
@@ -60,8 +316,10 @@ const Navbar = () => {
           <div>
             <ul className="flex gap-x-[30px] ">
               {navIconItems.map((items) => {
+                const isActive = items.id === open;
+
                 return items.name === "Cart" ? (
-                  <li key={items.id}>
+                  <li key={items.id} onClick={() => handleclicked(items.id)}>
                     <Link
                       to={items.link}
                       className=" relative text-[22px] text-head "
@@ -71,12 +329,99 @@ const Navbar = () => {
                       </span>
                       {items.icon}
                     </Link>
+
+                    {/* for cart */}
+
+                    {isActive && items.name === "Cart" && (
+                      <div
+                        className="absolute z-[999] bg-[#22222258] h-screen w-full top-0 left-0"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <div className="h-full absolute  right-0">
+                          <AddToCart unMount={handleUnMount} />
+                        </div>
+                      </div>
+                    )}
                   </li>
                 ) : (
-                  <li key={items.id}>
+                  <li key={items.id} onClick={() => handleclicked(items.id)}>
                     <Link to={items.link} className="text-[22px] text-head">
-                      {items.icon}
+                      {isActive && items.name === "Search" ? (
+                        <span className="text-[25px]">{close}</span>
+                      ) : (
+                        items.icon
+                      )}
                     </Link>
+
+                    {/* for searching part */}
+
+                    {isActive && items.name === "Search" && (
+                      <div
+                        className=" pt-[62px] pb-[73px] absolute bg-white left-0 w-full shadow-[0_10px_25px_-10px_rgba(0,0,0,0.18)] top-[100%] "
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Container>
+                          <div>
+                            <p className="texts_14_medium text-second mb-[29px]">
+                              WHAT ARE YOU LOOKING FOR?
+                            </p>
+                            <div className="relative ">
+                              <input
+                                type="text"
+                                className="w-full py-[10px] border-b-2 border-second text-head   "
+                                placeholder="SEARCH PRODUCTS"
+                              />
+                              <span className="absolute top-1/2  translate-y-[-65%] text-[22px] right-0 cursor-pointer">
+                                {items.icon}
+                              </span>
+                            </div>
+                            <div className="pt-[27px]">
+                              <p className="texts_14_medium text-second">
+                                {quickLinks.title}
+                              </p>
+                              <ul>
+                                {quickLinks.links.map((items) => {
+                                  return (
+                                    <li
+                                      key={items.id}
+                                      className="texts_14_regular text-head  w-fit !leading-[35px] relative after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[5px] after:left-0 hover:after:w-[50%]  after:duration-500 after:ease-in-out"
+                                    >
+                                      <Link to={items.link}>{items.name}</Link>
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            </div>
+                          </div>
+                        </Container>
+                      </div>
+                    )}
+
+                    {/* for login part */}
+
+                    {isActive && items.name === "Account" && (
+                      <div
+                        className="absolute z-[999] bg-[#22222258] h-screen w-full top-0 left-0"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <div className="h-full absolute  right-0">
+                          <Login unMount={handleUnMount} />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* for nav tabs part */}
+
+                    {isActive && items.name === "Mobile Menu" && (
+                      <div
+                        className="absolute z-[999] bg-[#22222258] h-screen w-full top-0 left-0"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <div className="h-full absolute  right-0">
+                          <NavTabs unMount={handleUnMount} />
+                        </div>
+                      </div>
+                    )}
                   </li>
                 );
               })}
