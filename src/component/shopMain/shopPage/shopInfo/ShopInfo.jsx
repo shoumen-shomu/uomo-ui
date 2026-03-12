@@ -52,7 +52,7 @@ const ShopInfo = () => {
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.25 }}
-        className="w-full max-w-[660px] border border-dashed border-[#B8A048] mb-8 sm:mb-10"
+        className="w-full max-w-[660px] dashed-border mb-8 sm:mb-10"
       >
         {/* 4 columns, no dividers between them at all */}
         <div className="grid grid-cols-2 sm:grid-cols-4 px-6 sm:px-8 py-5 gap-y-4 sm:gap-y-0">

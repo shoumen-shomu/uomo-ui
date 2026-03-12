@@ -22,6 +22,7 @@ import DashboardDownload from "./component/mainDashboard/dashborarAllComponent/D
 import LogOut from "./component/mainDashboard/dashborarAllComponent/LogOut";
 import CartLayout from "./component/shopMain/shopPage/cartLayout/CartLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Faq from "./page/Faq";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,8 @@ const router = createBrowserRouter([
           { path: "/dashboard/downloads", element: <DashboardDownload /> },
         ],
       },
+      //Faq 
+      {path: "faq", element:<Faq/>},
       // 404 not found
       { path: "*", element: <NotFound /> },
     ],

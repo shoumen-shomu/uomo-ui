@@ -111,3 +111,11 @@ input:focus-visible {
 .c {
   color: #22222258;
 }
+.dashed-border {
+  border: px solid transparent;
+  background:
+    repeating-linear-gradient(90deg, #222222 0 10px, transparent 10px 18px) top / 100% 2px no-repeat,
+    repeating-linear-gradient(90deg, #222222 0 10px, transparent 10px 18px) bottom / 100% 2px no-repeat,
+    repeating-linear-gradient(180deg, #222222 0 10px, transparent 10px 18px) left / 2px 100% no-repeat,
+    repeating-linear-gradient(180deg, #222222 0 10px, transparent 10px 18px) right / 2px 100% no-repeat;
+}
