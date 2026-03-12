@@ -84,7 +84,7 @@ const router = createBrowserRouter([
       { path: "*", element: <NotFound /> },
     ],
   },
-]);
+]); 
 
 // Create a client
 const queryClient = new QueryClient();

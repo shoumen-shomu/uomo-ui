@@ -13,7 +13,7 @@ const menuItems = [
   { label: "ACCOUNT DETAILS", path: "account-details" },
   { label: "WISHLIST",        path: "wishlist" },
   { label: "LOGOUT",          path: "/logout" },
-];
+]; 
 
 
 const DashboardItems = () => {
