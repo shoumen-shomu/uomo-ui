@@ -13,7 +13,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css/navigation";
 import { useState } from "react";
 
-const Shopsingle = () => {
+const Top = () => {
   let [count, setCount] = useState(3);
   const handleMinus = () => {
     if (count > 0) {
@@ -130,7 +130,7 @@ const Shopsingle = () => {
                   +
                 </button>
               </div>
-              <button className="h-12 lg:w-[280px] lg:h-[60px] bg-[#111111] text-white text-[12px] lg:text-[14px] font-medium tracking-widest cursor-pointer uppercase px-10 lg:px-0  hover:bg-black/90 transition-all active:scale-[0.98]">
+              <button className="h-12 lg:w-[280px] lg:h-[60px] bg-head text-white text-[12px] lg:texts_14_medium  tracking-widest cursor-pointer uppercase px-10 lg:px-0">
                 ADD TO CART
               </button>
             </div>
@@ -169,4 +169,4 @@ const Shopsingle = () => {
   );
 };
 
-export default Shopsingle;
+export default Top;

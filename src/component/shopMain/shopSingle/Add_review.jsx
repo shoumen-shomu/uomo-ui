@@ -3,27 +3,27 @@ import React from "react";
 
 const Add_review = () => {
   return (
-    <div className="px-60 mt-[54px] hidden lg:block">
+    <div className=" mt-7 lg:mt-[54px]">
       <Container>
         <div className="">
           <h3 className="texts_18_medium text-head">
             Be the first to review “Message Cotton T-Shirt”
           </h3>
-          <h4 className="texts_14_regular text-head pb-7.5">
+          <h4 className="texts_14_regular text-head py-3 lg:pb-7.5">
             Your email address will not be published. Required fields are marked
             *
           </h4>
 
-          <div className="flex items-center gap-2 mb-[26px]">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-x-2 lg:mb-[26px]">
             <span className="texts_14_regular text-head">Your rating *</span>
-            <div className="flex text-yellow-400">
+            <div className="flex  text-yellow-400">
               {[...Array(5)].map((_, i) => (
                 <span key={i}>★</span>
               ))}
             </div>
           </div>
 
-          <form className="space-y-7.5">
+          <form className="space-y-3 lg:space-y-7.5">
             {/* Review Textarea */}
             <div>
               <textarea
@@ -67,7 +67,7 @@ const Add_review = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="bg-head text-white px-[74px] py-[22px] texts_14_medium cursor-pointer"
+              className="bg-head text-white px-10 lg:px-0 texts_14_medium h-12 lg:w-[280px] lg:h-[60px] cursor-pointer"
             >
               SUBMIT
             </button>

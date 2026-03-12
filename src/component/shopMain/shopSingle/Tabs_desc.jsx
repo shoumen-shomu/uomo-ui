@@ -2,6 +2,7 @@ import { useState } from "react";
 import Container from "@/component/common/Container";
 import Images from "@/component/common/Images";
 import reviewOne from "@/assets/images/clientReviewsOne.png";
+import Add_review from "./Add_review";
 
 const Tabs_desc = () => {
   const [activeTab, setActiveTab] = useState("description");
@@ -219,11 +220,13 @@ const Tabs_desc = () => {
                   nihil impedit quo minus id quod maxime placeat facere
                   possimus, omnis voluptas assumenda est…
                 </p>
+                 <Add_review/>
               </div>
             </div>
           )}
         </Container>
       </div>
+       
     </div>
   );
 };
