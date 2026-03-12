@@ -33,7 +33,7 @@ const Products = () => {
               <Link>
                 <p
                   data-filter=".all"
-                  className="texts_16_medium text-[#767676] hover:text-head duration-500 relative after:content-[''] after:absolute after:bottom-0 after:left-0  after:w-0 after:h-0.5 after:bg-head after:transition-all after:duration-400 hover:after:w-[60%]"
+                  className="texts_16_medium text-second hover:text-head duration-500 relative after:content-[''] after:absolute after:bottom-0 after:left-0  after:w-0 after:h-0.5 after:bg-head after:transition-all after:duration-400 hover:after:w-[60%]"
                 >
                   ALL
                 </p>
@@ -41,7 +41,7 @@ const Products = () => {
               <Link>
                 <p
                   data-filter=".newArrivals"
-                  className="texts_16_medium text-[#767676] hover:text-head duration-500 relative after:content-[''] after:absolute after:bottom-0 after:left-0  after:w-0 after:h-0.5 after:bg-head after:transition-all after:duration-400 hover:after:w-[60%]"
+                  className="texts_16_medium text-second hover:text-head duration-500 relative after:content-[''] after:absolute after:bottom-0 after:left-0  after:w-0 after:h-0.5 after:bg-head after:transition-all after:duration-400 hover:after:w-[60%]"
                 >
                   NEWARRIVALS
                 </p>
@@ -49,7 +49,7 @@ const Products = () => {
               <Link>
                 <p
                   data-filter=".bestSeller"
-                  className="texts_16_medium text-[#767676] hover:text-head duration-500 relative after:content-[''] after:absolute after:bottom-0 after:left-0  after:w-0 after:h-0.5 after:bg-head after:transition-all after:duration-400 hover:after:w-[60%]"
+                  className="texts_16_medium text-second hover:text-head duration-500 relative after:content-[''] after:absolute after:bottom-0 after:left-0  after:w-0 after:h-0.5 after:bg-head after:transition-all after:duration-400 hover:after:w-[60%]"
                 >
                   BEST SELLER
                 </p>
@@ -57,7 +57,7 @@ const Products = () => {
               <Link>
                 <p
                   data-filter=".toprating"
-                  className="texts_16_medium text-[#767676] hover:text-head duration-500 relative after:content-[''] after:absolute after:bottom-0 after:left-0  after:w-0 after:h-0.5 after:bg-head after:transition-all after:duration-400 hover:after:w-[60%]"
+                  className="texts_16_medium text-second hover:text-head duration-500 relative after:content-[''] after:absolute after:bottom-0 after:left-0  after:w-0 after:h-0.5 after:bg-head after:transition-all after:duration-400 hover:after:w-[60%]"
                 >
                   TOP RATING
                 </p>
