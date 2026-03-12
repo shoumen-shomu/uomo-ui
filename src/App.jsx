@@ -23,6 +23,7 @@ import LogOut from "./component/mainDashboard/dashborarAllComponent/LogOut";
 import CartLayout from "./component/shopMain/shopPage/cartLayout/CartLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Faq from "./page/Faq";
+import Contact from "./component/contactUs/Contact";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
       // for shop page route
       { path: "shop", element: <Shop /> },
       { path: "shop-single", element: <ShopSinglePg /> },
+      { path: "contact", element: <Contact /> },
 
 
       // for shopping cart route
@@ -72,6 +74,7 @@ const router = createBrowserRouter([
           },
           { path: "/dashboard/wishlist", element: <DashboardWishlist /> },
           { path: "/dashboard/downloads", element: <DashboardDownload /> },
+
         ],
       },
       // for Faq 
