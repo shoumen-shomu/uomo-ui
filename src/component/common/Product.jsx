@@ -14,10 +14,18 @@ const Product = ({
   return (
     <>
       <div className="w-82.5 relative group">
-        {/* Badge Start */}
-        
-        {/* Badge End */}
-        <Images className={""} imgSrc={imgSrc} imgAlt={imgAlt} />
+        <div className="relativec overflow-hidden ">
+          <Images className={""} imgSrc={imgSrc} imgAlt={imgAlt} />
+          {/* Badge Start */}
+
+          {/* Badge End */}
+
+          {/* Add To Cart Start */}
+          <div className="w-77.5 bg-white pt-4 pb-2.5 text-center mx-auto absolute bottom-[20%] left-1/2 -translate-x-1/2 translate-y-[50%] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 ease-in-out duration-500">
+            <h2 className="texts_14_medium text-head">ADD TO CART</h2>
+          </div>
+          {/* Add To Cart End*/}
+        </div>
 
         {/* Product Description Start */}
         <div className="mt-3.5">
@@ -53,11 +61,6 @@ const Product = ({
         </div>
         {/* Product Description End */}
 
-        {/* Add To Cart Start */}
-        <div className="w-77.5 bg-white pt-4 pb-2.5 text-center mx-auto absolute bottom-[20%] left-1/2 -translate-x-1/2 translate-y-[50%] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 ease-in-out duration-500">
-          <h2 className="texts_14_medium text-head">ADD TO CART</h2>
-        </div>
-        {/* Add To Cart End*/}
       </div>
     </>
   );
