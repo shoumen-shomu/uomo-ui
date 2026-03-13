@@ -16,7 +16,7 @@ const ShopInfo = () => {
   const vat = Math.round(subtotal * 0.015);
   const total = subtotal + vat;
   const today = new Date();
-const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
+  const formattedDate = `${String(today.getDate()).padStart(2, "0")}/${String(today.getMonth() + 1).padStart(2, "0")}/${today.getFullYear()}`;
   return (
     <div className="w-full flex flex-col items-center">
       {/* ── Checkmark + Title ── */}
@@ -105,18 +105,22 @@ const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(toda
       >
         {/* "ORDER DETAILS" heading row with icon */}
         <div className="flex items-center ">
-          <span className="
+          <span
+            className="
           text-[13px]
           sm:text-[14px]
           md:text-[16px]
-          font-medium text-head leading-[100%] pt-9.5 pb-8">
+          font-medium text-head leading-[100%] pt-9.5 pb-8"
+          >
             ORDER DETAILS
           </span>
         </div>
 
         {/* PRODUCT / SUBTOTAL column headers — plain, no background */}
-        <div className="
-        flex justify-between border-b border-footer">
+        <div
+          className="
+        flex justify-between border-b border-footer"
+        >
           <span className="text-[12px] sm:text-[14px] font-medium text-head leading-6 pb-3.25">
             PRODUCT
           </span>
@@ -136,14 +140,13 @@ const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(toda
               <span className="font-medium text-second">x{item.quantity}</span>
             </span>
             <span className="text-[13px] sm:text-[14px] text-head font-normal flex items-center gap-0.5">
-              
               {(item.price * item.quantity).toFixed(2)}
             </span>
           </div>
         ))}
 
         {/* SUBTOTAL */}
-        <div className="flex justify-between items-center py-3 border-y border-footer">
+        <div className="flex justify-between items-center pt-5 pb-3.25 border-y border-footer">
           <span className="text-[13px] sm:text-[14px] font-medium text-head">
             SUBTOTAL
           </span>
@@ -154,7 +157,7 @@ const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(toda
         </div>
 
         {/* SHIPPING — with truck icon */}
-        <div className="flex justify-between items-center py-3 border-b border-[#E4E4E4]">
+        <div className="flex justify-between items-center pt-5 pb-5.25 border-b border-[#E4E4E4]">
           <span className="text-[13px] sm:text-[14px] font-medium text-head flex items-center gap-2">
             SHIPPING
           </span>
@@ -164,7 +167,7 @@ const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(toda
         </div>
 
         {/* VAT */}
-        <div className="flex justify-between items-center py-3 border-b border-[#E4E4E4]">
+        <div className="flex justify-between items-center pt-3.5 pb-3.25 border-b border-[#E4E4E4]">
           <span className="text-[13px] sm:text-[14px] font-medium text-head">
             VAT
           </span>
@@ -175,7 +178,7 @@ const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(toda
         </div>
 
         {/* PAYMENT METHOD — with card icon */}
-        <div className="flex justify-between items-center py-3 border-b border-[#E4E4E4]">
+        <div className="flex justify-between items-center pt-3.75 pb-2.5 border-b border-[#E4E4E4]">
           <span className="text-[13px] sm:text-[14px] font-semibold text-head uppercase flex items-center gap-2">
             Payment Method
           </span>
@@ -185,7 +188,7 @@ const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(toda
         </div>
 
         {/* TOTAL */}
-        <div className="flex justify-between items-cente py-4">
+        <div className="flex justify-between items-cente pt-3.75 pb-7.75">
           <span className="text-[13px] sm:text-[14px] font-semibold text-head uppercase">
             Total
           </span>
@@ -201,14 +204,20 @@ const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(toda
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.45 }}
-        className="mb-10 sm:mb-14"
+        className="flex flex-col sm:flex-row"
       >
         <Link
           to="/"
           onClick={clearCart}
-          className="inline-block px-14 sm:px-16 py-3.5 bg-head text-white text-[12px] sm:text-[13px] font-medium uppercase tracking-widest hover:bg-[#DB4444] transition-all"
+          className="inline-block px-14 sm:px-16 pt-5.5 pb-3.5 bg-head text-white text-[12px] sm:text-[13px] font-medium hover:bg-[#DB4444] transition-all uppercase w-full sm:w-auto text-center mb-3 sm:mb-0"
         >
           Continue Shopping
+        </Link>
+        <Link
+          to="/cart/order-tracking"
+          className="inline-block px-14 sm:px-16 pt-5.5 pb-3.5 bg-head text-white text-[12px] sm:text-[13px] font-medium hover:bg-[#DB4444] transition-all uppercase w-full sm:w-auto text-center sm:ml-4 ml-0"
+        >
+          Order Tracking
         </Link>
       </motion.div>
     </div>

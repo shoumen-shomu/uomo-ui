@@ -75,7 +75,7 @@ const StepIndicator = () => {
               </span>
             </div>
 
-            <p className="text-[11px] sm:text-[12px] lg:text-[14px] text-[#767676] mt-1 ml-4 sm:ml-5 lg:ml-7 hidden sm:block">
+            <p className="text-[11px] sm:text-[12px] lg:text-[14px] text-second mt-1 ml-4 sm:ml-5 lg:ml-7 hidden sm:block">
               {step.sub}
             </p>
           </div>
