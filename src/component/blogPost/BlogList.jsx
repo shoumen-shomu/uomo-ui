@@ -1,15 +1,27 @@
 import Blog from "@/component/common/Blog";
 import Container from "@/component/common/Container";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef,useState } from "react";
 import { Link } from "react-router-dom";
 import blogImg from "@/assets/images/blogImg.png";
 import mixitup from "mixitup";
-import React, { useState } from "react";
 import { Progress } from "@/components/ui/progress";
 
 const BlogList = () => {
-  const containerRef = useRef(null);
+// ১. স্টেট এবং ডেটা (এগুলো আপনার প্রয়োজনমতো পরিবর্তন করবেন)
+  const [visibleItems, setVisibleItems] = useState(36);
+  const totalItems = 497;
 
+  // ২. ক্যালকুলেশন (এটি অটোমেটিক বারকে আপডেট করবে)
+  const percentage = (visibleItems / totalItems) * 100;
+
+  const handleLoadMore = () => {
+    // প্রতি ক্লিকে ১২টি করে বাড়বে (উদাহরণস্বরূপ)
+    if (visibleItems < totalItems) {
+      setVisibleItems((prev) => Math.min(prev + 12, totalItems));
+    }
+  };
+
+  const containerRef = useRef(null);
   useEffect(() => {
     if (containerRef.current) {
       mixitup(containerRef.current, {
@@ -127,6 +139,28 @@ const BlogList = () => {
             />
           </div>
         </div>
+        <div className="flex flex-col items-center gap-4 w-full max-w-[300px] mx-auto py-10">
+      {/* ৩. টেক্সট অংশ */}
+      <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-black">
+        Showing {visibleItems} of {totalItems} Items
+      </p>
+
+      {/* ৪. Shadcn Progress Bar (ইমেজের মতো হুবহু ডিজাইন করা) */}
+      <Progress 
+        value={percentage} 
+        className="h-[2px] w-full bg-[#e5e5e5] [&>div]:bg-black transition-all duration-500" 
+      />
+
+      {/* ৫. বাটন অংশ */}
+      {visibleItems < totalItems && (
+        <button
+          onClick={handleLoadMore}
+          className="mt-2 text-[12px] font-bold uppercase border-b-[1.5px] border-black pb-0.5 hover:text-gray-500 hover:border-gray-500 transition-colors"
+        >
+          Show More
+        </button>
+      )}
+    </div>
       </Container>
     </section>
   );
