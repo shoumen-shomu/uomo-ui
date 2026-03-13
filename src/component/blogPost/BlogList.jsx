@@ -24,7 +24,7 @@ const BlogList = () => {
   return (
     <section>
       <Container>
-        <h2 className="head_35_bold text-head pb-2.75">The Blog</h2>
+        <h2 className="head_35_bold text-head pb-2.75 pt-22.5">The Blog</h2>
         <div className="flex gap-10 pb-12.5">
           <Link>
             <p
@@ -94,7 +94,7 @@ const BlogList = () => {
               imgAlt={blogImg}
               author={"BY ADMIN"}
               date={"APRIL 05, 2020"}
-              blogname={"Woman with good shoes is never be ugly place"}
+              blogname={"5 Tips to Increase Your Online Sales"}
               blogdescription={
                 "Midst one brought greater also morning green saying had good. Open stars day let over gathered, grass face one every light of under."
               }
@@ -106,7 +106,7 @@ const BlogList = () => {
               imgAlt={blogImg}
               author={"BY ADMIN"}
               date={"APRIL 05, 2020"}
-              blogname={"Woman with good shoes is never be ugly place"}
+              blogname={"Tree earth fowl given moveth deep lesser After"}
               blogdescription={
                 "Midst one brought greater also morning green saying had good. Open stars day let over gathered, grass face one every light of under."
               }
@@ -118,7 +118,7 @@ const BlogList = () => {
               imgAlt={blogImg}
               author={"BY ADMIN"}
               date={"APRIL 05, 2020"}
-              blogname={"Woman with good shoes is never be ugly place"}
+              blogname={"Given Set was without from god divide rule Hath"}
               blogdescription={
                 "Midst one brought greater also morning green saying had good. Open stars day let over gathered, grass face one every light of under."
               }
