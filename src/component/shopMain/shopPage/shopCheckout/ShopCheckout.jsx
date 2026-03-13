@@ -50,7 +50,7 @@ const ShopCheckout = () => {
     <div className="flex flex-col lg:flex-row gap-15 items-start">
       {/* ── Left: Billing Details ── */}
       <div className="flex-1 max-w-232.5">
-        <h2 className="text-[16px] font-medium text-head leading-[100%] md:mb-6 lg:mb-8.5">
+        <h2 className="text-[16px] font-medium text-head leading-[100%] mb-6 lg:mb-8.5">
           BILLING DETAILS
         </h2>
 
@@ -85,7 +85,7 @@ const ShopCheckout = () => {
 
         {/* Country */}
         <div className="mb-4 relative border border-footer transition-colors">
-          <label className="absolute -top-2.5 left-3 bg-white px-1 text-[14px] text-head leading-6">
+          <label className="absolute -top-2.5 left-3 bg-white px-1 texts_14_regular">
             Country / Region *
           </label>
           <select
@@ -101,7 +101,7 @@ const ShopCheckout = () => {
             <option value="BD">Bangladesh</option>
           </select>
           <span className="absolute right-4 top-1/2 -translate-y-1/2 text-second pointer-events-none">
-            <FaAngleDown className="text-[10px]"/>
+            <FaAngleDown className="text-[10px]" />
           </span>
         </div>
 
@@ -179,14 +179,14 @@ const ShopCheckout = () => {
         </div>
 
         {/* Checkboxes */}
-        <div className="flex flex-col gap-2 mb-6">
+        <div className="flex flex-col gap-2 mb-6.5">
           {[
             { name: "createAccount", label: "CREATE AN ACCOUNT?" },
             { name: "shipDifferent", label: "SHIP TO A DIFFERENT ADDRESS?" },
           ].map((cb) => (
             <label
               key={cb.name}
-              className="flex items-center gap-2 cursor-pointer"
+              className="flex items-center gap-3.25 cursor-pointer"
             >
               <input
                 type="checkbox"
@@ -207,7 +207,7 @@ const ShopCheckout = () => {
           onChange={handle}
           placeholder="Order Notes (optional)"
           rows={5}
-          className="w-full border border-footer px-4 py-3 text-sm text-head placeholder:text-second outline-none focus:border-head transition-colors bg-white resize-none"
+          className="w-full border border-footer px-5.25 pt-5 pb-30 text-sm text-head placeholder:text-second outline-none focus:border-head transition-colors bg-white resize-none"
         />
       </div>
 
@@ -216,7 +216,7 @@ const ShopCheckout = () => {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          className="border-2 border-head px-10.25 pt-9.5 pb-5.5"
+          className="border border-head px-10.25 pt-9.5 pb-5.5"
         >
           <h3 className="text-[16px] font-medium leading-[100%] mb-8">
             YOUR ORDER
@@ -224,12 +224,8 @@ const ShopCheckout = () => {
 
           {/* Header row */}
           <div className="flex justify-between border-b border-footer pb-3 mb-3">
-            <span className="texts_14_medium">
-              PRODUCT
-            </span>
-            <span className="texts_14_medium">
-              SUBTOTAL
-            </span>
+            <span className="texts_14_medium">PRODUCT</span>
+            <span className="texts_14_medium">SUBTOTAL</span>
           </div>
 
           {/* Items */}
@@ -246,10 +242,8 @@ const ShopCheckout = () => {
           ))}
 
           {/* Subtotal */}
-          <div className="flex justify-between border-t border-footer pt-5 pb-3.25 mt-0.75 ">
-            <span className="texts_14_medium">
-              SUBTOTAL
-            </span>
+          <div className="flex justify-between border-t border-footer pt-5 pb-3.25 mt-0.75">
+            <span className="texts_14_medium">SUBTOTAL</span>
             <span className="texts_14_medium flex items-center">
               <LiaDollarSignSolid />
               {subtotal.toFixed(2)}
@@ -258,32 +252,20 @@ const ShopCheckout = () => {
 
           {/* Shipping */}
           <div className="flex justify-between border-t border-footer pt-5 pb-5.25">
-            <span className="texts_14_medium">
-              SHIPPING
-            </span>
-            <span className="texts_14_regular">
-              Free shipping
-            </span>
+            <span className="texts_14_medium">SHIPPING</span>
+            <span className="texts_14_regular">Free shipping</span>
           </div>
 
           {/* VAT */}
           <div className="flex justify-between border-t border-footer pt-3.5 pb-3.25">
-            <span className="texts_14_medium">
-              VAT
-            </span>
-            <span className="texts_14_medium">
-              ${vat}
-            </span>
+            <span className="texts_14_medium">VAT</span>
+            <span className="texts_14_medium">${vat}</span>
           </div>
 
           {/* Total */}
-          <div className="flex justify-between border-t border-[#E4E4E4] pt-3.5">
-            <span className="text-sm text-head leading-6 font-medium uppercase">
-              Total
-            </span>
-            <span className="text-sm text-head leading-6 font-medium">
-              ${total}
-            </span>
+          <div className="flex justify-between border-t border-footer pt-3.75">
+            <span className="texts_14_medium">TOTAL</span>
+            <span className="texts_14_medium">${total}</span>
           </div>
         </motion.div>
 
@@ -292,27 +274,32 @@ const ShopCheckout = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="border-2 border-head pl-10.25 pr-12.5 pt-7 pb-7 mt-5"
+          className="border border-footer pl-10.5 pr-7.75 pt-10.5 pb-6.5 mt-5"
         >
           {/* Direct bank transfer */}
-          <label className="flex items-center gap-2 cursor-pointer mb-3">
+          <label className="flex items-center gap-3.75 cursor-pointer mb-2">
+            <div className="relative w-4 h-4 rounded-full border-2 border-head flex items-center justify-center shrink-0">
+              <div
+                className={`w-2 h-2 rounded-full bg-head transition-opacity ${paymentMethod === "bank" ? "opacity-100" : "opacity-0"}`}
+              />
+            </div>
             <input
               type="radio"
               name="payment"
               value="bank"
               checked={paymentMethod === "bank"}
               onChange={() => setPaymentMethod("bank")}
-              className="accent-head cursor-pointer"
+              className="hidden"
             />
-            <span className="text-sm text-head font-medium leading-6">
+            <span className="text-[16px] text-head font-normal leading-[100%]">
               Direct bank transfer
             </span>
           </label>
 
           {paymentMethod === "bank" && (
-            <p className="text-[13px] text-[#767676] leading-5 mb-4 pl-5">
+            <p className="texts_14_regular mb-4 pl-7.75 max-w-73.5">
               Make your payment directly into our bank account. Please use your
-              Order ID as the payment reference. Your order will not be shipped
+              Order ID as the payment reference.Your order will not be shipped
               until the funds have cleared in our account.
             </p>
           )}
@@ -326,13 +313,18 @@ const ShopCheckout = () => {
               key={opt.value}
               className="flex items-center gap-2 cursor-pointer mb-3"
             >
+              <div className="relative w-4 h-4 rounded-full border-2 border-head flex items-center justify-center shrink-0">
+                <div
+                  className={`w-2 h-2 rounded-full bg-head transition-opacity ${paymentMethod === opt.value ? "opacity-100" : "opacity-0"}`}
+                />
+              </div>
               <input
                 type="radio"
                 name="payment"
                 value={opt.value}
                 checked={paymentMethod === opt.value}
                 onChange={() => setPaymentMethod(opt.value)}
-                className="accent-head cursor-pointer"
+                className="hidden"
               />
               <span className="text-sm text-head font-medium leading-6">
                 {opt.label}
@@ -340,11 +332,11 @@ const ShopCheckout = () => {
             </label>
           ))}
 
-          <p className="text-[13px] text-[#767676] leading-5 mt-2">
+          <p className="text-[12px] text-head leading-6 mt-2 max-w-86.75">
             Your personal data will be used to process your order, support your
             experience throughout this website, and for other purposes described
             in our{" "}
-            <Link to="/privacy" className="text-head underline">
+            <Link to="/privacy" className="text-second">
               privacy policy
             </Link>
             .
