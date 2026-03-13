@@ -4,6 +4,8 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import blogImg from "@/assets/images/blogImg.png";
 import mixitup from "mixitup";
+import React, { useState } from "react";
+import { Progress } from "@/components/ui/progress";
 
 const BlogList = () => {
   const containerRef = useRef(null);
