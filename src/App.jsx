@@ -26,6 +26,7 @@ import Faq from "./page/Faq";
 import Contact from "./component/contactUs/Contact";
 import BlogPost from "./page/BlogPost";
 import Store_location from "./component/storeLocator/Store_location";
+import Terms from "./page/Terms";
 
 const router = createBrowserRouter([
   {
@@ -86,6 +87,8 @@ const router = createBrowserRouter([
 
       // for blog-post
       { path: "/elements/blog-posts", element: <BlogPost /> },
+      // for terms and condition
+      { path: "/elements/terms", element: <Terms /> },
 
       // 404 not found
       { path: "*", element: <NotFound /> },
