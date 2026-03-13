@@ -216,29 +216,29 @@ const ShopCheckout = () => {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          className="border-2 border-head pl-10.25 pr-12.5 pt-9.5 pb-5.5"
+          className="border-2 border-head px-10.25 pt-9.5 pb-5.5"
         >
-          <h3 className="text-[16px] font-medium leading-[100%] mb-6 uppercase">
-            Your Order
+          <h3 className="text-[16px] font-medium leading-[100%] mb-8">
+            YOUR ORDER
           </h3>
 
           {/* Header row */}
-          <div className="flex justify-between border-b border-[#E4E4E4] pb-3 mb-3">
-            <span className="text-sm font-medium text-head uppercase leading-6">
-              Product
+          <div className="flex justify-between border-b border-footer pb-3 mb-3">
+            <span className="texts_14_medium">
+              PRODUCT
             </span>
-            <span className="text-sm font-medium text-head uppercase leading-6">
-              Subtotal
+            <span className="texts_14_medium">
+              SUBTOTAL
             </span>
           </div>
 
           {/* Items */}
           {cartItems.map((item) => (
-            <div key={item.id} className="flex justify-between py-2">
-              <span className="text-sm text-head leading-6 font-medium">
+            <div key={item.id} className="flex justify-between py-3.25">
+              <span className="texts_14_medium text-second">
                 {item.title} x{item.quantity}
               </span>
-              <span className="text-sm text-head leading-6 font-medium flex items-center">
+              <span className="texts_14_medium text-second flex items-center">
                 <LiaDollarSignSolid />
                 {(item.price * item.quantity).toFixed(2)}
               </span>
@@ -246,32 +246,32 @@ const ShopCheckout = () => {
           ))}
 
           {/* Subtotal */}
-          <div className="flex justify-between border-t border-[#E4E4E4] mt-3 pt-3.5">
-            <span className="text-sm font-medium text-head leading-6 uppercase">
-              Subtotal
+          <div className="flex justify-between border-t border-footer pt-5 pb-3.25 mt-0.75 ">
+            <span className="texts_14_medium">
+              SUBTOTAL
             </span>
-            <span className="text-sm font-medium text-head leading-6 flex items-center">
+            <span className="texts_14_medium flex items-center">
               <LiaDollarSignSolid />
               {subtotal.toFixed(2)}
             </span>
           </div>
 
           {/* Shipping */}
-          <div className="flex justify-between border-t border-[#E4E4E4] pt-3.5 pb-3.5">
-            <span className="text-sm font-medium text-head leading-6 uppercase">
-              Shipping
+          <div className="flex justify-between border-t border-footer pt-5 pb-5.25">
+            <span className="texts_14_medium">
+              SHIPPING
             </span>
-            <span className="text-sm font-medium text-head leading-6">
+            <span className="texts_14_regular">
               Free shipping
             </span>
           </div>
 
           {/* VAT */}
-          <div className="flex justify-between border-t border-[#E4E4E4] pt-3.5 pb-3.5">
-            <span className="text-sm text-head leading-6 font-medium uppercase">
+          <div className="flex justify-between border-t border-footer pt-3.5 pb-3.25">
+            <span className="texts_14_medium">
               VAT
             </span>
-            <span className="text-sm text-head leading-6 font-medium">
+            <span className="texts_14_medium">
               ${vat}
             </span>
           </div>
