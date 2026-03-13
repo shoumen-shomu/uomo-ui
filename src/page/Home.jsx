@@ -8,7 +8,7 @@ import Support from "@/component/layouts/home/Support";
 import Uomo from "@/component/layouts/home/Uomo";
 import React from "react";
 import { Link } from "react-router-dom";
-import BlogList from "./BlogList";
+import BlogList from "../component/blogPost/BlogList";
 import Blog from "@/component/common/Blog";
 
 const Home = () => {
@@ -17,14 +17,11 @@ const Home = () => {
       <Banner />
       <Collection />
       <Products />
-      <Countdown/>
-      <Feature/>
-      <LimitedEdition/>
-      <Uomo/>
-      <Support/>
-      <BlogList/>
-      <Blog/>
-      
+      <Countdown />
+      <Feature />
+      <LimitedEdition />
+      <Uomo />
+      <Support />
     </>
   );
 };
