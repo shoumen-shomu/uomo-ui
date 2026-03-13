@@ -153,11 +153,16 @@ const BlogList = () => {
           />
 
           {visibleItems < totalItems && (
-            <Button
-              onClick={handleLoadMore}
-              className={"texts_14_medium text-black hover:after:w-15 pt-[17px]"}
-              btnText={"SHOW MORE"}
-            />
+            <Link>
+              {" "}
+              <Button
+                onClick={handleLoadMore}
+                className={
+                  "texts_14_medium text-black hover:after:w-15 pt-[17px]"
+                }
+                btnText={"SHOW MORE"}
+              />
+            </Link>
           )}
         </div>
       </Container>
