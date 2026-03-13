@@ -14,22 +14,25 @@ const menuItems = [
 
 const DashboardItems = () => {
   const location = useLocation();
+  const [activeItem, setActiveItem] = useState("My Account");
 
   return (
     <section className="">
       <Container>
         <div className="flex ">
           {/* Sidebar */}
-          <div className="w-60 shrink-0">
-            <h2 className="font-bold text-[35px] text-[rgb(34,34,34)] mb-9">
-              MY ACCOUNT
+          <div className="w-326 shrink-0">
+            <h2 className="font-bold text-[35px]  text-[rgb(34,34,34)] mb-9">
+              {activeItem}
             </h2>
             <ul className="flex flex-col gap-3.5">
               {menuItems.map((item) => {
-                const isActive = location.pathname === item.path;
+                const isActive = location.pathname  === item.path;
+                
                 return (
                   <li key={item.path}>
                     <Link
+                    onClick={() => setActiveItem( item.label === "DASHBOARD" ? " My Account " : item.label)}
                       to={item.path}
                       style={{
                         fontWeight: "500",
