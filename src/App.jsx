@@ -48,7 +48,7 @@ const router = createBrowserRouter([
       { path: "shop", element: <Shop /> },
       { path: "shop-single", element: <ShopSinglePg /> },
       { path: "contact", element: <Contact /> },
-      { path: "store_location", element: <Store_location /> },
+      { path: "store-locator", element: <Store_location /> },
 
       // for shopping cart route
       {
