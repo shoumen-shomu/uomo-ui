@@ -1,15 +1,16 @@
 import Blog from "@/component/common/Blog";
 import Container from "@/component/common/Container";
-import React, { useEffect, useRef,useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import blogImg from "@/assets/images/blogImg.png";
 import mixitup from "mixitup";
 import { Progress } from "@/components/ui/progress";
+import Button from "../common/Button";
 
 const BlogList = () => {
-// ১. স্টেট এবং ডেটা (এগুলো আপনার প্রয়োজনমতো পরিবর্তন করবেন)
+  // ১. স্টেট এবং ডেটা (এগুলো আপনার প্রয়োজনমতো পরিবর্তন করবেন)
   const [visibleItems, setVisibleItems] = useState(36);
-  const totalItems = 497;
+  const totalItems = 100;
 
   // ২. ক্যালকুলেশন (এটি অটোমেটিক বারকে আপডেট করবে)
   const percentage = (visibleItems / totalItems) * 100;
@@ -36,7 +37,7 @@ const BlogList = () => {
   }, []);
 
   return (
-    <section>
+    <section className="pb-[98px]">
       <Container>
         <h2 className="head_35_bold text-head pb-2.75 pt-22.5">The Blog</h2>
         <div className="flex gap-10 pb-12.5">
@@ -89,7 +90,7 @@ const BlogList = () => {
             </p>
           </Link>
         </div>
-        <div ref={containerRef} className="flex flex-wrap gap-7.5">
+        <div ref={containerRef} className="flex flex-wrap gap-7.5 pb-12.5">
           <div className="mix all company beauty">
             <Blog
               imgSrc={blogImg}
@@ -139,28 +140,26 @@ const BlogList = () => {
             />
           </div>
         </div>
-        <div className="flex flex-col items-center gap-4 w-full max-w-[300px] mx-auto py-10">
-      {/* ৩. টেক্সট অংশ */}
-      <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-black">
-        Showing {visibleItems} of {totalItems} Items
-      </p>
+        <div className="flex flex-col items-center gap-4 w-full max-w-75 mx-auto uppercase">
+          {/* ৩. টেক্সট অংশ */}
+          <p className="texts_14_medium text-black">
+            Showing {visibleItems} of {totalItems} Items
+          </p>
 
-      {/* ৪. Shadcn Progress Bar (ইমেজের মতো হুবহু ডিজাইন করা) */}
-      <Progress 
-        value={percentage} 
-        className="h-[2px] w-full bg-[#e5e5e5] [&>div]:bg-black transition-all duration-500" 
-      />
+          {/* ৪. Shadcn Progress Bar (ইমেজের মতো হুবহু ডিজাইন করা) */}
+          <Progress
+            value={percentage}
+            className="h-0.5 w-full bg-[#e5e5e5] [&>div]:bg-black transition-all duration-500"
+          />
 
-      {/* ৫. বাটন অংশ */}
-      {visibleItems < totalItems && (
-        <button
-          onClick={handleLoadMore}
-          className="mt-2 text-[12px] font-bold uppercase border-b-[1.5px] border-black pb-0.5 hover:text-gray-500 hover:border-gray-500 transition-colors"
-        >
-          Show More
-        </button>
-      )}
-    </div>
+          {visibleItems < totalItems && (
+            <Button
+              onClick={handleLoadMore}
+              className={"texts_14_medium text-black hover:after:w-15 pt-[17px]"}
+              btnText={"SHOW MORE"}
+            />
+          )}
+        </div>
       </Container>
     </section>
   );
