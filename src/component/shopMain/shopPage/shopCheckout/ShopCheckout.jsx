@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { LiaDollarSignSolid } from "react-icons/lia";
 import { useCartStore } from "../cart/Cart";
+import { FaAngleDown } from "react-icons/fa6";
 
 // ─── Main ShopCheckout ─────────────────────────────────────────────────────────
-// NOTE: <section>, <div className="container">, <h1>, <StepIndicator> are all
-// rendered by CartLayout — do NOT add them here.
+
 const ShopCheckout = () => {
   const { items: cartItems } = useCartStore();
   const [paymentMethod, setPaymentMethod] = useState("bank");
@@ -44,18 +44,18 @@ const ShopCheckout = () => {
   };
 
   const inputClass =
-    "w-full h-11.5 border border-[#E4E4E4] px-4 text-sm text-head placeholder:text-[#767676] outline-none focus:border-head transition-colors bg-white";
+    "w-full border border-footer px-5.5 pt-5.25 pb-4 text-sm text-head placeholder:text-second outline-none focus:border-head transition-colors bg-white leading-6";
 
   return (
     <div className="flex flex-col lg:flex-row gap-10 items-start">
       {/* ── Left: Billing Details ── */}
-      <div className="flex-1 min-w-0">
-        <h2 className="text-[16px] font-medium text-head uppercase mb-6">
-          Billing Details
+      <div className="flex-1 max-w-232.5">
+        <h2 className="text-[16px] font-medium text-head leading-[100%] md:mb-6 lg:mb-8.5">
+          BILLING DETAILS
         </h2>
 
         {/* First / Last */}
-        <div className="flex gap-4 mb-4">
+        <div className="flex md:gap-4 lg:gap-7.5 md:mb-4 lg:mb-7.5">
           <input
             name="firstName"
             value={form.firstName}
@@ -73,7 +73,7 @@ const ShopCheckout = () => {
         </div>
 
         {/* Company */}
-        <div className="mb-4">
+        <div className="md:mb-4 lg:mb-7.75">
           <input
             name="company"
             value={form.company}
@@ -84,8 +84,8 @@ const ShopCheckout = () => {
         </div>
 
         {/* Country */}
-        <div className="mb-4 relative border border-[#E4E4E4] focus-within:border-head transition-colors">
-          <label className="absolute top-1 left-4 text-[10px] text-[#767676]">
+        <div className="mb-4 relative border border-footer focus-within:border-head focus:border-2 focus:border-head transition-colors pb-3.75">
+          <label className="absolute -top-2.5 left-3 bg-white px-1 text-[14px] text-head leading-6">
             Country / Region *
           </label>
           <select
@@ -100,8 +100,8 @@ const ShopCheckout = () => {
             <option value="UK">United Kingdom</option>
             <option value="BD">Bangladesh</option>
           </select>
-          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#767676] pointer-events-none">
-            ▾
+          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-second pointer-events-none">
+            <FaAngleDown className="text-[10px]"/>
           </span>
         </div>
 
@@ -212,7 +212,7 @@ const ShopCheckout = () => {
       </div>
 
       {/* ── Right: Your Order ── */}
-      <div style={{ width: "420px" }} className="shrink-0 w-full lg:w-auto">
+      <div className="shrink-0 w-full lg:w-auto max-w-105">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
