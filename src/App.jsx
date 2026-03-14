@@ -26,6 +26,8 @@ import Faq from "./page/Faq";
 import Contact from "./component/contactUs/Contact";
 import BlogPost from "./page/BlogPost";
 import Store_location from "./component/storeLocator/Store_location";
+import Terms from "./page/Terms";
+import RegiLog from "./component/auth/regiLog/RegiLog";
 
 const router = createBrowserRouter([
   {
@@ -86,6 +88,11 @@ const router = createBrowserRouter([
 
       // for blog-post
       { path: "/elements/blog-posts", element: <BlogPost /> },
+      // for terms and condition
+      { path: "/elements/terms", element: <Terms /> },
+
+      //Regilogin page
+      {path: "login-register", element:<RegiLog/>},
 
       // 404 not found
       { path: "*", element: <NotFound /> },

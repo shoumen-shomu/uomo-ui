@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import Container from "./Container";
+import Container from "../Container";
 import allImages from "@/helper/imagesProvider";
-import Images from "./Images";
+import Images from "../Images";
 import { navItems, quickLinks } from "@/helper/projectArrayObj";
 import { Link } from "react-router-dom";
 import allIcons from "@/helper/iconProvider";
 import NavDownImg from "@/assets/images/nav-dropImage.png";
-import Button from "./Button";
-import Login from "../auth/Login";
-import Register from "../auth/Register";
-import AddToCart from "../shopMain/addToCart/AddToCart";
-import NavTabs from "../navtabs/NavTabs";
+import Button from "../Button";
+import Login from "../../auth/Login";
+import Register from "../../auth/Register";
+import AddToCart from "../../shopMain/addToCart/AddToCart";
+import NavTabs from "../../navtabs/NavTabs";
 
-const Navbar = () => {
+const NavbarLg = () => {
   // for icon and images
   const { navLogo } = allImages;
   const { navIconItems, close } = allIcons;
@@ -31,7 +31,6 @@ const Navbar = () => {
   const handleUnMount = (value) => {
     setIsOpen(value);
     console.log(value);
-
   };
 
   return (
@@ -46,16 +45,7 @@ const Navbar = () => {
             />
             <ul className=" flex gap-x-[37px] ">
               {navItems.map((items, index) => {
-                return items.label === "LOOKBOOK" ? (
-                  <li key={index}>
-                    <Link
-                      to={items.path}
-                      className="texts_14_medium text-head relative  after:absolute after:content-[''] after:w-[40%] after:h-[1.5px] after:bg-head after:bottom-[-3px] after:left-0 hover:after:w-full  after:duration-500 after:ease-in-out"
-                    >
-                      {items.label}
-                    </Link>
-                  </li>
-                ) : (
+                return (
                   <li
                     key={index}
                     onMouseEnter={() => setHoverITems(items.label)}
@@ -64,7 +54,7 @@ const Navbar = () => {
                   >
                     <Link
                       to={items.path}
-                      className="texts_14_medium text-head pb-6 "
+                      className="texts_14_medium text-head relative  after:absolute after:content-[''] after:w-[0%] after:h-[1.5px] after:bg-head after:bottom-[19px] after:left-0 hover:after:w-[60%]  after:duration-500 after:ease-in-out   pb-6 "
                     >
                       {items.label}
                     </Link>
@@ -120,7 +110,7 @@ const Navbar = () => {
                                       )}
                                     </ul>
                                   </div>
-                                </div>
+                                 </div>
                                 <div className=" col-span-2 flex justify-center ">
                                   <div className="">
                                     <p className="texts_14_medium text-second pb-3">
@@ -324,7 +314,7 @@ const Navbar = () => {
                       to={items.link}
                       className=" relative text-[22px] text-head "
                     >
-                      <span className="absolute bg-third  w-[19px] h-[19px] flex  flex items-center justify-center text-xs font-medium text-white  rounded-full  bottom-[-10px] right-[-8px]">
+                      <span className="absolute bg-third  w-[19px] h-[19px] flex  flex items-center justify-center text-xs font-medium text-white  rounded-full  bottom-[-10px] !right-[-8px]">
                         {items.badge}
                       </span>
                       {items.icon}
@@ -433,4 +423,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarLg;

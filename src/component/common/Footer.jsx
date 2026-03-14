@@ -7,7 +7,6 @@ import { RiArrowUpSLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import Images from "./Images";
 
-
 const Footer = () => {
   const { navLogo, footerPaymenetImg } = allImages;
   const { socialIcons } = allIcons;
@@ -16,9 +15,9 @@ const Footer = () => {
     <footer className="bg-footer">
       <Container>
         {/* ── MAIN GRID ── */}
-        <div className="grid grid-cols-7 pt-[100px] pb-[88px]">
+        <div className="grid grid-cols-1  lg:grid-cols-7 lg:gap-x-5 gap-y-[50px] py-[50px] lg:pt-[100px] lg:pb-[88px]">
           {/* ── COL 1-2 : Brand info ── */}
-          <div className="col-span-2 flex flex-col">
+          <div className="col-span-2  lg:flex-col md:flex md:justify-between md:items-start ">
             {/* Logo */}
             <Images
               imgSrc={navLogo}
@@ -26,7 +25,7 @@ const Footer = () => {
               className={`h-[27px] w-[111px] object-contain object-left   `}
             />
 
-            <div className="pt-[44px] pb-[47px]">
+            <div className=" py-7 md:py-0 lg:pt-[44px] lg:pb-[47px]">
               {/* Address */}
               <div>
                 <p className="texts_14_regular text-head ">
@@ -70,31 +69,33 @@ const Footer = () => {
           </div>
 
           {/* ── COL 3-5 : Nav columns (COMPANY, SHOP, HELP) ── */}
-          {footerData.columns.map((col, colIdx) => (
-            <div key={colIdx} className="flex flex-col">
-              {/* Column Title */}
-              <h4
-                className="texts_18_medium   text-head mb-[27px]"
-                style={{ fontWeight: 600, letterSpacing: "0.08em" }}
-              >
-                {col.title}
-              </h4>
+          <div className="col-span-3 grid grid-cols-2 gap-[34px] sm:gap-0 sm:grid-cols-3">
+            {footerData.columns.map((col, colIdx) => (
+              <div key={colIdx} className="flex flex-col ">
+                {/* Column Title */}
+                <h4
+                  className="texts_18_medium   text-head  mb-[10px] lg:mb-[27px]"
+                  style={{ fontWeight: 600, letterSpacing: "0.08em" }}
+                >
+                  {col.title}
+                </h4>
 
-              {/* Links */}
-              <ul className="flex flex-col">
-                {col.links.map((item) => (
-                  <li key={item.id} className="relative group w-fit">
-                    <Link
-                      to={item.link}
-                      className={`texts_14_regular text-head  !leading-[40px]`}
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+                {/* Links */}
+                <ul className="flex flex-col">
+                  {col.links.map((item) => (
+                    <li key={item.id} className="relative group w-fit">
+                      <Link
+                        to={item.link}
+                        className={`texts_14_regular text-head  !leading-[40px]`}
+                      >
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
 
           {/* ── COL 6-7 : Subscribe ── */}
           <div className="col-span-2 flex flex-col">
@@ -106,27 +107,29 @@ const Footer = () => {
               SUBSCRIBE
             </h4>
 
-            {/* Subtitle */}
-            <p className="texts_14_regular text-head  mb-[15px] max-w-[270px]">
-              Be the first to get the latest news about trends, promotions, and
-              much more!
-            </p>
+            <div className="md:flex md:gap-x-8  lg:block">
+              {/* Subtitle */}
+              <p className="texts_14_regular text-head  mb-[15px] max-w-[270px]">
+                Be the first to get the latest news about trends, promotions,
+                and much more!
+              </p>
 
-            {/* Email Input */}
-            <div className="flex items-stretch border border-[#CFCDCD] bg-white mb-[41px] ">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="flex-1 px-[21px] pt-[17px] pb-[14px] texts_14_regular text-head placeholder:text-second bg-transparent"
-              />
+              {/* Email Input */}
+              <div className="flex items-stretch border border-[#CFCDCD] bg-white mb-[41px] ">
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  className="flex-1 px-[21px] pt-[17px] pb-[14px] texts_14_regular text-head placeholder:text-second bg-transparent"
+                />
 
-              <button
-                className="px-[18px]  texts_13_regular text-head  border-[#CFCDCD] hover:bg-head hover:text-white transition-colors duration-200"
-                style={{ fontWeight: 600, letterSpacing: "0.08em" }}
-              >
-                {" "}
-                JOIN
-              </button>
+                <button
+                  className="pr-3  texts_13_regular text-head  border-[#CFCDCD]   cursor-pointer  "
+                  style={{ fontWeight: 600, letterSpacing: "0.08em" }}
+                >
+                  {" "}
+                  JOIN
+                </button>
+              </div>
             </div>
 
             {/* Secure Payments */}
@@ -145,12 +148,12 @@ const Footer = () => {
         </div>
 
         {/* ── BOTTOM BAR ── */}
-        <div className="flex items-center justify-between pt-[34px] pb-[28px] border-t border-[#CFCDCD]">
+        <div className=" sm:flex  space-y-4    sm:space-y-0 sm:items-center sm:justify-between py-[28px] md:pt-[34px] lg:pb-[28px]  border-t border-[#CFCDCD]">
           {/* Copyright */}
           <p className="texts_13_regular text-head">©2020 Uomo</p>
 
           {/* Language & Currency */}
-          <div className="flex items-center gap-[48px]">
+          <div className="sm:flex sm:items-center  space-y-4 sm:space-y-0 gap-[48px]">
             {/* Language */}
             <div className="flex items-center gap-[10px]">
               <span className="texts_13_regular text-second">Language</span>
