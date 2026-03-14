@@ -105,7 +105,7 @@ const Cart = () => {
                   className="
                     /* mobile: stack vertically */
                     flex flex-col gap-3
-                    /* md+: back to grid */
+                    /* md+: back to gridhobe */
                     md:grid md:grid-cols-[3fr_0.8fr_1.2fr_0.8fr_30px] md:gap-4 md:items-center
                     py-5 md:py-7.5
                     border-b border-[#E4E4E4] border-t
@@ -141,7 +141,7 @@ const Cart = () => {
                   {/* Price — on mobile show inline label */}
                   <div className="flex items-center justify-between md:block">
                     <span className="text-[12px] font-medium text-gray-400 md:hidden">Price</span>
-                    <span className="text-[14px] md:text-[16px] font-normal text-[#767676] flex items-center">
+                    <span className="text-[14px] md:text-[16px] font-normal text-second flex items-center">
                       <LiaDollarSignSolid />
                       {cart.price}
                     </span>
@@ -196,7 +196,7 @@ const Cart = () => {
                 <input
                   type="text"
                   placeholder="Coupon Code"
-                  className="flex-1 pl-4 text-sm text-[#767676] outline-none h-full border-none bg-transparent"
+                  className="flex-1 pl-4 text-sm text-second outline-none h-full border-none bg-transparent"
                 />
                 <button className="px-3 md:px-4 h-full text-[12px] md:text-sm font-medium text-head cursor-pointer whitespace-nowrap">
                   APPLY COUPON

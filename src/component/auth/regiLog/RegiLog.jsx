@@ -129,7 +129,10 @@ const RegiLog = () => {
   }
 
   return (
-    <div className="max-w-xl mx-auto px-5 py-16">
+    <>
+    <section>
+        <div className="container pt-24.25 pb-25">
+             <div className=" px-5 max-w-162.75 mx-auto">
 
       {/* ── Tabs ── */}
       <div className="flex justify-center gap-10 border-b border-gray-200 mb-10">
@@ -282,6 +285,9 @@ const RegiLog = () => {
         </div>
       )}
     </div>
+        </div>
+    </section>
+    </>
   )
 }
 
