@@ -9,14 +9,6 @@ import Support from "@/component/layouts/home/Support";
 import Uomo from "@/component/layouts/home/Uomo";
 import React from "react";
 
-<<<<<<< HEAD
-=======
-import { Link } from "react-router-dom";
-import BlogList from "../component/blogPost/BlogList";
-import Blog from "@/component/common/Blog";
-import SingleBlog from "@/component/common/SingleBlog";
-
->>>>>>> aaf78407257b58fe45605aab2d26df342bf9d1a8
 const Home = () => {
   return (
     <>
@@ -28,11 +20,7 @@ const Home = () => {
       <LimitedEdition />
       <Uomo />
       <Support />
-<<<<<<< HEAD
       <SingleBlog/>
-=======
-      <SingleBlog />
->>>>>>> aaf78407257b58fe45605aab2d26df342bf9d1a8
     </>
   );
 };
