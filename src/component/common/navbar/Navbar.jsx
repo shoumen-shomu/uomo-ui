@@ -18,8 +18,11 @@ const Navbar = () => {
   return (
     <div className="fixed top-0 left-0 w-full z-[999] ">
       <div
-        className={`hidden lg:block   ${pathname === "/404" ?  "bg-transparent" : "bg-white"} `}
-        
+        className={`hidden lg:block ${
+          pathname === "/404" || pathname === "/coming-soon"
+            ? "bg-transparent"
+            : "bg-white"
+        }`}
       >
         <NavbarLg />
       </div>
