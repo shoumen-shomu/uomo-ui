@@ -11,9 +11,9 @@ const FaqItem = ({ question, answer }) => {
       {/* Question row */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex justify-between items-center text-left "
+        className="w-full flex justify-between items-center text-left cursor-pointer"
       >
-        <span className="texts_16_medium text-head ">
+        <span className="texts_16_medium text-head">
           {question}
         </span>
 
