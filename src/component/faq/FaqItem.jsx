@@ -18,7 +18,7 @@ const FaqItem = ({ question, answer }) => {
         <motion.span
           animate={{ rotate: isOpen ? 45 : 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="ml-4 flex-shrink-0 text-gray-700 text-[18px] leading-none select-none"
+          className="ml-4 shrink-0 text-gray-700 text-[18px] leading-none select-none"
           style={{ display: "inline-block" }}
         >
           +
