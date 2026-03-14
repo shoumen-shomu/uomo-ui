@@ -7,13 +7,13 @@ const FaqItem = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div>
+    <div className="pb-5 lg:pb-7.25">
       {/* Question row */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex justify-between items-center text-left"
+        className="w-full flex justify-between items-center text-left "
       >
-        <span className="texts_16_medium text-head mb-7.25">
+        <span className="texts_16_medium text-head ">
           {question}
         </span>
 
