@@ -6,13 +6,13 @@ const PAGE_HEADING = "FREQUENTLY ASKED QUESTIONS";
 const Faq = () => {
   return (
     <div className="min-h-screen bg-white">
-      <div className="max-w-232.5 mx-auto px-6 py-14">
+      <div className="max-w-232.5 mx-auto px-6 pt-24 pb-25">
 
-        {/* Heading — কোনো border নেই */}
-        <h1 className="text-[28px] font-bold text-gray-900 tracking-wide mb-12">
+        {/* Heading — border nei */}
+        <h1 className="head_35_bold text-head leading-[100%] mb-12">
           {PAGE_HEADING}
         </h1>
-        {/* ↑ mb-12 = 48px gap heading থেকে Orders পর্যন্ত */}
+        {/* ↑ mb-12 = 48px gap heading theke Orders projonto */}
 
         {/* FAQ Sections */}
         <FaqList faqs={faqData} />

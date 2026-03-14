@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiPlus, FiMinus } from "react-icons/fi";
+import { FiPlus } from "react-icons/fi";
+import { HiMiniMinusSmall } from "react-icons/hi2";
 
 const FaqItem = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +11,7 @@ const FaqItem = ({ question, answer }) => {
       {/* Question row */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex justify-between items-center py-4 text-left"
+        className="w-full flex justify-between items-center text-left"
       >
         <span className="text-[13px] leading-snug text-gray-800">
           {question}
@@ -20,7 +21,7 @@ const FaqItem = ({ question, answer }) => {
         <motion.span
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="ml-4 flex-shrink-0 text-gray-700"
+          className="ml-4 shrink-0 text-gray-700"
           style={{ display: "inline-flex" }}
         >
           <AnimatePresence mode="wait" initial={false}>
@@ -32,7 +33,7 @@ const FaqItem = ({ question, answer }) => {
                 exit={{ opacity: 0, scale: 0.5 }}
                 transition={{ duration: 0.2 }}
               >
-                <FiMinus size={16} />
+                <HiMiniMinusSmall size={18} />
               </motion.span>
             ) : (
               <motion.span
@@ -42,14 +43,14 @@ const FaqItem = ({ question, answer }) => {
                 exit={{ opacity: 0, scale: 0.5 }}
                 transition={{ duration: 0.2 }}
               >
-                <FiPlus size={16} />
+                <FiPlus size={18} />
               </motion.span>
             )}
           </AnimatePresence>
         </motion.span>
       </button>
 
-      {/* Border — সবসময় question এর নিচে */}
+      {/* Border —  question nice */}
       <div
         style={{
           borderBottom: isOpen ? "3px solid #111111" : "1px solid #E4E4E4",
@@ -68,7 +69,7 @@ const FaqItem = ({ question, answer }) => {
             transition={{ duration: 0.35, ease: "easeInOut" }}
             style={{ overflow: "hidden" }}
           >
-            <p className="py-5 text-[13px] text-gray-500 leading-relaxed">
+            <p className="pt-7.5 pb-12 text-[14px] text-head leading-7.5">
               {answer}
             </p>
           </motion.div>
