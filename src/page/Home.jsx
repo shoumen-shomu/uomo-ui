@@ -20,7 +20,6 @@ const Home = () => {
       <LimitedEdition />
       <Uomo />
       <Support />
-      <SingleBlog/>
     </>
   );
 };

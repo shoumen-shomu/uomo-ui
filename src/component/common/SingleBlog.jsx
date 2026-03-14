@@ -4,11 +4,14 @@ import Images from "./Images";
 import blogImg from "@/assets/images/singleBlog.png";
 import insideblogImg from "@/assets/images/insideBlog.png";
 import { Link } from "react-router-dom";
+import { FiChevronLeft } from "react-icons/fi";
+import { IoStar } from "react-icons/io5";
+import Button from "./Button";
 
 const SingleBlog = () => {
   return (
     <>
-      <div className="">
+      <div className="mb-27.5">
         <Container>
           <div className="pl-60">
             <h2 className="head_35_bold text-head">
@@ -22,7 +25,7 @@ const SingleBlog = () => {
           </div>
           <Images className={"mb-12.5"} imgSrc={blogImg} />
           <div className="pl-60">
-            <p className="w-289.5 texts_14_regular text-head pb-15">
+            <p className="w-232.5 texts_14_regular text-head pb-15">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
               sapien dignissim a elementum. Sociis metus, hendrerit mauris id
               in. Quis sit sit ultrices tincidunt euismod luctus diam. Turpis
@@ -165,43 +168,47 @@ const SingleBlog = () => {
               </div>
             </Link>
           </div>
-          <div class="max-w-2xl mx-auto px-4 pt-12.5">
-            <div class="flex justify-between items-start border-t border-b border-gray-200 pt-11.25 pb-10.5 mb-8">
-              <div class="text-left">
-                <p class="text-xs text-gray-500 flex items-center gap-1">
-                  &#8249; PREVIOUS POST
-                </p>
-                <p class="text-sm text-gray-800 mt-1">
+          <div className="w-232.5 mx-auto px-4 mt-12.5">
+            <div className="flex justify-between items-start border-t border-b border-[#E4E4E4] pt-11.25 pb-10.5 mb-12.5">
+              <div class="">
+                <div className="flex items-center gap-1">
+                  <FiChevronLeft />
+                  <p class="texts_14_medium text-second ">PREVIOUS POST</p>
+                </div>
+                <p class="texts_14_regular text-head">
                   Given Set was without from god divide rule Hath
                 </p>
               </div>
-              <div class="text-right">
-                <p class="text-xs text-gray-500 flex items-center justify-end gap-1">
-                  NEXT POST &#8250;
-                </p>
-                <p class="text-sm text-gray-800 mt-1">
+              <div class="">
+                <div className="flex items-center gap-1 justify-end">
+                  <FiChevronLeft />
+                  <p class="texts_14_medium text-second ">PREVIOUS POST</p>
+                </div>
+                <p class="texts_14_regular text-head">
                   Tree earth fowl given moveth deep lesser After
                 </p>
               </div>
             </div>
 
-            <h2 class="text-base font-semibold text-gray-900 mb-5">Reviews</h2>
+            <h2 className="texts_18_medium text-head mb-6.5">Reviews</h2>
 
-            <div class="flex gap-4 mb-6 pb-6 border-b border-gray-100">
-              <div class="w-10 h-10 rounded-full bg-gray-200 shrink-0"></div>
+            <div className="flex gap-7.5 mb-7.5 pb-6 border-b border-[#E4E4E4] w-232.5">
+              <div class="w-15 h-15 rounded-full bg-[#E4E4E4] shrink-0"></div>
               <div class="flex-1">
                 <div class="flex justify-between items-start">
                   <div>
-                    <p class="text-sm font-semibold text-gray-900">
-                      Janice Miller
-                    </p>
-                    <p class="text-xs text-gray-400">April 06, 2020</p>
+                    <p class="texts_14_regular text-head">Janice Miller</p>
+                    <p class="texts_14_regular text-second">April 06, 2020</p>
                   </div>
-                  <div class="flex text-yellow-400 text-sm">
-                    ★★★★<span class="text-gray-300">★</span>
+                  <div class="flex gap-1.25 text-[#EEBA36]">
+                    <IoStar />
+                    <IoStar />
+                    <IoStar />
+                    <IoStar />
+                    <IoStar />
                   </div>
                 </div>
-                <p class="text-xs text-gray-600 mt-2 leading-relaxed">
+                <p class="texts_14_regular text-second w-210 mt-5 ">
                   Nam libero tempore, cum soluta nobis est eligendi optio cumque
                   nihil impedit quo minus id quod maxime placeat facere
                   possimus, omnis voluptas assumenda est...
@@ -209,19 +216,25 @@ const SingleBlog = () => {
               </div>
             </div>
 
-            <div class="flex gap-4 mb-8 pb-6 border-b border-gray-100">
-              <div class="w-10 h-10 rounded-full bg-gray-200 shrink-0"></div>
-              <div class="flex-1">
-                <div class="flex justify-between items-start">
+            <div className="flex gap-7.5 mb-13.5 pb-6">
+              <div className="w-15 h-15 rounded-full bg-[#E4E4E4] shrink-0"></div>
+              <div className="flex-1">
+                <div className="flex justify-between items-start">
                   <div>
-                    <p class="text-sm font-semibold text-gray-900">
-                      Benjam Porter
+                    <p className="texts_14_regular text-head">Janice Miller</p>
+                    <p className="texts_14_regular text-second">
+                      April 06, 2020
                     </p>
-                    <p class="text-xs text-gray-400">April 06, 2020</p>
                   </div>
-                  <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                  <div className="flex gap-1.25 text-[#EEBA36]">
+                    <IoStar />
+                    <IoStar />
+                    <IoStar />
+                    <IoStar />
+                    <IoStar />
+                  </div>
                 </div>
-                <p class="text-xs text-gray-600 mt-2 leading-relaxed">
+                <p className="texts_14_regular text-second w-210 mt-5 ">
                   Nam libero tempore, cum soluta nobis est eligendi optio cumque
                   nihil impedit quo minus id quod maxime placeat facere
                   possimus, omnis voluptas assumenda est...
@@ -230,61 +243,68 @@ const SingleBlog = () => {
             </div>
 
             <div>
-              <h3 class="text-sm font-semibold text-gray-900 mb-1">
+              <h3 className="texts_18_medium text-head mb-1">
                 Be the first to review "Message Cotton T-Shirt"
               </h3>
-              <p class="text-xs text-gray-500 mb-4">
+              <p className="texts_14_regular text-head mb-7.5">
                 Your email address will not be published. Required fields are
                 marked *
               </p>
 
-              <div class="flex items-center gap-2 mb-4">
-                <label class="text-xs text-gray-700">Your rating *</label>
-                <div class="flex text-yellow-400 text-sm">★★★★★</div>
-              </div>
-
-              <div class="mb-4">
-                <textarea
-                  placeholder="Your Review"
-                  rows="6"
-                  class="w-full border border-gray-300 text-sm text-gray-700 px-3 py-2 resize-none focus:outline-none focus:ring-1 focus:ring-gray-400 placeholder-gray-400"
-                ></textarea>
-              </div>
-
-              <div class="mb-4 relative border border-gray-800 px-3 pt-3 pb-2">
-                <label class="absolute -top-2 left-3 bg-white px-1 text-xs text-gray-600">
-                  Name *
+              <div className="flex items-center gap-4.5 mb-4">
+                <label className="texts_14_regular text-head">
+                  Your rating *
                 </label>
-                <input
-                  type="text"
-                  value="Ali"
-                  class="w-full text-sm text-gray-800 focus:outline-none"
-                />
+                <div className="flex gap-1.25 text-[#EEBA36]">
+                  <IoStar size={13} />
+                  <IoStar size={13} />
+                  <IoStar size={13} />
+                  <IoStar size={13} />
+                  <IoStar size={13} />
+                </div>
               </div>
 
-              <div class="mb-4">
-                <input
-                  type="email"
-                  placeholder="Email address *"
-                  class="w-full border border-gray-300 text-sm text-gray-600 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-gray-400 placeholder-gray-400"
-                />
-              </div>
+              <div className="space-y-7.5">
+                <div>
+                  <textarea
+                    placeholder="Your Review"
+                    className="w-full border border-footer p-4.25 h-53.25 outline-none focus:border-head texts_14_regular text-second"
+                  />
+                </div>
 
-              <div class="flex items-center gap-2 mb-6">
-                <input
-                  type="checkbox"
-                  id="save"
-                  class="w-3.5 h-3.5 border-gray-300"
-                />
-                <label for="save" class="text-xs text-gray-500">
+                <div className="relative">
+                  <label className="absolute -top-3 left-3 bg-white px-1 texts_14_regular text-head">
+                    Name *
+                  </label>
+                  <input
+                    type="text"
+                    defaultValue="Ali"
+                    className="w-full border border-head p-4.25 outline-none"
+                  />
+                </div>
+
+                {/* Email Input */}
+                <div>
+                  <input
+                    type="email"
+                    placeholder="Email address *"
+                    className="w-full border border-footer texts_14_regular text-second p-4.25 outline-none focus:border-head"
+                  />
+                </div>
+              </div>
+              <div className="flex items-center gap-2.75 mt-7.5">
+                <input className="text-second" type="checkbox" />
+                <p className="texts_14_regular text-second">
                   Save my name, email, and website in this browser for the next
                   time I comment.
-                </label>
+                </p>
               </div>
-
-              <button class="bg-gray-900 text-white text-xs font-semibold tracking-widest uppercase px-6 py-3 hover:bg-gray-700 transition-colors">
-                SUBMIT
-              </button>
+              <Button
+                className={
+                  "pt-5.5 pb-3.5 pl-18.5 pr-19.25 texts_14_medium bg-head text-white mt-7.75"
+                }
+                btnText={"SUBMIT"}
+              />
             </div>
           </div>
         </Container>
