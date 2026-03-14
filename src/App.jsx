@@ -27,6 +27,7 @@ import Contact from "./component/contactUs/Contact";
 import BlogPost from "./page/BlogPost";
 import Store_location from "./component/storeLocator/Store_location";
 import Terms from "./page/Terms";
+import ComingSoonPg from "./page/ComingSoonPg";
 
 const router = createBrowserRouter([
   {
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
       { path: "/elements/blog-posts", element: <BlogPost /> },
       // for terms and condition
       { path: "/elements/terms", element: <Terms /> },
+
+      // for comming soon pages route
+
+      { path: "coming-soon", element: <ComingSoonPg /> },
 
       // 404 not found
       { path: "*", element: <NotFound /> },
