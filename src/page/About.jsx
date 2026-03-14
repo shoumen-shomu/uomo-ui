@@ -1,5 +1,7 @@
 import React from "react";
 
+import Container from "@/component/common/Container";
+
 const About = () => {
   return (
     <div
