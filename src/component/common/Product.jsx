@@ -30,14 +30,14 @@ const Product = ({
         {/* Product Description Start */}
         <div className="mt-3.5">
           <div className="flex justify-between items-center">
-            <p className="texts_14_regular text-[#767676]">{catagory}</p>
+            <p className="texts_14_regular text-second">{catagory}</p>
 
             <div onClick={() => setIsLiked(!isLiked)} className="cursor-pointer">
               {isLiked ? (
                 <FaHeart className="text-red cursor-pointer" size={14} />
               ) : (
                 <FaHeart
-                  className="text-[#767676] cursor-pointer"
+                  className="text-second cursor-pointer"
                   size={14}
                 />
               )}
@@ -47,7 +47,7 @@ const Product = ({
           <div className="flex gap-2 items-center">
             {discountPrice ? (
               <>
-                <p className="texts_16_regular text-[#767676] line-through">
+                <p className="texts_16_regular text-second line-through">
                   ${itemPrice}
                 </p>
                 <p className="texts_16_regular text-red font-bold">
