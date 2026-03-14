@@ -16,7 +16,6 @@ const BlogList = () => {
   const percentage = (visibleItems / totalItems) * 100;
 
   const handleLoadMore = () => {
-    // প্রতি ক্লিকে ১২টি করে বাড়বে (উদাহরণস্বরূপ)
     if (visibleItems < totalItems) {
       setVisibleItems((prev) => Math.min(prev + 12, totalItems));
     }
@@ -140,16 +139,15 @@ const BlogList = () => {
             />
           </div>
         </div>
-        <div className="flex flex-col items-center gap-4 w-full max-w-75 mx-auto uppercase">
-          {/* ৩. টেক্সট অংশ */}
+        <div className="flex flex-col items-center  w-full max-w-75 mx-auto uppercase">
+
           <p className="texts_14_medium text-black">
             Showing {visibleItems} of {totalItems} Items
           </p>
 
-          {/* ৪. Shadcn Progress Bar (ইমেজের মতো হুবহু ডিজাইন করা) */}
           <Progress
             value={percentage}
-            className="h-0.5 w-full bg-[#e5e5e5] [&>div]:bg-black transition-all duration-500"
+            className="h-full w-full bg-[#E4E4E4] [&>div]:bg-black transition-all duration-500 items-center rounded-[10px]"
           />
 
           {visibleItems < totalItems && (
@@ -158,7 +156,7 @@ const BlogList = () => {
               <Button
                 onClick={handleLoadMore}
                 className={
-                  "texts_14_medium text-black hover:after:w-15 pt-[17px]"
+                  "texts_14_medium text-black hover:after:w-15 pt-4.25"
                 }
                 btnText={"SHOW MORE"}
               />

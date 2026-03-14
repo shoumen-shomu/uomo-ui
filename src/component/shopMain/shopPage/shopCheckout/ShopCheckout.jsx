@@ -47,15 +47,15 @@ const ShopCheckout = () => {
     "w-full border-2 border-footer px-5.5 pt-5.25 pb-4 px-4 text-sm text-head outline-none bg-white appearance-none cursor-pointer focus:border-head leading-6";
 
   return (
-    <div className="flex flex-col lg:flex-row gap-15 items-start">
+    <div className="flex flex-col lg:flex-row gap-15 items-start w-full">
       {/* ── Left: Billing Details ── */}
-      <div className="flex-1 max-w-232.5">
+      <div className="flex-1 w-full max-w-232.5">
         <h2 className="text-[16px] font-medium text-head leading-[100%] mb-6 lg:mb-8.5">
           BILLING DETAILS
         </h2>
 
         {/* First / Last */}
-        <div className="flex gap-4 lg:gap-7.5 mb-4 lg:mb-7.5">
+        <div className="flex gap-4 lg:gap-7.5 mb-4 lg:mb-7.5 w-full">
           <input
             name="firstName"
             value={form.firstName}
@@ -212,7 +212,7 @@ const ShopCheckout = () => {
       </div>
 
       {/* ── Right: Your Order ── */}
-      <div className="shrink-0 w-full lg:w-auto max-w-105">
+      <div className="shrink-0 w-full md:max-w-full lg:w-auto lg:max-w-105">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}

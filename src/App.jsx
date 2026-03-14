@@ -28,6 +28,7 @@ import BlogPost from "./page/BlogPost";
 import Store_location from "./component/storeLocator/Store_location";
 import Terms from "./page/Terms";
 import ComingSoonPg from "./page/ComingSoonPg";
+import RegiLog from "./component/auth/regiLog/RegiLog";
 
 const router = createBrowserRouter([
   {
@@ -92,8 +93,10 @@ const router = createBrowserRouter([
       { path: "/elements/terms", element: <Terms /> },
 
       // for comming soon pages route
-
       { path: "coming-soon", element: <ComingSoonPg /> },
+       
+      //Regilogin page
+      {path: "login-register", element:<RegiLog/>},
 
       // 404 not found
       { path: "*", element: <NotFound /> },

@@ -4,7 +4,7 @@ import React from 'react'
 const Support = () => {
     return (
         <>
-            <section className='mt-25.5'>
+            <section className='my-25.5'>
                 <Container>
                     <div className="flex gap-64 justify-center">
                         <div className="text-center">

@@ -1,12 +1,12 @@
 import RegiLog from '@/component/auth/regiLog/RegiLog'
 import React from 'react'
 
-const LogOut = () => {
+const LoginRegisterpg = () => {
   return (
     <>
-   <RegiLog/>
+    <RegiLog/>
     </>
   )
 }
 
-export default LogOut
+export default LoginRegisterpg
