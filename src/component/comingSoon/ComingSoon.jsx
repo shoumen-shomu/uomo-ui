@@ -34,22 +34,24 @@ const ComingSoon = () => {
 
   return (
     <div
-      className="lg:h-screen object-cover flex flex-col items-center justify-center "
+      className="min-h-screen w-full bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center px-4"
       style={{ backgroundImage: `url(${notFoundPage})` }}
     >
-      {/* Main Card */}
-      <div className="   flex flex-col items-center justify-center ">
-        {/* Title */}
-        <h1 className="font-bold text-[100px] text-head">COMING SOON</h1>
+      <div className="flex flex-col  items-center justify-center w-full max-w-[771px] mx-auto">
 
-        {/* Subtitle */}
-        <p className="head_14_regular text-head max-w-[520px] text-center pb-[45px]">
+     
+        <h1 className="head_70_bold lg:!text-[100px] text-head text-center">
+          COMING SOON
+        </h1>
+
+      
+        <p className="texts_14_regular text-head text-center mt-5 pb-[clamp(24px,4vw,45px)] max-w-[505px] px-2">
           Sorry, we couldn't find the page you where looking for. We suggest
           that you return to home page.
         </p>
 
         {/* Countdown */}
-        <div className="flex items-start mb-[49px] gap-x-2">
+        <div className="flex items-start mb-[clamp(28px,4vw,49px)] gap-x-[clamp(4px,2vw,8px)]">
           <TimeBlock value={timeLeft.days} label="Days" />
           <Colon />
           <TimeBlock value={timeLeft.hours} label="Hours" />
@@ -60,34 +62,40 @@ const ComingSoon = () => {
         </div>
 
         {/* Email Row */}
-        <div className="flex gap-x-5 items-center">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-x-5 items-stretch sm:items-center w-full px-2 sm:px-0">
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Your email address"
-            className="flex-1  p-[18px]  w-[300px] lg:w-[550px] border  border-footer rounded  texts_14_regular  text-second placeholder:text-second bg-white "
+            className="flex-1 p-[clamp(12px,2vw,18px)] w-full border border-footer rounded texts_14_regular text-second placeholder:text-second bg-white"
           />
-          <button className="bg-head   rounded  py-5  px-[61px] text-white px-8 text-[13px] font-semibold tracking-[1.5px] uppercase hover:bg-[#d6001c] transition-colors duration-200 flex-shrink-0 cursor-pointer">
+          <button className="bg-head rounded py-[clamp(12px,2vw,20px)] px-[clamp(24px,4vw,61px)] text-white texts_13_regular font-semibold tracking-[1.5px] uppercase hover:bg-[#d6001c] transition-colors duration-200 flex-shrink-0 cursor-pointer w-full sm:w-auto">
             JOIN
           </button>
         </div>
+
       </div>
     </div>
   );
 };
 
 const TimeBlock = ({ value, label }) => (
-  <div className="flex flex-col items-center min-w-[72px]">
-    <span className="font-normal text-[30px]/[30px]  text-head ">{value}</span>
-    <span className="font-medium text-[16px]/[30px] text-second uppercase mt-[6px]">
+  <div className="flex flex-col items-center min-w-[clamp(48px,10vw,72px)]">
+ 
+    <span className="head_26_regular text-head">
+      {value}
+    </span>
+
+    <span className="texts_13_regular text-second uppercase mt-[6px]">
       {label}
     </span>
   </div>
 );
 
 const Colon = () => (
-  <span className="text-[34px] font-normal text-head ">:</span>
+
+  <span className="head_26_regular text-head">:</span>
 );
 
 export default ComingSoon;
