@@ -1,14 +1,26 @@
 import Images from "@/component/common/Images";
 import shopBannerImg from "@/assets/images/shopBannerImg.png";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Container from "@/component/common/Container";
 import { shopList1 } from "@/helper/projectArrayObj";
 import allIcons from "@/helper/iconProvider";
 import Product from "@/component/common/Product";
 import allImages from "@/helper/imagesProvider";
+import { Progress } from "@/components/ui/progress";
+import Button from "@/component/common/Button";
+import ShopFilter from "./ShopFilter";
 
 const ShopBanner = () => {
+  const [visibleItems, setVisibleItems] = useState(36);
+    const totalItems = 100;
+      const percentage = (visibleItems / totalItems) * 100;
+
+      const handleLoadMore = () => {
+    if (visibleItems < totalItems) {
+      setVisibleItems((prev) => Math.min(prev + 12, totalItems));
+    }
+  };
   //for icons & img
 
   const { filter } = allIcons;
@@ -74,7 +86,14 @@ const ShopBanner = () => {
                   Price: High to Low
                 </option>
               </select>
-              <button className=" border-l-2 pl-[30px] border-footer texts_14_medium text-head flex items-center gap-x-[10px] cursor-pointer">
+                <div class="h-6 w-0.5 bg-gray-300 cursor-pointer "></div>
+              <div className="flex justify-between items-center gap-x-3 cursor-pointer">
+                <button className="texts_14_medium text-head">VIEW</button>
+                <button  className="texts_14_medium text-head">2</button>
+                <button className="texts_14_medium text-head">3</button>
+                <button  className="texts_14_medium text-head">4</button>
+              </div>
+              <button className=" border-l-2 pl-7.5 border-footer texts_14_medium text-head flex items-center gap-x-[10px] cursor-pointer">
                 <span className="text-lg">{filter}</span> FILTER
               </button>
             </div>
@@ -94,9 +113,41 @@ const ShopBanner = () => {
                 );
               })}
             </div>
-            <div></div>
+            {/* <div className="flex flex-col items-center space-y-4 font-sans py-10">
+              <span class="texts_14_medium text-[#000000] tracking-wide uppercase">
+                SHOWING 36 of 497 Items
+              </span>
+
+            </div> */}
+                   <div className="flex flex-col items-center  w-full max-w-75 mx-auto uppercase">
+
+          <p className="texts_14_medium text-black pb-1.25">
+            Showing {visibleItems} of {totalItems} Items
+          </p>
+
+          <Progress
+            value={percentage}
+            className="h-full w-full bg-[#E4E4E4] [&>div]:bg-black transition-all duration-500 items-center rounded-[10px]"
+          />
+
+          {visibleItems < totalItems && (
+            <Link>
+              {" "}
+              <Button
+                onClick={handleLoadMore}
+                className={
+                  "texts_14_medium text-black hover:after:w-15 pt-4.25"
+                }
+                btnText={"SHOW MORE"}
+              />
+            </Link>
+          )}
+        </div>
           </div>
         </Container>
+        {/* Filter part start */}
+        <ShopFilter/>
+        {/* Filter part end */}
       </div>
     </section>
   );
