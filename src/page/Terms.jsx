@@ -38,16 +38,16 @@ const Terms = () => {
   return (
     <>
     <Container>
-    <div className="w-full flex justify-center px-4 sm:px-6 lg:px-0 mt-23.5 mb-35">
+    <div className="w-full flex justify-center px-4 sm:px-6 lg:px-0 mb-15 mt-23.5 md:mb-35">
       <div className="w-full max-w-232.5">
 
         {/* Title */}
-        <h1 className="text-2xl sm:text-3xl lg:text-[32px] font-bold text-gray-900 uppercase tracking-wide mb-6 sm:mb-8 lg:mb-12">
+        <h1 className="text-xl sm:text-3xl lg:text-[32px] font-bold text-gray-900 uppercase tracking-wide mb-6 sm:mb-8 lg:mb-12">
           Terms & Conditions
         </h1>
 
         {/* Sections */}
-        {/* <div className="flex flex-col gap-5 sm:gap-6 md:gap-7.5 ">
+        <div className="flex flex-col gap-5 sm:gap-6 md:gap-7.5 ">
           {termsSections.map((section) => (
             <div key={section.id}>
               <h2 className="text-sm sm:text-[15px] lg:text-[16px] font-medium text-[#222] mb-2 sm:mb-3 md:mb-4 ">
@@ -58,7 +58,7 @@ const Terms = () => {
               </p>
             </div>
           ))}
-        </div> */}
+        </div>
 
       </div>
     </div>
