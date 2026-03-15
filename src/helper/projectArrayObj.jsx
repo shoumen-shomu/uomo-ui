@@ -121,6 +121,8 @@ const navItems = [
     hasDropdown: true,
     dropdownData: [
       { name: "About", link: "/about" },
+      { name: "My Account", link: "/dashboard" },
+      { name: "Login / Register", link: "/login-register" },
       { name: "Contact Us", link: "/contact" },
       { name: "Store Locator", link: "/store-locator" },
       { name: "FAQ", link: "/faq" },
