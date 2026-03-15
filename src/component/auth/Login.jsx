@@ -1,6 +1,6 @@
 import allIcons from "@/helper/iconProvider";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -10,7 +10,20 @@ const Login = ({ unMount }) => {
   const { close } = allIcons;
   const navigate = useNavigate();
   const { setUser } = useAuthStore();
+  //Containe er bahire click korle e cole jabe
+  const navtabRef = useRef(null);
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      if (navtabRef.current && !navtabRef.current.contains(event.target)) {
+        unMount(null);
+      }
+    };
 
+    document.addEventListener("mousedown", handleDocumentClick);
+    return () => {
+      document.removeEventListener("mousedown", handleDocumentClick);
+    };
+  }, [unMount]);
   // ══ STATE ══
   const [remember, setRemember] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -54,7 +67,7 @@ const Login = ({ unMount }) => {
   };
 
   return (
-    <div className="w-105 h-full bg-white p-10">
+    <div ref={navtabRef} className="w-105 h-full bg-white p-10">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <p className="texts_16_medium text-head">LOGIN</p>

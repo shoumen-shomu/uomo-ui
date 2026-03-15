@@ -1,6 +1,6 @@
 import allIcons from "@/helper/iconProvider";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { cartItems } from "@/helper/projectArrayObj";
 import Images from "@/component/common/Images";
@@ -12,9 +12,23 @@ const AddToCart = ({ unMount }) => {
     (acc, item) => acc + item.price * item.quantity,
     0,
   );
+  //Containe er bahire click korle e cole jabe
+  const navtabRef = useRef(null);
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      if (navtabRef.current && !navtabRef.current.contains(event.target)) {
+        unMount(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleDocumentClick);
+    return () => {
+      document.removeEventListener("mousedown", handleDocumentClick);
+    };
+  }, [unMount]);
 
   return (
-    <div className="w-[420px] h-full bg-white flex flex-col">
+    <div ref={navtabRef} className="w-105 h-full bg-white flex flex-col">
       {/* Header */}
       <div className="flex justify-between items-center px-6 py-5 border-b border-footer">
         <p className="texts_16_medium text-head tracking-wider">
@@ -41,7 +55,7 @@ const AddToCart = ({ unMount }) => {
             </span>
 
             {/* Image */}
-            <div className="w-[100px] h-[100px] bg-secondbg flex-shrink-0">
+            <div className="w-25 h-25 bg-secondbg shrink-0">
               {item.image ? (
                 <Images
                   imgSrc={item.image}
@@ -96,7 +110,8 @@ const AddToCart = ({ unMount }) => {
         {/* Checkout */}
         <Link
           to="/cart/shoping-and-checkout"
-          className="w-full bg-head text-center texts_14_medium text-white tracking-widest py-4 cursor-pointer"
+          className="w-full bg-head text-white pt-5.5 pb-3.5
+          hover:bg-[#DB4444] transition-all mt-1 leading-6 text-center texts_14_medium cursor-pointer"
         >
           CHECKOUT
         </Link>
