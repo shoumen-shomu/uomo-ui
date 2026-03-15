@@ -55,11 +55,11 @@
 
 /* head */
 .head_70_bold {
-  @apply lg:font-bold lg:text-[70px]/[80px];
+  @apply font-bold text-[70px]/[80px];
 }
 
 .head_70_regular {
-  @apply lg:font-normal lg:text-[70px]/[80px];
+  @apply font-normal text-[70px]/[80px];
 }
 
 .head_35_regular {
