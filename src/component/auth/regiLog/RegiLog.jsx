@@ -6,7 +6,7 @@ import {
   sendEmailVerification,
 } from "firebase/auth";
 import { auth } from "../../../firebase/firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuthStore from "../../../store/authSlice";
 
@@ -20,6 +20,7 @@ const RegiLog = () => {
   const [showpassword, setShowPassword] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [errors, setErrors] = useState({});
+  const [remember, setRemember] = useState(false);
 
   const loginInputs = [
     {
@@ -86,13 +87,13 @@ const RegiLog = () => {
       id: 3,
       name: "password",
       type: showRegPassword ? "text" : "password",
-      placeholder: "Password *",
+      placeholder: "Password ",
     },
     {
       id: 4,
       name: "confirmpassword",
       type: showConfirmPassword ? "text" : "password",
-      placeholder: "Confirm Password *",
+      placeholder: "Confirm Password ",
     },
   ];
 
@@ -212,24 +213,23 @@ const RegiLog = () => {
             </div>
 
             {/* ══ LOGIN FORM ══ */}
-            {/* ══ LOGIN FORM ══ */}
             {activeTab === "login" && (
               <div className="flex flex-col">
                 {loginSuccess && (
-                  <div className="bg-green-50 border border-green-300 text-green-700 px-4 py-3 text-sm mb-5">
+                  <div className="bg-green-50 border border-footer text-green-700 px-4 py-3 text-sm mb-5">
                     ✅ Login successful! Redirecting...
                   </div>
                 )}
 
-                {/* Username field — mb-[30px] */}
+                {/* Username field */}
                 {loginInputs.map((input, index) => (
                   <div
                     key={input.id}
                     className={`flex flex-col gap-1 ${
-                      index === 0 ? "mb-[30px]" : "mb-[17px]"
+                      index === 0 ? "mb-7.5" : "mb-4.25"
                     }`}
                   >
-                    <div className="relative border border-gray-300 focus-within:border-black transition-colors">
+                    <div className="relative border border-footer focus-within:border-black transition-colors">
                       <label className="absolute -top-2.5 left-3 bg-white px-1 leading-6 text-[14px] text-head">
                         {input.placeholder}{" "}
                         <span className="text-red-500">*</span>
@@ -246,7 +246,7 @@ const RegiLog = () => {
                         placeholder=""
                         value={formData[input.name]}
                         onChange={handleLoginChange}
-                        className="w-full px-4 py-4 text-sm text-gray-700 outline-none placeholder-gray-400 bg-transparent"
+                        className="w-full px-4 py-4 text-sm text-head outline-none placeholder-second bg-transparent"
                       />
                       {input.name === "password" && (
                         <span
@@ -271,23 +271,32 @@ const RegiLog = () => {
                   </span>
                 )}
 
-                {/* Remember me — mb-[26px] */}
-                <div className="flex justify-between items-center mb-[26px]">
-                  <label className="flex items-center gap-2 text-sm text-gray-500 cursor-pointer">
-                    <input type="checkbox" /> Remember me
+                {/* Remember & Lost password */}
+                <div className="flex justify-between items-center mb-6.5">
+                  <label className="flex items-center gap-x-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={remember}
+                      onChange={() => setRemember(!remember)}
+                      className="w-4 h-4 border border-footer accent-head cursor-pointer"
+                    />
+                    <span className="texts_14_regular text-head">
+                      Remember me
+                    </span>
                   </label>
-                  <a
-                    href="/lost-password"
-                    className="text-sm text-gray-700 underline"
+                  <Link
+                    to="/lost-password"
+                    className="texts_14_regular text-head underline underline-offset-2"
                   >
                     Lost password?
-                  </a>
+                  </Link>
                 </div>
 
-                {/* LOG IN button — mb-[24px] */}
+                {/* LOG IN button  */}
                 <button
                   onClick={handleLoginSubmit}
-                  className="w-full py-4 bg-black text-white text-sm font-bold tracking-widest hover:bg-gray-800 transition-colors mb-[24px]"
+                  className="w-full bg-head text-white pt-5.5 pb-3.5 text-[14px] font-medium
+          hover:bg-[#DB4444] transition-all leading-6 mb-6"
                 >
                   LOG IN
                 </button>
@@ -308,7 +317,7 @@ const RegiLog = () => {
             {activeTab === "register" && (
               <div className="flex flex-col">
                 {Success && (
-                  <div className="bg-green-50 border border-green-300 text-green-700 px-4 py-3 text-sm">
+                  <div className="bg-green-50 border border-footer text-green-700 px-4 py-3 text-sm">
                     ✅ Account created! Verification email sent. Redirecting...
                   </div>
                 )}
@@ -318,17 +327,17 @@ const RegiLog = () => {
                     key={input.id}
                     className={`flex flex-col gap-1 ${
                       index === 0
-                        ? "mb-[29px]"
+                        ? "mb-7.25"
                         : index === 1
-                          ? "mb-[30px]"
-                          : "mb-[30px]"
+                          ? "mb-7.5"
+                          : "mb-7.5"
                     }`}
                   >
                     <div
                       className={`relative ${
                         input.name === "password" ||
                         input.name === "confirmpassword"
-                          ? "border border-gray-300 focus-within:border-black transition-colors"
+                          ? "border border-footer focus-within:border-black transition-colors"
                           : ""
                       }`}
                     >
@@ -349,7 +358,7 @@ const RegiLog = () => {
                           input.name === "password" ||
                           input.name === "confirmpassword"
                             ? "bg-transparent border-0"
-                            : "border border-gray-300 focus:border-black"
+                            : "border border-footer focus:border-black"
                         }`}
                       />
                       {input.name === "password" && (
@@ -397,7 +406,8 @@ const RegiLog = () => {
 
                 <button
                   onClick={handleRegSubmit}
-                  className="w-full py-4 bg-black text-white text-sm font-bold tracking-widest hover:bg-gray-800 transition-colors mt-2"
+                  className="w-full bg-head text-white pt-5.5 pb-3.5 text-[14px] font-medium
+          hover:bg-[#DB4444] transition-all leading-6 mt-3.5 mb-6"
                 >
                   REGISTER
                 </button>

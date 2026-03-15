@@ -51,12 +51,12 @@ const NavTabs = ({ unMount }) => {
         </div>
 
         {/* Tabs — WOMEN / MEN / KIDS */}
-        <div className="flex gap-x-3 px-14 pt-6 mb-10">
+        <div className="flex gap-x-[26px] px-14 pt-6 mb-10">
           {navTabsData.map((item, index) => (
             <button
               key={item.id}
               onClick={() => setActiveTab(index)}
-              className={`texts_14_medium tracking-wider px-5 py-2 transition-all duration-200 ${
+              className={`texts_14_medium tracking-wider px-5 py-2 transition-all duration-200  rounded-[4px] ${
                 activeTab === index
                   ? "bg-head text-white"
                   : "text-head hover:bg-secondbg"
@@ -75,7 +75,7 @@ const NavTabs = ({ unMount }) => {
               <li key={cat.id} className="relative">
                 <Link
                   to={cat.link}
-                  className={`head_26_regular tracking-wide hover:opacity-60 transition-opacity ${
+                  className={`text-xl/[50px]  hover:opacity-60 transition-opacity ${
                     cat.isRed ? "text-red" : "text-head"
                   }`}
                 >

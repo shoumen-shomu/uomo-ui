@@ -9,12 +9,12 @@ const wishlistItems = [
 
 const DashboardWishlist = () => {
   return (
-    <div className="w-ful pt-27">
-      <div className="flex flex-col items-center sm:grid sm:grid-cols-2 sm:items-start lg:flex lg:flex-row lg:items-start gap-[30px]">
+    <div className="w-full pt-8 sm:pt-14 lg:pt-27 px-4 sm:px-6 lg:px-0">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-[30px]">
         {wishlistItems.map((item) => (
           <div
             key={item.id}
-            className="w-full max-w-[320px] sm:max-w-none lg:flex-1 group cursor-pointer"
+            className="w-full group cursor-pointer"
           >
             {/* Image */}
             <div className="relative overflow-hidden">
@@ -33,10 +33,10 @@ const DashboardWishlist = () => {
             <div className="flex items-start justify-between pt-2">
               <div>
                 <p className="text-[11px] text-gray-400 mb-[2px]">{item.category}</p>
-                <p className="text-sm text-gray-900 font-normal">{item.name}</p>
-                <p className="text-sm text-gray-900 mt-[2px]">{item.price}</p>
+                <p className="text-[12px] sm:text-sm text-gray-900 font-normal">{item.name}</p>
+                <p className="text-[12px] sm:text-sm text-gray-900 mt-[2px]">{item.price}</p>
               </div>
-              <button className="text-gray-400 hover:text-gray-600 mt-1">
+              <button className="text-gray-400 hover:text-gray-600 mt-1 shrink-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-4 h-4"

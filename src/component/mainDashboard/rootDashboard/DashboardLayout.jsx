@@ -1,20 +1,45 @@
 import Container from "@/component/common/Container";
-import React from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import DashborardItems from "../dashborarAllComponent/DashborardItems";
 
 const DashboardLayout = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <section className="pt-22.5 pb-25">
       <Container>
-        <div className="grid grid-cols-4 ">
+
+        {/* Mobile Menu Toggle Button */}
+        <div className="lg:hidden mb-5">
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="flex items-center gap-2 text-[14px] font-medium text-[#222] border border-[#e0e0e0] px-4 py-2 rounded"
+          >
+            <span className="text-lg">{menuOpen ? "✕" : "☰"}</span>
+            {menuOpen ? "Close Menu" : "My Account Menu"}
+          </button>
+        </div>
+
+        {/* Mobile Sidebar Dropdown */}
+        {menuOpen && (
+          <div className="lg:hidden mb-6 border border-[#e0e0e0] rounded p-4">
+            <DashborardItems onClose={() => setMenuOpen(false)} />
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-0">
+          {/* Desktop Sidebar */}
           <aside className="hidden lg:block">
             <DashborardItems />
           </aside>
-          <main className="col-span-3">
+
+          {/* Main Content */}
+          <main className="col-span-1 lg:col-span-3">
             <Outlet />
           </main>
         </div>
+
       </Container>
     </section>
   );

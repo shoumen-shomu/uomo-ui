@@ -10,8 +10,8 @@ const Trend_product = () => {
         <h3 className="head_26_regular text-head">
           RELATED <span className="head_26_bold ">PRODUCTS</span>
         </h3>
-        <div className="mt-8.5 flex gap-x-7.5">
-          <Product catagory={"Dresses"} imgSrc={product} itemName={"Cropped Faux Leather Jacket"} itemPrice={"29"}/>
+       <div className="mt-8.5 flex gap-x-7.5">
+          <Product catagory={"Dresses"} imgSrc={product} itemName={"Cropped  Faux Leather Jacket"} itemPrice={"29"}/>
           <Product catagory={"Dresses"} imgSrc={product} itemName={"Calvin Shorts"} itemPrice={"62"}/>
           <Product catagory={"Dresses"} imgSrc={product} itemName={"Kirby T-Shirt"} itemPrice={"17"}/>
           <Product catagory={"Dresses"} imgSrc={product} itemName={"Cableknit Shawl"} itemPrice={"129"} discountPrice={"99"}/>
