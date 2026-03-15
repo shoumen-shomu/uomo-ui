@@ -213,7 +213,7 @@ const NavbarMobile = () => {
   return (
     <>
       {/* ── Top Nav Bar ────────────────────────────────────────────────── */}
-      <nav className="py-[21px] ">
+      <nav className="py-[21px]">
         <Container>
           <div className="flex items-center justify-between">
             <button
