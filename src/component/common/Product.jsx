@@ -13,7 +13,7 @@ const Product = ({
   const [isLiked, setIsLiked] = useState(false);
   return (
     <>
-      <div className="w-82.5 relative group">
+      <div className="lg:w-82.5 w-full relative group">
         <div className="relativec overflow-hidden ">
           <Images className={""} imgSrc={imgSrc} imgAlt={imgAlt} />
           {/* Badge Start */}

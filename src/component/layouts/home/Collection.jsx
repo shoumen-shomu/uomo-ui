@@ -16,8 +16,8 @@ const Collection = () => {
               <Images className={""} imgSrc={womencollection} />
               <div className=" absolute bottom-10 left-10  ">
                 <p className="texts_14_regular text-head">HOT LIST</p>
-                <h3 className="head_26_medium text-head pb-1.25">
-                  <span className="head_26_bold text-head">WOMEN</span>{" "}
+               <h3 className="lg:head_26_medium text-head font-medium text-[22px] pb-1.25 w-33.5 md:w-full">
+                  <span className="lg:head_26_bold font-bold text-[22px]">WOMEN</span>{" "}
                   COLLECTION
                 </h3>
                 <Button className={"hover:after:w-12.5"} btnText={"SHOP NOW"} />
@@ -28,8 +28,8 @@ const Collection = () => {
                 <Images className={" "} imgSrc={mencollection} />
                 <div className="absolute bottom-10 left-10 ">
                   <p className="texts_14_regular text-head">HOT LIST</p>
-                  <h3 className="head_26_medium text-head pb-1.25">
-                    <span className="head_26_bold text-head">MEN</span>{" "}
+                  <h3 className="lg:head_26_medium text-head font-medium text-[22px] pb-1.25 w-33.5 md:w-full">
+                    <span className="lg:head_26_bold font-bold text-[22px] text-head">MEN</span>{" "}
                     COLLECTION
                   </h3>
                   <Button
@@ -38,13 +38,13 @@ const Collection = () => {
                   />
                 </div>
               </div>
-              <div className="flex mt-7.5 gap-7.5">
+              <div className="lg:flex mt-7.5 space-y-7.5 lg:space-y-7.5 gap-7.5 w-full">
                 <div className="relative group overflow-hidden">
                   <Images className={""} imgSrc={kidcollection} />
                   <div className="absolute bottom-10 left-10 ">
                     <p className="texts_14_regular text-head">HOT LIST</p>
-                    <h3 className="head_26_medium text-head pb-1.25">
-                      <span className="head_26_bold text-head">KIDS</span>{" "}
+                    <h3 className="lg:head_26_medium text-head font-medium text-[22px] pb-1.25 w-33.5 md:w-full">
+                      <span className="lg:head_26_bold font-bold text-[22px] text-head">KIDS</span>{" "}
                       COLLECTION
                     </h3>
                     <Button
@@ -56,8 +56,8 @@ const Collection = () => {
                 <div className="relative group overflow-hidden">
                   <Images className={""} imgSrc={giftcard} />
                   <div className="absolute bottom-10 left-10 ">
-                    <h3 className="head_26_medium text-head pb-1.25">
-                      <span className="head_26_bold text-head">E-GIFT</span>{" "}
+                    <h3 className="lg:head_26_medium text-head font-medium text-[22px] pb-1.25 w-33.5 md:w-full">
+                      <span className="lg:head_26_bold font-bold text-[22px] text-head">E-GIFT</span>{" "}
                       CARDS
                     </h3>
                     <p className="texts_14_regular text-head w-53.25 pt-2 pb-4">
