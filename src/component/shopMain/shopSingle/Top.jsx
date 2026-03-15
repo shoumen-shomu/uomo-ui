@@ -27,28 +27,28 @@ const Top = () => {
   };
 
   return (
-    <div className="my-8  lg:mt-12.5 lg:mb-25">
+    <div className="mt-[74px] mb-6  lg:mt-12.5 lg:mb-25">
       <Container>
-        <div className="flex flex-col lg:flex-row gap-y-8 lg:gap-x-15">
+        <div className="flex flex-col xl:flex-row gap-y-8 xl:gap-x-15">
           {/* Left Side: Images */}
-          <div className="flex flex-col-reverse lg:flex-row gap-2.5 ">
-            <div className="flex lg:flex-col gap-2.5 overflow-x-auto lg:overflow-visible ">
-              <div className="min-w-[80px] lg:w-auto">
+          <div className="flex flex-col-reverse xl:flex-row gap-2.5 ">
+            <div className="flex xl:flex-col gap-2.5 overflow-x-auto lg:overflow-visible ">
+              <div className="min-w-[80px] xl:w-auto">
                 <Images imgSrc={sssOne} />
               </div>
-              <div className="min-w-[80px] lg:w-auto">
+              <div className="min-w-[80px] xl:w-auto">
                 <Images imgSrc={sssOne} />
               </div>
-              <div className="min-w-[80px] lg:w-auto">
+              <div className="min-w-[80px] xl:w-auto">
                 <Images imgSrc={sssOne} />
               </div>
-              <div className="min-w-[80px] lg:w-auto">
+              <div className="min-w-[80px] xl:w-auto">
                 <Images imgSrc={sssOne} />
               </div>
             </div>
 
             {/* Main Slider */}
-            <div className="w-full lg:w-[570px] relative group">
+            <div className="w-full xl:w-[570px] relative group">
               <Swiper
                 modules={[Navigation]}
                 navigation={{
@@ -77,10 +77,10 @@ const Top = () => {
               </Swiper>
 
               {/* Slider Arrows */}
-              <div className="button-prev-custom absolute left-2 lg:left-5 top-1/2 -translate-y-1/2 z-10 cursor-pointer bg-white/80 p-2 lg:p-4 rounded-full shadow-sm">
+              <div className="button-prev-custom absolute left-2 xl:left-5 top-1/2 -translate-y-1/2 z-10 cursor-pointer bg-white/80 p-2 xl:p-4 rounded-full shadow-sm">
                 <GrFormPrevious size={20} />
               </div>
-              <div className="button-next-custom absolute right-2 lg:right-5 top-1/2 -translate-y-1/2 z-10 cursor-pointer bg-white/80 p-2 lg:p-4 rounded-full shadow-sm">
+              <div className="button-next-custom absolute right-2 xl:right-5 top-1/2 -translate-y-1/2 z-10 cursor-pointer bg-white/80 p-2 xl:p-4 rounded-full shadow-sm">
                 <MdNavigateNext size={20} />
               </div>
             </div>
@@ -88,7 +88,7 @@ const Top = () => {
 
           {/* Right Side: Product Details */}
           <div className="text-start px-4 md:px-20 lg:px-0">
-            <div className="hidden lg:flex justify-between items-center mb-10">
+            <div className="hidden xl:flex justify-between items-center mb-10">
               <h4 className="texts_14_medium text-head">HOME / THE SHOP</h4>
               <div className="flex gap-x-6">
                 <button className="flex items-center gap-x-1 texts_14_medium cursor-pointer text-head">
@@ -100,7 +100,7 @@ const Top = () => {
               </div>
             </div>
 
-            <h3 className="text-xl lg:head_26_regular font-normal text-head">
+            <h3 className="text-xl xl:head_26_regular font-normal text-head">
               Lightweight Puffer Jacket With a Hood
             </h3>
             <h4 className="text-[22px] font-medium text-head mt-2">$449</h4>
@@ -130,7 +130,7 @@ const Top = () => {
                   +
                 </button>
               </div>
-              <button className="h-12 lg:w-[280px] lg:h-[60px] bg-head text-white text-[12px] lg:texts_14_medium  tracking-widest cursor-pointer uppercase px-10 lg:px-0">
+              <button className="h-12  lg:w-[280px] lg:h-[60px] bg-head text-white text-[12px] lg:texts_14_medium  tracking-widest cursor-pointer uppercase px-10 lg:px-0">
                 ADD TO CART
               </button>
             </div>

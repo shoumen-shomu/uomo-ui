@@ -279,4 +279,52 @@ const navTabsData = [
   },
 ];
 
-export { navItems, quickLinks, cartItems, navTabsData };
+const footerData = {
+  columns: [
+    {
+      title: "COMPANY",
+      links: [
+        { id: 1, name: "About Us", link: "/about" },
+        { id: 2, name: "Careers", link: "/careers" },
+        { id: 3, name: "Affiliates", link: "/affiliates" },
+        { id: 4, name: "Blog", link: "/journal" },
+        { id: 5, name: "Contact Us", link: "/contact" },
+      ],
+    },
+    {
+      title: "SHOP",
+      links: [
+        { id: 1, name: "New Arrivals", link: "/new-arrivals" },
+        { id: 2, name: "Accessories", link: "/accessories" },
+        { id: 3, name: "Men", link: "/men" },
+        { id: 4, name: "Women", link: "/women" },
+        { id: 5, name: "Shop All", link: "/shop" },
+      ],
+    },
+    {
+      title: "HELP",
+      links: [
+        { id: 1, name: "Customer Service", link: "/contact" },
+        { id: 2, name: "My Account", link: "/my-account", isItalic: true },
+        { id: 3, name: "Find a Store", link: "/store-locator" },
+        { id: 4, name: "Legal & Privacy", link: "/legal-privacy" },
+        { id: 5, name: "Contact", link: "/contact" },
+        { id: 6, name: "Gift Card", link: "/gift-card" },
+      ],
+    },
+  ],
+};
+
+const shopList1 = [
+  { id: 1, title: "#STAYHOME", value: "stayhome" },
+  { id: 2, title: "NEW IN", value: "new-in" },
+  { id: 3, title: "JACKETS", value: "jackets" },
+  { id: 4, title: "HOODIES", value: "hoodies", active: true },
+  { id: 5, title: "MEN", value: "men" },
+  { id: 6, title: "WOMEN", value: "women" },
+  { id: 7, title: "TROUSERS", value: "trousers" },
+  { id: 8, title: "ACCESSORIES", value: "accessories" },
+  { id: 9, title: "SHOES", value: "shoes" },
+];
+
+export { navItems, quickLinks, cartItems, navTabsData, footerData, shopList1 };

@@ -1,13 +1,25 @@
-import React from 'react'
+import FaqList from "../component/faq/FaqList";
+import faqData from "../component/faq/faqData";
+
+const PAGE_HEADING = "FREQUENTLY ASKED QUESTIONS";
 
 const Faq = () => {
   return (
-    <div className=" bg-cyan-500  flex items-center justify-center h-screen ">
-      <h1 className="text-[72px] text-white font-bold">
-        This is FAQ Page
-      </h1>
-    </div>
-  )
-}
+    <div className="min-h-screen bg-white">
+      <div className="max-w-232.5 mx-auto px-6 pt-24 pb-25">
 
-export default Faq
+        {/* Heading — border nei */}
+        <h1 className="head_35_bold text-head leading-[100%] mb-12">
+          {PAGE_HEADING}
+        </h1>
+        {/* ↑ mb-12 = 48px gap heading theke Orders projonto */}
+
+        {/* FAQ Sections */}
+        <FaqList faqs={faqData} />
+
+      </div>
+    </div>
+  );
+};
+
+export default Faq;

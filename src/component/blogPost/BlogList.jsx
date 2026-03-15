@@ -1,13 +1,27 @@
 import Blog from "@/component/common/Blog";
 import Container from "@/component/common/Container";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import blogImg from "@/assets/images/blogImg.png";
 import mixitup from "mixitup";
+import { Progress } from "@/components/ui/progress";
+import Button from "../common/Button";
 
 const BlogList = () => {
-  const containerRef = useRef(null);
+  // ১. স্টেট এবং ডেটা (এগুলো আপনার প্রয়োজনমতো পরিবর্তন করবেন)
+  const [visibleItems, setVisibleItems] = useState(36);
+  const totalItems = 100;
 
+  // ২. ক্যালকুলেশন (এটি অটোমেটিক বারকে আপডেট করবে)
+  const percentage = (visibleItems / totalItems) * 100;
+
+  const handleLoadMore = () => {
+    if (visibleItems < totalItems) {
+      setVisibleItems((prev) => Math.min(prev + 12, totalItems));
+    }
+  };
+
+  const containerRef = useRef(null);
   useEffect(() => {
     if (containerRef.current) {
       mixitup(containerRef.current, {
@@ -22,9 +36,9 @@ const BlogList = () => {
   }, []);
 
   return (
-    <section>
+    <section className="pb-[98px]">
       <Container>
-        <h2 className="head_35_bold text-head pb-2.75">The Blog</h2>
+        <h2 className="head_35_bold text-head pb-2.75 pt-22.5">The Blog</h2>
         <div className="flex gap-10 pb-12.5">
           <Link>
             <p
@@ -75,7 +89,7 @@ const BlogList = () => {
             </p>
           </Link>
         </div>
-        <div ref={containerRef} className="flex flex-wrap gap-7.5">
+        <div ref={containerRef} className="flex flex-wrap gap-7.5 pb-12.5">
           <div className="mix all company beauty">
             <Blog
               imgSrc={blogImg}
@@ -94,7 +108,7 @@ const BlogList = () => {
               imgAlt={blogImg}
               author={"BY ADMIN"}
               date={"APRIL 05, 2020"}
-              blogname={"Woman with good shoes is never be ugly place"}
+              blogname={"5 Tips to Increase Your Online Sales"}
               blogdescription={
                 "Midst one brought greater also morning green saying had good. Open stars day let over gathered, grass face one every light of under."
               }
@@ -106,7 +120,7 @@ const BlogList = () => {
               imgAlt={blogImg}
               author={"BY ADMIN"}
               date={"APRIL 05, 2020"}
-              blogname={"Woman with good shoes is never be ugly place"}
+              blogname={"Tree earth fowl given moveth deep lesser After"}
               blogdescription={
                 "Midst one brought greater also morning green saying had good. Open stars day let over gathered, grass face one every light of under."
               }
@@ -118,12 +132,36 @@ const BlogList = () => {
               imgAlt={blogImg}
               author={"BY ADMIN"}
               date={"APRIL 05, 2020"}
-              blogname={"Woman with good shoes is never be ugly place"}
+              blogname={"Given Set was without from god divide rule Hath"}
               blogdescription={
                 "Midst one brought greater also morning green saying had good. Open stars day let over gathered, grass face one every light of under."
               }
             />
           </div>
+        </div>
+        <div className="flex flex-col items-center  w-full max-w-75 mx-auto uppercase">
+
+          <p className="texts_14_medium text-black">
+            Showing {visibleItems} of {totalItems} Items
+          </p>
+
+          <Progress
+            value={percentage}
+            className="h-full w-full bg-[#E4E4E4] [&>div]:bg-black transition-all duration-500 items-center rounded-[10px]"
+          />
+
+          {visibleItems < totalItems && (
+            <Link>
+              {" "}
+              <Button
+                onClick={handleLoadMore}
+                className={
+                  "texts_14_medium text-black hover:after:w-15 pt-4.25"
+                }
+                btnText={"SHOW MORE"}
+              />
+            </Link>
+          )}
         </div>
       </Container>
     </section>

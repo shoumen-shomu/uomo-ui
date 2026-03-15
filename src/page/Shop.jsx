@@ -1,4 +1,4 @@
-import ShopBanner from '@/component/layouts/home/ShopBanner'
+import ShopBanner from '@/component/shopMain/shop/ShopBanner'
 import React from 'react'
 
 const Shop = () => {

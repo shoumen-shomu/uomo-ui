@@ -1,8 +1,11 @@
+import RegiLog from '@/component/auth/regiLog/RegiLog'
 import React from 'react'
 
 const LogOut = () => {
   return (
-    <div>LogOut</div>
+    <>
+   <RegiLog/>
+    </>
   )
 }
 

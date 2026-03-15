@@ -12,7 +12,7 @@ const DashboardOrder = () => {
 
   return (
     <>
-      <section className='mt-25 ml-8'>
+      <section className='mt-25 '>
 
         {/* ===== DESKTOP TABLE (md and above) ===== */}
         <div className='hidden md:block w-262.75 overflow-x-auto border border-[#E4E4E4]'>
