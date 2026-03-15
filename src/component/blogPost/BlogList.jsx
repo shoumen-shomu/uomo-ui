@@ -8,11 +8,9 @@ import { Progress } from "@/components/ui/progress";
 import Button from "../common/Button";
 
 const BlogList = () => {
-  // ১. স্টেট এবং ডেটা (এগুলো আপনার প্রয়োজনমতো পরিবর্তন করবেন)
+
   const [visibleItems, setVisibleItems] = useState(36);
   const totalItems = 100;
-
-  // ২. ক্যালকুলেশন (এটি অটোমেটিক বারকে আপডেট করবে)
   const percentage = (visibleItems / totalItems) * 100;
 
   const handleLoadMore = () => {
@@ -89,8 +87,9 @@ const BlogList = () => {
             </p>
           </Link>
         </div>
-        <div ref={containerRef} className="flex flex-wrap gap-7.5 pb-12.5">
+        <div ref={containerRef} className="grid grid-cols-2 gap-7.5 pb-12.5">
           <div className="mix all company beauty">
+            <Link to={"/elements/blog"}>
             <Blog
               imgSrc={blogImg}
               imgAlt={blogImg}
@@ -101,8 +100,10 @@ const BlogList = () => {
                 "Midst one brought greater also morning green saying had good. Open stars day let over gathered, grass face one every light of under."
               }
             />
+            </Link>
           </div>
           <div className="mix all company style">
+             <Link to={"/elements/blog"}>
             <Blog
               imgSrc={blogImg}
               imgAlt={blogImg}
@@ -113,8 +114,10 @@ const BlogList = () => {
                 "Midst one brought greater also morning green saying had good. Open stars day let over gathered, grass face one every light of under."
               }
             />
+            </Link>
           </div>
           <div className="mix all trends fashion">
+             <Link to={"/elements/blog"}>
             <Blog
               imgSrc={blogImg}
               imgAlt={blogImg}
@@ -125,8 +128,10 @@ const BlogList = () => {
                 "Midst one brought greater also morning green saying had good. Open stars day let over gathered, grass face one every light of under."
               }
             />
+            </Link>
           </div>
           <div className="mix all style trends">
+             <Link to={"/elements/blog"}>
             <Blog
               imgSrc={blogImg}
               imgAlt={blogImg}
@@ -137,6 +142,7 @@ const BlogList = () => {
                 "Midst one brought greater also morning green saying had good. Open stars day let over gathered, grass face one every light of under."
               }
             />
+            </Link>
           </div>
         </div>
         <div className="flex flex-col items-center  w-full max-w-75 mx-auto uppercase">

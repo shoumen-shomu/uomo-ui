@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Blog = ({ imgSrc, imgAlt, author, date, blogname, blogdescription }) => {
   return (
     <>
-      <Link to={"/"}>
+      
         <div className="cursor-pointer">
           <Images imgSrc={imgSrc} imgAlt={imgAlt} />
           <div className="pt-5">
@@ -25,7 +25,6 @@ const Blog = ({ imgSrc, imgAlt, author, date, blogname, blogdescription }) => {
             />
           </div>
         </div>
-      </Link>
     </>
   );
 };

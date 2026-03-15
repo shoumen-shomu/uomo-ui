@@ -30,6 +30,7 @@ import Terms from "./page/Terms";
 import ComingSoonPg from "./page/ComingSoonPg";
 import RegiLog from "./component/auth/regiLog/RegiLog";
 import About from "./page/About";
+import SingleBlog from "./component/common/SingleBlog";
 
 const router = createBrowserRouter([
   {
@@ -92,6 +93,7 @@ const router = createBrowserRouter([
 
       // for blog-post
       { path: "/elements/blog-posts", element: <BlogPost /> },
+      { path: "/elements/blog", element: <SingleBlog /> },
       // for terms and condition
       { path: "/elements/terms", element: <Terms /> },
 
