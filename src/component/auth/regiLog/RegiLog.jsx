@@ -22,12 +22,17 @@ const RegiLog = () => {
   const [errors, setErrors] = useState({});
 
   const loginInputs = [
-    { id: 1, name: "email", type: "email", placeholder: "Username or email address *" },
+    {
+      id: 1,
+      name: "email",
+      type: "email",
+      placeholder: "Username or email address ",
+    },
     {
       id: 2,
       name: "password",
       type: showpassword ? "text" : "password",
-      placeholder: "Password *",
+      placeholder: "Password ",
     },
   ];
 
@@ -182,8 +187,8 @@ const RegiLog = () => {
             <div className="flex justify-center gap-10 mb-10">
               <button
                 onClick={() => switchTab("login")}
-                className={`texts_16_medium text-head pb-0.5 tracking-widest transition-all relative
-      after:absolute after:content-[''] after:h-0.5 after:bg-head after:-bottom-0.5 after:left-0 after:duration-500 after:ease-in-out
+                className={`texts_16_medium text-head tracking-widest transition-all relative
+      after:absolute after:content-[''] after:h-0.5 after:bg-head after:-bottom-0.5 after:left-0 after:duration-500 after:ease-in-out cursor-pointer
       ${
         activeTab === "login"
           ? "after:w-full"
@@ -195,7 +200,7 @@ const RegiLog = () => {
               <button
                 onClick={() => switchTab("register")}
                 className={`texts_16_medium text-head pb-0.5 tracking-widest transition-all relative
-      after:absolute after:content-[''] after:h-0.5 after:bg-head after:-bottom-0.5 after:left-0 after:duration-500 after:ease-in-out
+      after:absolute after:content-[''] after:h-0.5 after:bg-head after:-bottom-0.5 after:left-0 after:duration-500 after:ease-in-out cursor-pointer
       ${
         activeTab === "register"
           ? "after:w-full"
@@ -207,31 +212,48 @@ const RegiLog = () => {
             </div>
 
             {/* ══ LOGIN FORM ══ */}
+            {/* ══ LOGIN FORM ══ */}
             {activeTab === "login" && (
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col">
                 {loginSuccess && (
-                  <div className="bg-green-50 border border-green-300 text-green-700 px-4 py-3 text-sm">
+                  <div className="bg-green-50 border border-green-300 text-green-700 px-4 py-3 text-sm mb-5">
                     ✅ Login successful! Redirecting...
                   </div>
                 )}
 
-                {loginInputs.map((input) => (
-                  <div key={input.id} className="flex flex-col gap-1">
-                    <div className="relative">
+                {/* Username field — mb-[30px] */}
+                {loginInputs.map((input, index) => (
+                  <div
+                    key={input.id}
+                    className={`flex flex-col gap-1 ${
+                      index === 0 ? "mb-[30px]" : "mb-[17px]"
+                    }`}
+                  >
+                    <div className="relative border border-gray-300 focus-within:border-black transition-colors">
+                      <label className="absolute -top-2.5 left-3 bg-white px-1 leading-6 text-[14px] text-head">
+                        {input.placeholder}{" "}
+                        <span className="text-red-500">*</span>
+                      </label>
                       <input
-                        type={input.type}
+                        type={
+                          input.name === "password"
+                            ? showpassword
+                              ? "text"
+                              : "password"
+                            : input.type
+                        }
                         name={input.name}
-                        placeholder={input.placeholder}
+                        placeholder=""
                         value={formData[input.name]}
                         onChange={handleLoginChange}
-                        className="w-full px-4 py-4 border border-gray-300 text-sm text-gray-700 outline-none focus:border-black placeholder-gray-400 transition-colors"
+                        className="w-full px-4 py-4 text-sm text-gray-700 outline-none placeholder-gray-400 bg-transparent"
                       />
                       {input.name === "password" && (
                         <span
                           className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer text-gray-500"
                           onClick={() => setShowPassword(!showpassword)}
                         >
-                          {showpassword ? <FaEye /> : < FaEyeSlash />}
+                          {showpassword ? <FaEye /> : <FaEyeSlash />}
                         </span>
                       )}
                     </div>
@@ -244,12 +266,13 @@ const RegiLog = () => {
                 ))}
 
                 {errors.firebase && (
-                  <span className="text-xs text-red-500">
+                  <span className="text-xs text-red-500 mb-2">
                     {errors.firebase}
                   </span>
                 )}
 
-                <div className="flex justify-between items-center">
+                {/* Remember me — mb-[26px] */}
+                <div className="flex justify-between items-center mb-[26px]">
                   <label className="flex items-center gap-2 text-sm text-gray-500 cursor-pointer">
                     <input type="checkbox" /> Remember me
                   </label>
@@ -261,9 +284,10 @@ const RegiLog = () => {
                   </a>
                 </div>
 
+                {/* LOG IN button — mb-[24px] */}
                 <button
                   onClick={handleLoginSubmit}
-                  className="w-full py-4 bg-black text-white text-sm font-bold tracking-widest hover:bg-gray-800 transition-colors mt-2"
+                  className="w-full py-4 bg-black text-white text-sm font-bold tracking-widest hover:bg-gray-800 transition-colors mb-[24px]"
                 >
                   LOG IN
                 </button>
@@ -282,30 +306,47 @@ const RegiLog = () => {
 
             {/* ══ REGISTER FORM ══ */}
             {activeTab === "register" && (
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col">
                 {Success && (
                   <div className="bg-green-50 border border-green-300 text-green-700 px-4 py-3 text-sm">
                     ✅ Account created! Verification email sent. Redirecting...
                   </div>
                 )}
 
-                {registerInputs.map((input) => (
-                  <div key={input.id} className="flex flex-col gap-1">
-                    <div className="relative">
+                {registerInputs.map((input, index) => (
+                  <div key={input.id} className={`flex flex-col gap-1 ${
+  index === 0 ? "mb-[29px]"
+  : index === 1 ? "mb-[30px]"
+  : "mb-[30px]"
+}`}>
+                    <div className={`relative ${
+  input.name === "password" || input.name === "confirmpassword"
+    ? "border border-gray-300 focus-within:border-black transition-colors"
+    : ""
+}`}>
+  {(input.name === "password" || input.name === "confirmpassword") && (
+    <label className="absolute -top-2.5 left-3 bg-white px-1 leading-6 text-[14px] text-head">
+      {input.placeholder} <span className="text-red-500">*</span>
+    </label>
+  )}
                       <input
                         type={input.type}
                         name={input.name}
                         placeholder={input.placeholder}
                         value={formdata[input.name]}
                         onChange={handleRegChange}
-                        className="w-full px-4 py-4 border border-gray-300 text-sm text-gray-700 outline-none focus:border-black placeholder-gray-400 transition-colors"
+                        className={`w-full px-4 py-4 text-sm text-gray-700 outline-none placeholder-gray-400 transition-colors ${
+  input.name === "password" || input.name === "confirmpassword"
+    ? "bg-transparent border-0"
+    : "border border-gray-300 focus:border-black"
+}`}
                       />
                       {input.name === "password" && (
                         <span
                           className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer text-gray-500"
                           onClick={() => setShowRegPassword(!showRegPassword)}
                         >
-                          {showRegPassword ? < FaEye/> : <FaEyeSlash />}
+                          {showRegPassword ? <FaEye /> : <FaEyeSlash />}
                         </span>
                       )}
                       {input.name === "confirmpassword" && (
@@ -315,7 +356,7 @@ const RegiLog = () => {
                             setShowConfirmPassword(!showConfirmPassword)
                           }
                         >
-                          {showConfirmPassword ? < FaEye/> : < FaEyeSlash/>}
+                          {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
                         </span>
                       )}
                     </div>
