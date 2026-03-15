@@ -5,17 +5,19 @@ import { IoClose } from "react-icons/io5";
 
 const Store_location = () => {
   return (
-    <div className="mt-3 lg:mt-[96px]">
+    <div className="mt-20 lg:my-[96px]">
       <Container>
-        <h3 className="head_35_bold text-head uppercase">Store Locator</h3>
-        <div className="mt-3 lg:mt-[49px] flex flex-col lg:flex-row px-4 lg:px-0 justify-between">
+        <h3 className="text-2xl font-bold lg:head_35_bold text-head uppercase">
+          Store Locator
+        </h3>
+        <div className="mt-3 lg:mt-[49px] flex flex-col xl:flex-row px-4 lg:px-0 lg:gap-x-2.5">
           <div className="">
             <div className="lg:w-[468px] pb-[33px] border-b border-[#E4E4E4]">
               <div className="p-5 border border-[#E4E4E4] flex items-center justify-between">
                 <input
                   type="text"
                   placeholder="Enter your country or city"
-                  className="texts_14_regular text-[#767676]"
+                  className="texts_14_regular text-[#767676] w-full lg:w-117"
                 />
                 <IoSearchOutline />
               </div>
@@ -50,7 +52,7 @@ const Store_location = () => {
                 SEE ON THE MAP
               </h5>
             </div>
-            <div className="w-[468px]">
+            <div className="w-full lg:w-[468px]">
               <h5 className="texts_18_medium text-head pt-7.5">
                 Store in New York
               </h5>
@@ -67,7 +69,7 @@ const Store_location = () => {
               </h5>
             </div>
           </div>
-          <div className="relative">
+          <div className="relative mt-8 xl:mt-0">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3652.1434556075847!2d90.38051569046019!3d23.742263248988838!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b7a55cd36f%3A0xfcc5b021faff43ea!2sCreative%20IT%20Institute!5e0!3m2!1sen!2sbd!4v1773303535456!5m2!1sen!2sbd"
               className="lg:w-[930px] w-full lg:h-[752px] h-[300px]"
