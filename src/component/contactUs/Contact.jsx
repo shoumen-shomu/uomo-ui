@@ -7,7 +7,7 @@ const Contact = () => {
         Contact Us
       </h3>
 
-      <div className="lg:mt-[32px]">
+      <div className="lg:mt-8">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3652.1434556075847!2d90.38051569046019!3d23.742263248988838!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b7a55cd36f%3A0xfcc5b021faff43ea!2sCreative%20IT%20Institute!5e0!3m2!1sen!2sbd!4v1773303535456!5m2!1sen!2sbd"
           width="100%"
