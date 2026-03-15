@@ -32,6 +32,7 @@ import RegiLog from "./component/auth/regiLog/RegiLog";
 import About from "./page/About";
 import SingleBlog from "./component/common/SingleBlog";
 
+
 const router = createBrowserRouter([
   {
     path: "/",

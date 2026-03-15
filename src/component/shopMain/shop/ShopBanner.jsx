@@ -1,5 +1,3 @@
-import Images from "@/component/common/Images";
-import shopBannerImg from "@/assets/images/shopBannerImg.png";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Container from "@/component/common/Container";
@@ -10,6 +8,7 @@ import allImages from "@/helper/imagesProvider";
 import { Progress } from "@/components/ui/progress";
 import Button from "@/component/common/Button";
 import ShopFilter from "./ShopFilter";
+
 
 const ShopBanner = () => {
   const [visibleItems, setVisibleItems] = useState(36);
@@ -28,7 +27,7 @@ const ShopBanner = () => {
 
   return (
     <section>
-      <div className="bg-[url('./assets/images/ShopBannerBg.png')] py-[135px] mx-15 bg-no-repeat bg-cover bg-center relative mt-[75px]">
+      <div className="bg-[url('./assets/images/ShopBannerBg.png')] py-33.75 mx-15 bg-no-repeat bg-cover bg-center relative mt-[75px]">
         <Container>
           <div className="">
             <h3
@@ -39,7 +38,7 @@ const ShopBanner = () => {
               Jackets & Coats
             </h3>
           </div>
-          <div className="pt-[14px]">
+          <div className="pt-3.5">
             <ul className="flex items-center gap-x-10">
               {shopList1.map((items) => {
                 return (
@@ -55,11 +54,11 @@ const ShopBanner = () => {
         </Container>
       </div>
 
-      <div className="mt-9 mb-[100px]">
+      <div className="mt-9 mb-25">
         <Container>
           <div className="flex justify-between">
             <p className="text-head texts_14_medium">HOME / THE SHOP</p>
-            <div className="flex  items-center gap-x-[30px]">
+            <div className="flex  items-center gap-x-7.5">
               <select className="border-b-2 border-head  ">
                 <option className="text-head texts_14_medium" value="default">
                   Default Sorting
@@ -99,7 +98,7 @@ const ShopBanner = () => {
             </div>
           </div>
           <div>
-            <div className="pt-[40px] pb-[50px] grid  grid-cols-4 gap-[30px]">
+            <div className="pt-10 pb-12.5 grid  grid-cols-4 gap-7.5">
               {[...new Array(16)].map((_, index) => {
                 return (
                   <Product
@@ -113,12 +112,6 @@ const ShopBanner = () => {
                 );
               })}
             </div>
-            {/* <div className="flex flex-col items-center space-y-4 font-sans py-10">
-              <span class="texts_14_medium text-[#000000] tracking-wide uppercase">
-                SHOWING 36 of 497 Items
-              </span>
-
-            </div> */}
                    <div className="flex flex-col items-center  w-full max-w-75 mx-auto uppercase">
 
           <p className="texts_14_medium text-black pb-1.25">
