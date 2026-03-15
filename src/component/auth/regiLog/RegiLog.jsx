@@ -6,7 +6,7 @@ import {
   sendEmailVerification,
 } from "firebase/auth";
 import { auth } from "../../../firebase/firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuthStore from "../../../store/authSlice";
 
@@ -20,6 +20,7 @@ const RegiLog = () => {
   const [showpassword, setShowPassword] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [errors, setErrors] = useState({});
+  const [remember, setRemember] = useState(false);
 
   const loginInputs = [
     {
@@ -270,17 +271,25 @@ const RegiLog = () => {
                   </span>
                 )}
 
-                {/* Remember me*/}
+                {/* Remember & Lost password */}
                 <div className="flex justify-between items-center mb-6.5">
-                  <label className="flex items-center gap-2 text-sm text-gray-500 cursor-pointer">
-                    <input type="checkbox" /> Remember me
+                  <label className="flex items-center gap-x-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={remember}
+                      onChange={() => setRemember(!remember)}
+                      className="w-4 h-4 border border-footer accent-head cursor-pointer"
+                    />
+                    <span className="texts_14_regular text-head">
+                      Remember me
+                    </span>
                   </label>
-                  <a
-                    href="/lost-password"
-                    className="text-sm text-gray-700 underline"
+                  <Link
+                    to="/lost-password"
+                    className="texts_14_regular text-head underline underline-offset-2"
                   >
                     Lost password?
-                  </a>
+                  </Link>
                 </div>
 
                 {/* LOG IN button  */}

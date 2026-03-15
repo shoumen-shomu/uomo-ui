@@ -137,7 +137,8 @@ const Login = ({ unMount }) => {
         {/* Login Button */}
         <button
           onClick={handleSubmit}
-          className="w-full bg-head text-white cursor-pointer texts_14_medium tracking-widest py-4"
+          className="w-full bg-head text-white pt-5.5 pb-3.5
+          hover:bg-[#DB4444] transition-all leading-6 cursor-pointer texts_14_medium"
         >
           LOG IN
         </button>
