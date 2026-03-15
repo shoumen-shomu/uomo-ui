@@ -102,7 +102,7 @@ const AddToCart = ({ unMount }) => {
         {/* View Cart */}
         <Link
           to="/cart"
-          className="w-full border border-head text-center texts_14_medium text-head tracking-widest py-4 cursor-pointer"
+          className="w-full border border-head text-center texts_14_medium text-head pt-5.5 pb-3.5 cursor-pointer hover:bg-head hover:text-white transition-all"
         >
           VIEW CART
         </Link>
