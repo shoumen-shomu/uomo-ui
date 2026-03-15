@@ -68,14 +68,14 @@ const NavTabs = ({ unMount }) => {
         </div>
 
         {/* Content */}
-        <div className="flex gap-x-14 px-14 overflow-y-auto">
+        <div className="flex gap-x-[160px] px-14 overflow-y-auto">
           {/* Categories */}
-          <ul className="flex flex-col gap-y-6 min-w-[220px]">
+          <ul className="flex flex-col   min-w-[220px]">
             {currentData.categories.map((cat) => (
               <li key={cat.id} className="relative">
                 <Link
                   to={cat.link}
-                  className={`text-xl/[50px]  hover:opacity-60 transition-opacity ${
+                  className={`text-xl/[56px]  font-medium text-head hover:opacity-60 transition-opacity ${
                     cat.isRed ? "text-red" : "text-head"
                   }`}
                 >
@@ -83,22 +83,19 @@ const NavTabs = ({ unMount }) => {
                 </Link>
                 {/* Active underline — long line */}
                 {cat.isActive && (
-                  <span className="absolute bottom-[-4px] left-0 w-[120px] h-[1.5px] bg-head" />
+                  <span className="absolute top-1/2 translate-[-50%] left-full w-[80%] h-[2px] bg-head" />
                 )}
               </li>
             ))}
           </ul>
 
-          {/* Divider */}
-          <div className="w-[1px] bg-footer self-stretch" />
-
           {/* Sub Links */}
-          <ul className="flex flex-col gap-y-4">
+          <ul className="flex flex-col gap-y-4 mt-[17px]">
             {currentData.subLinks.map((sub) => (
               <li key={sub.id}>
                 <Link
                   to={sub.link}
-                  className="texts_14_regular text-head hover:underline underline-offset-2 transition-all"
+                  className="texts_14_regular text-head relative  after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[-5px] after:left-0 hover:after:w-[60%]  after:duration-500 after:ease-in-out"
                 >
                   {sub.name}
                 </Link>

@@ -8,7 +8,6 @@ import allIcons from "@/helper/iconProvider";
 import NavDownImg from "@/assets/images/nav-dropImage.png";
 import Button from "../Button";
 import Login from "../../auth/Login";
-import Register from "../../auth/Register";
 import AddToCart from "../../shopMain/addToCart/AddToCart";
 import NavTabs from "../../navtabs/NavTabs";
 
@@ -38,11 +37,14 @@ const NavbarLg = () => {
       <Container>
         <div className="flex justify-between">
           <div className="flex  items-center  gap-x-14 ">
-            <Images
-              imgSrc={navLogo}
-              imgAlt={navLogo}
-              className={"w-27.75 h-6.75"}
-            />
+            <Link to={"/"}>
+              {" "}
+              <Images
+                imgSrc={navLogo}
+                imgAlt={navLogo}
+                className={"w-27.75 h-6.75"}
+              />
+            </Link>
             <ul className=" flex gap-x-9.25 ">
               {navItems.map((items, index) => {
                 return (
