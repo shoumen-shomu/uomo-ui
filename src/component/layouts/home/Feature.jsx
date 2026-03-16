@@ -20,8 +20,8 @@ const Feature = () => {
               imgAlt={product}
               price={"STARTİNG AT $39"}
               category={"Men’s Sportswear"}
-            />
-          </div>
+           />
+          </div> 
         </Container>
       </section>
     </>
