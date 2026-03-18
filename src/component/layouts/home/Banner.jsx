@@ -138,31 +138,32 @@ const Banner = () => {
           ))}
         </Swiper>
 
-        {/* Social Icons — xl+ এ left sidebar */}
-        <div className=" hidden lg:block absolute top-1/2 -left-10 -translate-y-[50%] flex flex-col gap-y-6.25 z-10">
-          <Link>
-            <FaFacebookF className="text-[#767676]" size={15} />
-          </Link>
-          <Link>
-            <FaTwitter className="text-[#767676]" size={15} />
-          </Link>
-          <Link>
-            <FaInstagram className="text-[#767676]" size={15} />
-          </Link>
-          <Link>
-            <FaPinterest className="text-[#767676]" size={15} />
-          </Link>
-          <Link>
-            <p className="texts_14_medium text-[#767676] rotate-270 -ml-7.75 mt-6.5">
-              FOLLOW US
-            </p>
-          </Link>
+        <div className="absolute top-1/2 -left-10 -translate-y-[50%] hidden lg:block">
+          <div className="  flex flex-col gap-y-6.25 z-10">
+            <Link>
+              <FaFacebookF className="text-[#767676]" size={15} />
+            </Link>
+            <Link>
+              <FaTwitter className="text-[#767676]" size={15} />
+            </Link>
+            <Link>
+              <FaInstagram className="text-[#767676]" size={15} />
+            </Link>
+            <Link>
+              <FaPinterest className="text-[#767676]" size={15} />
+            </Link>
+            <Link>
+              <p className="texts_14_medium text-[#767676] rotate-270 -ml-7.75 mt-6.5">
+                FOLLOW US
+              </p>
+            </Link>
+          </div>
         </div>
-
-        {/* Scroll indicator — xl+ */}
-        <div className=" hidden lg:block absolute bottom-5.75 -right-20 -translate-y-[50%] flex space-x-2.5 items-center rotate-270 z-10">
-          <div className="w-7.5 h-0.5 bg-head"></div>
-          <p className="texts_14_medium text-head">SCROLL</p>
+        <div className="absolute bottom-5.75 -right-20 -translate-y-[50%] hidden lg:block">
+          <div className=" flex space-x-2.5 items-center rotate-270 z-10">
+            <div className="w-7.5 h-0.5 bg-head"></div>
+            <p className="texts_14_medium text-head">SCROLL</p>
+          </div>
         </div>
       </div>
     </section>
