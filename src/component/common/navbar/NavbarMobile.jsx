@@ -122,15 +122,6 @@ const TabRow = ({ activeTab, onTabChange }) => (
 // ─────────────────────────────────────────────────────────────────────────────
 // NavbarMobile
 // ─────────────────────────────────────────────────────────────────────────────
-/*
-  5 panels:
-
-  "main"     → root nav list
-  "shop"     → SHOP: WOMEN/MEN/KIDS tabs + category list
-  "shopSub"  → SHOP: selected category sub-links
-  "journal"  → JOURNAL: grouped links (BLOG STYLES, SINGLE POST, NAVIGATION…)
-  "simple"   → PAGES: simple flat list
-*/
 
 const NavbarMobile = () => {
   const { navIconItems } = allIcons;
@@ -143,7 +134,7 @@ const NavbarMobile = () => {
   const [activeTab, setActiveTab] = useState(navTabsData[0].tab);
   const [activeCategory, setActiveCategory] = useState(null);
 
-  // JOURNAL state — holds the clicked navItem (has megaMenuData)
+  // JOURNAL state
   const [activeMegaItem, setActiveMegaItem] = useState(null);
 
   // SIMPLE state
@@ -186,17 +177,15 @@ const NavbarMobile = () => {
 
   const handleNavItemClick = (item) => {
     if (item.label === "SHOP") {
-      // SHOP → tabs + categories panel
       setPanel("shop");
     } else if (item.hasMegaMenu && item.megaMenuData) {
-      // JOURNAL (or any other megaMenu with grouped links)
       setActiveMegaItem(item);
       setPanel("journal");
     } else if (item.hasDropdown) {
-      // PAGES
       setActiveSimpleNav(item);
       setPanel("simple");
     }
+    // direct route items (HOME, COLLECTION, LOOKBOOK) — handled by Link below
   };
 
   const handleCategoryClick = (cat) => {
@@ -209,6 +198,10 @@ const NavbarMobile = () => {
     else if (panel === "shop" || panel === "journal" || panel === "simple")
       setPanel("main");
   };
+
+  // ── Helper: is this item a direct link (no sub-panel needed)? ──────────────
+  const isDirectLink = (item) =>
+    !item.hasDropdown && !item.hasMegaMenu && item.path;
 
   return (
     <>
@@ -267,20 +260,33 @@ const NavbarMobile = () => {
           <DrawerSearch />
 
           <div className="flex-1 overflow-y-auto custom-scrollbar">
-            {navItems.map((item, idx) => (
-              <button
-                key={idx}
-                onClick={() => handleNavItemClick(item)}
-                className=" w-full flex items-center justify-between px-5   bg-transparent cursor-pointer text-left"
-              >
-                <span className="texts_16_medium leading-[55px]  text-head tracking-[0.5px]   relative  after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[9px] after:left-0 hover:after:w-[60%]  after:duration-500 after:ease-in-out ">
-                  {item.label}
-                </span>
-                {(item.hasDropdown || item.hasMegaMenu) && (
+            {navItems.map((item, idx) =>
+              isDirectLink(item) ? (
+                // ── Direct route: HOME, COLLECTION, LOOKBOOK ──
+                <Link
+                  key={idx}
+                  to={item.path}
+                  onClick={handleClose}
+                  className="w-full flex items-center justify-between px-5 bg-transparent text-left"
+                >
+                  <span className="texts_16_medium leading-[55px] text-head tracking-[0.5px] relative after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[9px] after:left-0 hover:after:w-[60%] after:duration-500 after:ease-in-out">
+                    {item.label}
+                  </span>
+                </Link>
+              ) : (
+                // ── Sub-panel items: SHOP, JOURNAL, PAGES ──
+                <button
+                  key={idx}
+                  onClick={() => handleNavItemClick(item)}
+                  className="w-full flex items-center justify-between px-5 bg-transparent cursor-pointer text-left"
+                >
+                  <span className="texts_16_medium leading-[55px] text-head tracking-[0.5px] relative after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[9px] after:left-0 hover:after:w-[60%] after:duration-500 after:ease-in-out">
+                    {item.label}
+                  </span>
                   <IoChevronForward className="text-[16px] text-head shrink-0" />
-                )}
-              </button>
-            ))}
+                </button>
+              )
+            )}
           </div>
 
           <DrawerFooter />
@@ -303,10 +309,10 @@ const NavbarMobile = () => {
               <button
                 key={cat.id}
                 onClick={() => handleCategoryClick(cat)}
-                className="w-full flex items-center justify-between px-5  h-[45px]   bg-transparent cursor-pointer text-left"
+                className="w-full flex items-center justify-between px-5 h-[45px] bg-transparent cursor-pointer text-left"
               >
                 <span
-                  className={`texts_14_medium relative  after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[0px] after:left-0 hover:after:w-[60%]  after:duration-500 after:ease-in-out    tracking-[0.3px] ${
+                  className={`texts_14_medium relative after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[0px] after:left-0 hover:after:w-[60%] after:duration-500 after:ease-in-out tracking-[0.3px] ${
                     cat.isActive ? "font-medium" : ""
                   } ${cat.isRed ? "text-red" : "text-head"}`}
                 >
@@ -332,7 +338,7 @@ const NavbarMobile = () => {
 
           <button
             onClick={handleBack}
-            className="w-full flex items-center gap-2 px-5 h-[50px]  bg-transparent cursor-pointer text-left"
+            className="w-full flex items-center gap-2 px-5 h-[50px] bg-transparent cursor-pointer text-left"
           >
             <IoChevronBack className="text-[15px] text-head shrink-0" />
             <span className="texts_14_medium text-head tracking-[0.5px]">
@@ -345,10 +351,10 @@ const NavbarMobile = () => {
               <Link
                 key={link.id}
                 to={link.link}
-                className="flex items-center px-5 h-[46px] r texts_14_regular text-head "
+                onClick={handleClose}
+                className="flex items-center px-5 h-[46px] texts_14_regular text-head"
               >
-                <span className="relative  after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[0px] after:left-0 hover:after:w-[60%]  after:duration-500 after:ease-in-out ">
-                  {" "}
+                <span className="relative after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[0px] after:left-0 hover:after:w-[60%] after:duration-500 after:ease-in-out">
                   {link.name}
                 </span>
               </Link>
@@ -367,37 +373,33 @@ const NavbarMobile = () => {
           />
           <DrawerSearch />
 
-          {/* Back + label */}
           <button
             onClick={handleBack}
             className="w-full flex items-center gap-2 px-5 h-[52px] pt-4 pb-2 border-b border-footer bg-transparent cursor-pointer text-left"
           >
             <IoChevronBack className="text-lg text-head shrink-0" />
-            <span className="texts_16_medium leading-[45px] text-head tracking-[0.5px] ">
+            <span className="texts_16_medium leading-[45px] text-head tracking-[0.5px]">
               {activeMegaItem?.label}
             </span>
           </button>
 
-          {/* Grouped links — title + links per group */}
           <div className="flex-1 overflow-y-auto custom-scrollbar">
             {activeMegaItem?.megaMenuData?.map((group, gIdx) => (
               <div key={gIdx}>
-                {/* Group title */}
                 <div className="px-5 pt-4 pb-2">
-                  <span className="texts_14_medium  text-head tracking-[0.8px]">
+                  <span className="texts_14_medium text-head tracking-[0.8px]">
                     {group.title}
                   </span>
                 </div>
 
-                {/* Group links */}
                 {group.links.map((link, lIdx) => (
                   <Link
                     key={lIdx}
                     to={link.link}
-                    className="flex items-center px-5 h-[44px] texts_13_regular  "
+                    onClick={handleClose}
+                    className="flex items-center px-5 h-[44px] texts_13_regular"
                   >
-                    <span className="relative  after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[-2px] after:left-0 hover:after:w-[60%]  after:duration-500 after:ease-in-out ">
-                      {" "}
+                    <span className="relative after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[-2px] after:left-0 hover:after:w-[60%] after:duration-500 after:ease-in-out">
                       {link.name}
                     </span>
                   </Link>
@@ -423,7 +425,7 @@ const NavbarMobile = () => {
             className="w-full flex items-center gap-2 px-5 h-[52px] border-b border-footer bg-transparent cursor-pointer text-left"
           >
             <IoChevronBack className="text-[16px] text-head shrink-0" />
-            <span className="texts_16_medium text-head  leading-[45px] tracking-[0.5px]">
+            <span className="texts_16_medium text-head leading-[45px] tracking-[0.5px]">
               {activeSimpleNav?.label}
             </span>
           </button>
@@ -433,14 +435,12 @@ const NavbarMobile = () => {
               <Link
                 key={idx}
                 to={link.link}
-                className="flex items-center px-5 texts_14_regular text-head "
+                onClick={handleClose}
+                className="flex items-center px-5 texts_14_regular text-head"
               >
-                {
-                  <span className="relative  leading-[45px] after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[7px] after:left-0 hover:after:w-[60%]  after:duration-500 after:ease-in-out ">
-                    {" "}
-                    {link.name}
-                  </span>
-                }
+                <span className="relative leading-[45px] after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-[7px] after:left-0 hover:after:w-[60%] after:duration-500 after:ease-in-out">
+                  {link.name}
+                </span>
               </Link>
             ))}
           </div>
