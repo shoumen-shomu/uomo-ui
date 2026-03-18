@@ -4,7 +4,7 @@ import Rootlayout from "@/rootlayout/Rootlayout";
 import Home from "@/page/Home";
 import Shop from "@/page/Shop";
 import Cart from "./component/shopMain/shopPage/cart/Cart";
-import CollectionPg from "./page/CollectionPg";
+import CollectionPg from "./component/collection/CollectionComp";
 import Journal from "./page/Journal";
 import LookBook from "./page/LookBook";
 import NotFound from "./page/NotFound";
