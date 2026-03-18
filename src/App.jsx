@@ -22,7 +22,6 @@ import LogOut from "./component/mainDashboard/dashborarAllComponent/LogOut";
 import CartLayout from "./component/shopMain/shopPage/cartLayout/CartLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Faq from "./page/Faq";
-import Store_location from "./component/storeLocator/Store_location";
 import Terms from "./page/Terms";
 import ComingSoonPg from "./page/ComingSoonPg";
 import RegiLog from "./component/auth/regiLog/RegiLog";
@@ -30,6 +29,7 @@ import SingleBlog from "./component/common/SingleBlog";
 import LookBookPg from "./page/LookBookPg";
 import AboutPg from "./page/AboutPg";
 import ContactUsPg from "./page/ContactUsPg";
+import StoreLocatorPg from "./page/StoreLocatorPg";
 
 const router = createBrowserRouter([
   {
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
       { path: "shop", element: <Shop /> },
       { path: "shop-single", element: <ShopSinglePg /> },
       { path: "contact", element: <ContactUsPg /> },
-      { path: "store-locator", element: <Store_location /> },
+      { path: "store-locator", element: <StoreLocatorPg /> },
 
       // for shopping cart route
       {

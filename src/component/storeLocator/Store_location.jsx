@@ -5,12 +5,12 @@ import { IoClose } from "react-icons/io5";
 
 const Store_location = () => {
   return (
-    <div className="mt-20 lg:my-[96px]">
+    <div className="mt-20 lg:my-[96px] pt-[55px]">
       <Container>
         <h3 className="text-2xl font-bold lg:head_35_bold text-head uppercase">
           Store Locator
         </h3>
-        <div className="mt-3 lg:mt-[49px] flex flex-col xl:flex-row px-4 lg:px-0 lg:gap-x-2.5">
+        <div className="mt-3 lg:mt-[49px] flex flex-col  xl:flex-row lg:px-4 lg:px-0 lg:gap-x-2.5">
           <div className="">
             <div className="lg:w-[468px] pb-[33px] border-b border-[#E4E4E4]">
               <div className="p-5 border border-[#E4E4E4] flex items-center justify-between">
