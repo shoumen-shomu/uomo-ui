@@ -20,7 +20,7 @@ const Banner = () => {
   const sliderData = [1, 2, 3, 4, 5];
 
   return (
-    <section className="mt-[90px]">
+    <section className="mt-[90px] overflow-hidden">
       <div className="lg:mx-15 mx-0 relative">
         <Swiper
           onSwiper={(swiper) => (swiperRef.current = swiper)}
