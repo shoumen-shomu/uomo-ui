@@ -11,26 +11,38 @@ const Collection = () => {
     <>
       <section className="lg:mt-25 mt-3.75 px-3.75 lg:px-0">
         <div className="container">
-          <div className="grid lg:grid-cols-2 grid-cols-1  gap-7.5">
+          <div className="grid lg:grid-cols-2 grid-cols-1 gap-3.75 lg:gap-7.5">
+            {/* ── Women Collection ── */}
             <div className="relative group overflow-hidden">
-              <Images className={""} imgSrc={womencollection} />
-              <div className=" absolute bottom-10 left-10  ">
-                <p className="texts_14_regular text-head">HOT LIST</p>
-               <h3 className="lg:head_26_medium text-head font-medium text-[22px] pb-1.25 w-33.5 md:w-full">
-                  <span className="lg:head_26_bold font-bold text-[22px]">WOMEN</span>{" "}
-                  COLLECTION
+              <Images
+                className="w-full object-cover"
+                imgSrc={womencollection}
+              />
+              <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 lg:bottom-10 lg:left-10">
+                <p className="texts_14_regular text-head text-[11px] sm:text-[14px]">
+                  HOT LIST
+                </p>
+                <h3 className="text-head font-medium text-[16px] sm:text-[20px] lg:text-[26px] pb-1 leading-tight">
+                  <span className="font-bold">WOMEN</span> COLLECTION
                 </h3>
                 <Button className={"hover:after:w-12.5"} btnText={"SHOP NOW"} />
               </div>
             </div>
-            <div className="lg:flex-wrap">
+
+            {/* ── Right Column ── */}
+            <div className="flex flex-col gap-3.75 lg:gap-7.5">
+              {/* Men Collection */}
               <div className="relative group overflow-hidden">
-                <Images className={" "} imgSrc={mencollection} />
-                <div className="absolute bottom-10 left-10 ">
-                  <p className="texts_14_regular text-head">HOT LIST</p>
-                  <h3 className="lg:head_26_medium text-head font-medium text-[22px] pb-1.25 w-33.5 md:w-full">
-                    <span className="lg:head_26_bold font-bold text-[22px] text-head">MEN</span>{" "}
-                    COLLECTION
+                <Images
+                  className="w-full object-cover min-h-[160px] sm:min-h-[200px] lg:min-h-0"
+                  imgSrc={mencollection}
+                />
+                <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 lg:bottom-10 lg:left-10">
+                  <p className="texts_14_regular text-head text-[11px] sm:text-[14px]">
+                    HOT LIST
+                  </p>
+                  <h3 className="text-head font-medium text-[16px] sm:text-[20px] lg:text-[26px] pb-1 leading-tight">
+                    <span className="font-bold">MEN</span> COLLECTION
                   </h3>
                   <Button
                     className={"hover:after:w-12.5"}
@@ -38,14 +50,22 @@ const Collection = () => {
                   />
                 </div>
               </div>
-              <div className="lg:flex mt-7.5 space-y-7.5 lg:space-y-7.5 gap-7.5 w-full">
+
+              {/* Kids + Gift Cards — side by side  */}
+              <div className="grid grid-cols-2 gap-3.75 lg:gap-7.5">
+                {/* Kids Collection */}
                 <div className="relative group overflow-hidden">
-                  <Images className={""} imgSrc={kidcollection} />
-                  <div className="absolute bottom-10 left-10 ">
-                    <p className="texts_14_regular text-head">HOT LIST</p>
-                    <h3 className="lg:head_26_medium text-head font-medium text-[22px] pb-1.25 w-33.5 md:w-full">
-                      <span className="lg:head_26_bold font-bold text-[22px] text-head">KIDS</span>{" "}
-                      COLLECTION
+                  <Images
+                    className="w-full object-cover"
+                    imgSrc={kidcollection}
+                  />
+                  <div className="absolute bottom-3 left-3 sm:bottom-6 sm:left-6 lg:bottom-10 lg:left-10">
+                    <p className="texts_14_regular text-head text-[10px] sm:text-[14px]">
+                      HOT LIST
+                    </p>
+                    <h3 className="text-head font-medium text-[13px] sm:text-[18px] lg:text-[26px] pb-1 leading-tight">
+                      <span className="font-bold">KIDS</span>{" "}
+                      <span className="hidden xs:inline">COLLECTION</span>
                     </h3>
                     <Button
                       className={"hover:after:w-12.5"}
@@ -53,14 +73,16 @@ const Collection = () => {
                     />
                   </div>
                 </div>
+
+                {/* E-Gift Cards */}
                 <div className="relative group overflow-hidden">
-                  <Images className={""} imgSrc={giftcard} />
-                  <div className="absolute bottom-10 left-10 ">
-                    <h3 className="lg:head_26_medium text-head font-medium text-[22px] pb-1.25 w-33.5 md:w-full">
-                      <span className="lg:head_26_bold font-bold text-[22px] text-head">E-GIFT</span>{" "}
-                      CARDS
+                  <Images className="w-full object-cover" imgSrc={giftcard} />
+                  <div className="absolute bottom-3 left-3 sm:bottom-6 sm:left-6 lg:bottom-10 lg:left-10">
+                    <h3 className="text-head font-medium text-[13px] sm:text-[18px] lg:text-[26px] pb-1 leading-tight">
+                      <span className="font-bold">E-GIFT</span>{" "}
+                      <span className="hidden xs:inline">CARDS</span>
                     </h3>
-                    <p className="texts_14_regular text-head w-53.25 pt-2 pb-4">
+                    <p className="texts_14_regular text-head text-[10px] sm:text-[13px] lg:text-[14px] pt-1 pb-2 sm:pb-4 hidden sm:block w-full max-w-[200px]">
                       Surprise someone with the gift they really want.
                     </p>
                     <Button

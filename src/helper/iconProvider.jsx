@@ -6,6 +6,8 @@ import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { HiMiniBars3CenterLeft } from "react-icons/hi2";
 import { IoMdClose } from "react-icons/io";
 import { IoFilterSharp } from "react-icons/io5";
+import { GoChevronLeft } from "react-icons/go";
+import { GoChevronRight } from "react-icons/go";
 
 import {
   FaFacebookF,
@@ -14,6 +16,7 @@ import {
   FaYoutube,
   FaPinterestP,
 } from "react-icons/fa";
+import { icon } from "leaflet";
 
 const allIcons = {
   navIconItems: [
@@ -88,6 +91,10 @@ const allIcons = {
     },
   ],
   filter: <IoFilterSharp />,
+  chevron: [
+    { id: 1, icon: <GoChevronLeft /> },
+    { id: 2, icon: <GoChevronRight /> },
+  ],
 };
 
 export default allIcons;

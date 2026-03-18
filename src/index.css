@@ -150,12 +150,12 @@
 /* ── HEAD ── */
 
 .head_70_bold {
-  @apply font-bold text-[clamp(32px,5vw+16px,70px)];
+  @apply font-bold text-[clamp(30px,5vw+16px,70px)];
   line-height: clamp(38px, 5vw + 22px, 80px);
 }
 
 .head_70_regular {
-  @apply font-normal text-[clamp(32px,5vw+16px,70px)];
+  @apply font-normal text-[clamp(30px,5vw+16px,70px)];
   line-height: clamp(38px, 5vw + 22px, 80px);
 }
 
