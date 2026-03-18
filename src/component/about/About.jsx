@@ -1,14 +1,14 @@
 import React from "react";
-import about from '../assets/images/about/about.png'
-import about2 from '../assets/images/about/about2.png'
-import delivery from '../assets/images/about/delivery.png'
-import brand1 from '../assets/images/about/mango.png'
-import brand2 from '../assets/images/about/zara.png'
-import brand3 from '../assets/images/about/reebok.png'
-import brand4 from '../assets/images/about/asos.png'
-import brand5 from '../assets/images/about/stradi.png'
-import brand6 from '../assets/images/about/adi.png'
-import brand7 from '../assets/images/about/bershka.png'
+import about from '@/assets/images/about/about.png'
+import about2 from '@/assets/images/about/about2.png'
+import delivery from '@/assets/images/about/delivery.png'
+import brand1 from '@/assets/images/about/mango.png'
+import brand2 from '@/assets/images/about/zara.png'
+import brand3 from '@/assets/images/about/reebok.png'
+import brand4 from '@/assets/images/about/asos.png'
+import brand5 from '@/assets/images/about/stradi.png'
+import brand6 from '@/assets/images/about/adi.png'
+import brand7 from '@/assets/images/about/bershka.png'
 
 const features = [
   { title: "FAST AND FREE DELIVERY", desc: "Free delivery for all orders over $140" },
@@ -28,7 +28,7 @@ const brands = [
 
 const About = () => {
   return (
-    <section className="mt-22.5">
+    <section className=" mt-32 lg:mt-38">
       <div className="max-w-[1413px] mx-auto">
         <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-16 xl:mt-[90px] mb-10 sm:mb-12 lg:mb-16 xl:mb-[77px]">
 
@@ -106,8 +106,8 @@ const About = () => {
             </div>
 
             {/* Features */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-[144px] items-start mb-8 sm:mb-10 lg:mb-16 xl:mb-25">
-              {features.map((feature, i) => (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 md:gap-5 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-[144px] items-start mb-8 sm:mb-10 lg:mb-16 xl:mb-25">
+              {features.map((feature, i) => ( 
                 <div key={i} className="flex items-start gap-3 sm:gap-4 xl:gap-[18px]">
                   <div className="w-[38px] h-[38px] sm:w-[40px] sm:h-[40px] lg:w-[42px] lg:h-[42px] xl:w-[45px] xl:h-[45px] shrink-0 flex items-center justify-center">
                     <img src={delivery} alt="" className="w-full h-full object-contain" />
