@@ -6,7 +6,6 @@ import Shop from "@/page/Shop";
 import Cart from "./component/shopMain/shopPage/cart/Cart";
 import CollectionPg from "./component/collection/CollectionComp";
 import Journal from "./page/Journal";
-import LookBook from "./page/LookBook";
 import NotFound from "./page/NotFound";
 import ShopSinglePg from "./page/ShopSinglePg";
 import OrderTracking from "./component/shopMain/shopPage/orderTracking/OrderTracking";
@@ -30,6 +29,7 @@ import ComingSoonPg from "./page/ComingSoonPg";
 import RegiLog from "./component/auth/regiLog/RegiLog";
 import About from "./page/About";
 import SingleBlog from "./component/common/SingleBlog";
+import LookBookPg from "./page/LookBookPg";
 
 const router = createBrowserRouter([
   {
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
       { path: "journal", element: <Journal /> },
 
       //for lookbook route
-      { path: "lookbook", element: <LookBook /> },
+      { path: "lookbook", element: <LookBookPg /> },
 
       // for shop page route
       { path: "shop", element: <Shop /> },
