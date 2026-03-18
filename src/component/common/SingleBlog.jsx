@@ -11,21 +11,23 @@ import Button from "./Button";
 const SingleBlog = () => {
   return (
     <>
-      <div className="mb-27.5">
+      <div className=" mt-[85px] py-[60px]  lg:pt-[85px] lg:pb-[110px]">
         <Container>
-          <div className="pl-60">
+          <div className="lg:pl-60">
             <h2 className="head_35_bold text-head">
               5 Tips to Increase Your Online Sales
             </h2>
-            <div className="flex gap-5 mb-10.75">
+            <div className="flex gap-5 mb-8 lg:mb-10.75">
               <p className="texts_14_regular text-second">BY ADMIN</p>
               <p className="texts_14_regular text-second">APRIL 05, 2020</p>
               <p className="texts_14_regular text-second">TRENDS</p>
             </div>
           </div>
-          <Images className={"mb-12.5"} imgSrc={blogImg} />
-          <div className="pl-60">
-            <p className="w-232.5 texts_14_regular text-head pb-15">
+          <div className=" mb-6 lg:mb-12.5 h-[200px] w-full sm:h-full bg-red">
+            <Images className={"object-cover h-full w-full"} imgSrc={blogImg} />
+          </div>
+          <div className="lg:pl-60">
+            <p className="max-w-232.5 texts_14_regular text-head pb-15">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
               sapien dignissim a elementum. Sociis metus, hendrerit mauris id
               in. Quis sit sit ultrices tincidunt euismod luctus diam. Turpis
@@ -42,7 +44,7 @@ const SingleBlog = () => {
             <h5 className="texts_16_medium text-head">
               Sed do eiusmod tempor incididunt ut labore
             </h5>
-            <p className="texts_14_regular text-head w-289.5">
+            <p className="texts_14_regular text-head max-w-289.5">
               Saw wherein fruitful good days image them, midst, waters upon,
               saw. Seas lights seasons. Fourth hath rule Evening Creepeth own
               lesser years itself so seed fifth for grass evening fourth shall
@@ -53,7 +55,7 @@ const SingleBlog = () => {
               multiply him life give they're great.
             </p>
 
-            <div className="grid grid-cols-2 gap-8 mb-8.5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8.5">
               <div>
                 <h3 className="texts_16_medium text-head mb-4">
                   Why choose product?
@@ -101,7 +103,7 @@ const SingleBlog = () => {
               </div>
             </div>
 
-            <p className="texts_14_regular text-head w-232.5 mb-7.5">
+            <p className="texts_14_regular text-head max-w-232.5 mb-7.5">
               She'd years darkness days. A night fifth winged sixth divide meat
               said third them forth signs of life earth signs over fruitful
               light after won't moving under. Thing yielding upon seed. Seasons
@@ -110,12 +112,22 @@ const SingleBlog = () => {
               years Gathering gathering divide fill.
             </p>
           </div>
-          <div className="flex px-30 gap-7.75 mb-[50px]">
-            <Images imgSrc={insideblogImg} />
-            <Images imgSrc={insideblogImg} />
+          <div className="flex lg:px-30 gap-5 lg:gap-7.75 mb-8 lg:mb-[50px]">
+            <div className="bg-red  min-h-[200px]">
+              <Images
+                imgSrc={insideblogImg}
+                className={"h-full w-full object-cover"}
+              />
+            </div>
+            <div className="bg-red  min-h-[200px]">
+              <Images
+                imgSrc={insideblogImg}
+                className={"h-full w-full object-cover"}
+              />
+            </div>
           </div>
-          <div className="pl-60">
-            <p className="texts_14_regular text-head w-232.5 mb-15">
+          <div className="lg:pl-60">
+            <p className="texts_14_regular text-head max-w-232.5 mb-8 lg:mb-15">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet
               sapien dignissim a elementum. Sociis metus, hendrerit mauris id
               in. Quis sit sit ultrices tincidunt euismod luctus diam. Turpis
@@ -129,7 +141,7 @@ const SingleBlog = () => {
               fermentum iaculis pharetra, maecenas dui nullam nullam rhoncus.
               Facilisis quis vulputate sem gravida lacus, justo placerat.
             </p>
-            <p className="texts_14_regular text-head w-232.5 mb-12.5">
+            <p className="texts_14_regular text-head max-w-232.5 mb-12.5">
               She'd years darkness days. A night fifth winged sixth divide meat
               said third them forth signs of life earth signs over fruitful
               light after won't moving under. Thing yielding upon seed. Seasons
@@ -138,10 +150,10 @@ const SingleBlog = () => {
               years Gathering gathering divide fill.
             </p>
           </div>
-          <div className="flex gap-2.5 justify-center">
+          <div className="flex flex-wrap gap-2.5  lg:justify-center">
             <Link to={"/"}>
               {" "}
-              <div className="pt-3.5 pb-3 pl-14.5 pr-12 bg-[#306199] inline-block cursor-pointer">
+              <div className=" w-[220px] lg:w-auto pt-3.5 pb-3 pl-14.5 pr-12 bg-[#306199] inline-block cursor-pointer">
                 <p className="texts_14_regular text-white ">
                   Share on Facebook
                 </p>
@@ -149,13 +161,13 @@ const SingleBlog = () => {
             </Link>
             <Link to={"/"}>
               {" "}
-              <div className="pt-3.5 pb-3 pl-14.5 pr-12 bg-[#26C4F1] inline-block cursor-pointer">
+              <div className=" w-[220px] lg:w-auto pt-3.5 pb-3 pl-14.5 pr-12 bg-[#26C4F1] inline-block cursor-pointer">
                 <p className="texts_14_regular text-white ">Share on Twitter</p>
               </div>
             </Link>
             <Link to={"/"}>
               {" "}
-              <div className="pt-3.5 pb-3 pl-14.5 pr-12 bg-[#E82B2D] inline-block cursor-pointer">
+              <div className=" w-[220px] lg:w-auto pt-3.5 pb-3 pl-14.5 pr-12 bg-[#E82B2D] inline-block cursor-pointer">
                 <p className="texts_14_regular text-white ">
                   Share on Pinterest
                 </p>
@@ -163,13 +175,13 @@ const SingleBlog = () => {
             </Link>
             <Link to={"/"}>
               {" "}
-              <div className="pt-3.5 pb-3 px-4.75 bg-head inline-block cursor-pointer">
+              <div className="  pt-3.5 pb-3 px-4.75 bg-head inline-block cursor-pointer">
                 <p className="texts_14_regular text-white ">+</p>
               </div>
             </Link>
           </div>
-          <div className="w-232.5 mx-auto px-4 mt-12.5">
-            <div className="flex justify-between items-start border-t border-b border-[#E4E4E4] pt-11.25 pb-10.5 mb-12.5">
+          <div className="max-w-232.5 mx-auto px-4 mt-12.5">
+            <div className=" flex  justify-between gap-2 lg:gap-0 items-start border-t border-b border-[#E4E4E4] pt-11.25 pb-10.5 mb-12.5">
               <div class="">
                 <div className="flex items-center gap-1">
                   <FiChevronLeft />
@@ -192,7 +204,7 @@ const SingleBlog = () => {
 
             <h2 className="texts_18_medium text-head mb-6.5">Reviews</h2>
 
-            <div className="flex gap-7.5 mb-7.5 pb-6 border-b border-[#E4E4E4] w-232.5">
+            <div className="flex gap-7.5 mb-7.5 pb-6 border-b border-[#E4E4E4]   max-w-232.5">
               <div class="w-15 h-15 rounded-full bg-[#E4E4E4] shrink-0"></div>
               <div class="flex-1">
                 <div class="flex justify-between items-start">
@@ -208,7 +220,7 @@ const SingleBlog = () => {
                     <IoStar />
                   </div>
                 </div>
-                <p class="texts_14_regular text-second w-210 mt-5 ">
+                <p class="texts_14_regular text-second max-w-210 mt-5 ">
                   Nam libero tempore, cum soluta nobis est eligendi optio cumque
                   nihil impedit quo minus id quod maxime placeat facere
                   possimus, omnis voluptas assumenda est...
@@ -216,7 +228,7 @@ const SingleBlog = () => {
               </div>
             </div>
 
-            <div className="flex gap-7.5 mb-13.5 pb-6">
+            <div className="flex gap-7.5 mb-8 lg:mb-13.5 pb-6">
               <div className="w-15 h-15 rounded-full bg-[#E4E4E4] shrink-0"></div>
               <div className="flex-1">
                 <div className="flex justify-between items-start">
@@ -234,7 +246,7 @@ const SingleBlog = () => {
                     <IoStar />
                   </div>
                 </div>
-                <p className="texts_14_regular text-second w-210 mt-5 ">
+                <p className="texts_14_regular text-second max-w-210 mt-5 ">
                   Nam libero tempore, cum soluta nobis est eligendi optio cumque
                   nihil impedit quo minus id quod maxime placeat facere
                   possimus, omnis voluptas assumenda est...
@@ -266,15 +278,20 @@ const SingleBlog = () => {
 
               <div className="space-y-7.5">
                 <div className="textarea-container w-full">
-                  <textarea id="message" placeholder=" " className="textarea"></textarea>
-                  <label htmlFor="message" className="textarea-label">ADD REVIEW</label>
+                  <textarea
+                    id="message"
+                    placeholder=" "
+                    className="textarea"
+                  ></textarea>
+                  <label htmlFor="message" className="textarea-label">
+                    ADD REVIEW
+                  </label>
                 </div>
 
                 <div className="input-container w-full">
                   <input type="text" id="" placeholder=" " className="input" />
                   <label className="label">Name *</label>
                 </div>
-
 
                 <div className="input-container w-full">
                   <input type="text" id="" placeholder=" " className="input" />

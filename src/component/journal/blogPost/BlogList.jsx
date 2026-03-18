@@ -5,10 +5,9 @@ import { Link } from "react-router-dom";
 import blogImg from "@/assets/images/blogImg.png";
 import mixitup from "mixitup";
 import { Progress } from "@/components/ui/progress";
-import Button from "../common/Button";
+import Button from "../../common/Button";
 
 const BlogList = () => {
-
   const [visibleItems, setVisibleItems] = useState(36);
   const totalItems = 100;
   const percentage = (visibleItems / totalItems) * 100;
@@ -34,10 +33,10 @@ const BlogList = () => {
   }, []);
 
   return (
-    <section className="pb-[98px]">
+    <section className=" py-[50px]  lg:pt-[90px] mt-[85px] lg:pb-[98px]">
       <Container>
-        <h2 className="head_35_bold text-head pb-2.75 pt-22.5">The Blog</h2>
-        <div className="flex gap-10 pb-12.5">
+        <h2 className="head_35_bold text-center md:text-start text-head pb-2.75 ">The Blog</h2>
+        <div className="flex flex-wrap justify-center md:justify-start gap-5 md:gap-10 pb-9 md:pb-12.5">
           <Link>
             <p
               data-filter=".all"
@@ -87,66 +86,68 @@ const BlogList = () => {
             </p>
           </Link>
         </div>
-        <div ref={containerRef} className="grid grid-cols-2 gap-7.5 pb-12.5">
+        <div
+          ref={containerRef}
+          className="grid  grid-cols-1 lg:grid-cols-2 gap-[50px] lg:gap-7.5 pb-12.5"
+        >
           <div className="mix all company beauty">
             <Link to={"/elements/blog"}>
-            <Blog
-              imgSrc={blogImg}
-              imgAlt={blogImg}
-              author={"BY ADMIN"}
-              date={"APRIL 05, 2020"}
-              blogname={"Woman with good shoes is never be ugly place"}
-              blogdescription={
-                "Midst one brought greater also morning green saying had good. Open stars day let over gathered, grass face one every light of under."
-              }
-            />
+              <Blog
+                imgSrc={blogImg}
+                imgAlt={blogImg}
+                author={"BY ADMIN"}
+                date={"APRIL 05, 2020"}
+                blogname={"Woman with good shoes is never be ugly place"}
+                blogdescription={
+                  "Midst one brought greater also morning green saying had good. Open stars day let over gathered, grass face one every light of under."
+                }
+              />
             </Link>
           </div>
           <div className="mix all company style">
-             <Link to={"/elements/blog"}>
-            <Blog
-              imgSrc={blogImg}
-              imgAlt={blogImg}
-              author={"BY ADMIN"}
-              date={"APRIL 05, 2020"}
-              blogname={"5 Tips to Increase Your Online Sales"}
-              blogdescription={
-                "Midst one brought greater also morning green saying had good. Open stars day let over gathered, grass face one every light of under."
-              }
-            />
+            <Link to={"/elements/blog"}>
+              <Blog
+                imgSrc={blogImg}
+                imgAlt={blogImg}
+                author={"BY ADMIN"}
+                date={"APRIL 05, 2020"}
+                blogname={"5 Tips to Increase Your Online Sales"}
+                blogdescription={
+                  "Midst one brought greater also morning green saying had good. Open stars day let over gathered, grass face one every light of under."
+                }
+              />
             </Link>
           </div>
           <div className="mix all trends fashion">
-             <Link to={"/elements/blog"}>
-            <Blog
-              imgSrc={blogImg}
-              imgAlt={blogImg}
-              author={"BY ADMIN"}
-              date={"APRIL 05, 2020"}
-              blogname={"Tree earth fowl given moveth deep lesser After"}
-              blogdescription={
-                "Midst one brought greater also morning green saying had good. Open stars day let over gathered, grass face one every light of under."
-              }
-            />
+            <Link to={"/elements/blog"}>
+              <Blog
+                imgSrc={blogImg}
+                imgAlt={blogImg}
+                author={"BY ADMIN"}
+                date={"APRIL 05, 2020"}
+                blogname={"Tree earth fowl given moveth deep lesser After"}
+                blogdescription={
+                  "Midst one brought greater also morning green saying had good. Open stars day let over gathered, grass face one every light of under."
+                }
+              />
             </Link>
           </div>
           <div className="mix all style trends">
-             <Link to={"/elements/blog"}>
-            <Blog
-              imgSrc={blogImg}
-              imgAlt={blogImg}
-              author={"BY ADMIN"}
-              date={"APRIL 05, 2020"}
-              blogname={"Given Set was without from god divide rule Hath"}
-              blogdescription={
-                "Midst one brought greater also morning green saying had good. Open stars day let over gathered, grass face one every light of under."
-              }
-            />
+            <Link to={"/elements/blog"}>
+              <Blog
+                imgSrc={blogImg}
+                imgAlt={blogImg}
+                author={"BY ADMIN"}
+                date={"APRIL 05, 2020"}
+                blogname={"Given Set was without from god divide rule Hath"}
+                blogdescription={
+                  "Midst one brought greater also morning green saying had good. Open stars day let over gathered, grass face one every light of under."
+                }
+              />
             </Link>
           </div>
         </div>
         <div className="flex flex-col items-center  w-full max-w-75 mx-auto uppercase">
-
           <p className="texts_14_medium text-black">
             Showing {visibleItems} of {totalItems} Items
           </p>
