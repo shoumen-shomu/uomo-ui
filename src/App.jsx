@@ -24,14 +24,12 @@ import CartLayout from "./component/shopMain/shopPage/cartLayout/CartLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Faq from "./page/Faq";
 import Contact from "./component/contactUs/Contact";
-import BlogPost from "./page/BlogPost";
 import Store_location from "./component/storeLocator/Store_location";
 import Terms from "./page/Terms";
 import ComingSoonPg from "./page/ComingSoonPg";
 import RegiLog from "./component/auth/regiLog/RegiLog";
 import About from "./page/About";
 import SingleBlog from "./component/common/SingleBlog";
-
 
 const router = createBrowserRouter([
   {
@@ -87,22 +85,22 @@ const router = createBrowserRouter([
       // for Faq
       { path: "faq", element: <Faq /> },
       // for Faq
-      { path: "/about", element: <About/>},
+      { path: "/about", element: <About /> },
 
       //for logout
       { path: "/logout", element: <LogOut /> },
 
       // for blog-post
-      { path: "/elements/blog-posts", element: <BlogPost /> },
+      { path: "/elements/blog-posts", element: <Journal /> },
       { path: "/elements/blog", element: <SingleBlog /> },
       // for terms and condition
       { path: "/elements/terms", element: <Terms /> },
 
       // for comming soon pages route
       { path: "coming-soon", element: <ComingSoonPg /> },
-       
+
       //Regilogin page
-      {path: "login-register", element:<RegiLog/>},
+      { path: "login-register", element: <RegiLog /> },
 
       // 404 not found
       { path: "*", element: <NotFound /> },
