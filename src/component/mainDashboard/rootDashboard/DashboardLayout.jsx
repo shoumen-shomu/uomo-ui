@@ -7,7 +7,7 @@ const DashboardLayout = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <section className="pt-22.5 pb-25">
+    <section className=" mt-10 lg:mt-[50px]  pt-22.5 pb-10 lg:pb-25">
       <Container>
 
         {/* Mobile Menu Toggle Button */}
