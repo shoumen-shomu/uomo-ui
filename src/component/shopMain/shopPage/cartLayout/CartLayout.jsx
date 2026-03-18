@@ -14,11 +14,13 @@ const CartLayout = () => {
   const title = getTitleByPath(pathname);
 
   return (
-    <section className="pt-10 md:pt-22.5 pb-25">
+    <section className="pt-34 lg:pt-40 pb-[90px]">
       <div className="container px-4 sm:px-6">
-        <h1 className={`text-[22px] sm:text-[28px] md:text-[35px] text-head font-bold pb-6 sm:pb-9 md:pb-12 ${pathname.includes("order-tracking") ? "text-center w-full" : ""}`}>
-  {title}
-</h1>
+        <h1
+          className={`text-[22px] sm:text-[28px] md:text-[35px] text-head font-bold pb-6 sm:pb-9 md:pb-12 ${pathname.includes("order-tracking") ? "text-center w-full" : ""}`}
+        >
+          {title}
+        </h1>
 
         {!pathname.includes("order-tracking") && <StepIndicator />}
 
