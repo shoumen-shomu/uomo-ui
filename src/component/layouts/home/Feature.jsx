@@ -6,9 +6,9 @@ import FeaturedProducts from "@/component/common/FeaturedProducts";
 const Feature = () => {
   return (
     <>
-      <section className="mt-25">
+      <section className=" mt-4 lg:mt-25">
         <Container>
-          <div className="grid grid-cols-2 gap-7.5">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-7.5">
             <FeaturedProducts
               imgSrc={product}
               imgAlt={product}

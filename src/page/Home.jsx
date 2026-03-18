@@ -30,8 +30,8 @@ const Home = () => {
   }, []);
   return (
     <>
-      {showNewsletter && <NewsletterPopup />}
-      {showCookie && <CookieConsent />}
+      {/* {showNewsletter && <NewsletterPopup />}
+      {showCookie && <CookieConsent />} */}
       <Banner />
       <Collection />
       <Products />

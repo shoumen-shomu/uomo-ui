@@ -23,14 +23,16 @@ const Products = () => {
   }, []);
   return (
     <>
-      <section className="mt-23.5">
-       <Container>
+      <section className=" mt-[38px] md:mt-[60px] lg:mt-23.5">
+        <Container>
           <div className="heading text-center">
             <h2 className="lg:head_35_regular font-medium text-[26px]  text-head">
               OUR TRENDY{" "}
-              <span className="lg:head_35_bold font-bold text-[26px] text-head">PRODUCTS</span>
+              <span className="lg:head_35_bold font-bold text-[26px] text-head">
+                PRODUCTS
+              </span>
             </h2>
-            <div className="flex justify-center items-center lg:gap-10 gap-4 mt-7.75">
+            <div className="flex flex-wrap justify-center items-center lg:gap-10 gap-4 mt-4 lg:mt-7.75">
               <Link>
                 <p
                   data-filter=".all"
@@ -67,7 +69,7 @@ const Products = () => {
           </div>
           <div
             ref={containerRef}
-            className="mt-5.5 grid lg:grid-cols-4 grid-cols-2 justify-center lg:gap-7.5 gap-3.5 "
+            className="mt-5.5 grid lg:grid-cols-4 grid-cols-2 justify-center  md:gap-7.5 gap-3.5 "
           >
             <div className="mix all newArrivals bestSeller">
               <Product
@@ -145,7 +147,10 @@ const Products = () => {
             </div>
           </div>
           <div className="mt-10.5 text-center">
-            <Button className={"hover:after:w-24"} btnText={"SEE ALL PRODUCT"}/>
+            <Button
+              className={"hover:after:w-24"}
+              btnText={"SEE ALL PRODUCT"}
+            />
           </div>
         </Container>
       </section>
