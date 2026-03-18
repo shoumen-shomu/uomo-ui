@@ -27,9 +27,10 @@ import Store_location from "./component/storeLocator/Store_location";
 import Terms from "./page/Terms";
 import ComingSoonPg from "./page/ComingSoonPg";
 import RegiLog from "./component/auth/regiLog/RegiLog";
-import About from "./page/About";
+import About from "./component/about/About";
 import SingleBlog from "./component/common/SingleBlog";
 import LookBookPg from "./page/LookBookPg";
+import AboutPg from "./page/AboutPg";
 
 const router = createBrowserRouter([
   {
@@ -85,7 +86,7 @@ const router = createBrowserRouter([
       // for Faq
       { path: "faq", element: <Faq /> },
       // for Faq
-      { path: "/about", element: <About /> },
+      { path: "/about", element: <AboutPg /> },
 
       //for logout
       { path: "/logout", element: <LogOut /> },
