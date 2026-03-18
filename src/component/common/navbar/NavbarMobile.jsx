@@ -17,6 +17,7 @@ import Images from "../Images";
 import allIcons from "@/helper/iconProvider";
 import allImages from "@/helper/imagesProvider";
 import { navItems, navTabsData } from "@/helper/projectArrayObj";
+import AddToCart from "@/component/shopMain/addToCart/AddToCart";
 
 const socialIcons = [
   { id: 1, icon: FaFacebookF, link: "https://www.facebook.com" },
@@ -30,7 +31,7 @@ const socialIcons = [
 // Shared UI pieces
 // ─────────────────────────────────────────────────────────────────────────────
 
-const DrawerHeader = ({ onClose, navLogo, cartBadge }) => (
+const DrawerHeader = ({ onClose, navLogo, cartBadge, onCartClick }) => (
   <div className="flex items-center justify-between px-5 py-4 border-b border-footer">
     <button onClick={onClose} className="text-[22px] text-head cursor-pointer">
       <IoMdClose />
@@ -40,7 +41,7 @@ const DrawerHeader = ({ onClose, navLogo, cartBadge }) => (
       imgSrc={navLogo}
       className="w-[111px] h-[27px]"
     />
-    <button className="relative cursor-pointer pr-[10px]">
+    <button onClick={onCartClick} className="relative cursor-pointer pr-[10px]">
       <span className="text-[23px] text-head">
         <HiOutlineShoppingBag />
       </span>
@@ -129,6 +130,7 @@ const NavbarMobile = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [panel, setPanel] = useState("main");
+  const [isCartOpen, setIsCartOpen] = useState(false); // Cart state
 
   // SHOP state
   const [activeTab, setActiveTab] = useState(navTabsData[0].tab);
@@ -173,6 +175,15 @@ const NavbarMobile = () => {
       setActiveMegaItem(null);
       setActiveTab(navTabsData[0].tab);
     }, 310);
+  };
+
+  // Cart handlers
+  const handleCartOpen = () => {
+    setIsCartOpen(true);
+  };
+
+  const handleCartClose = () => {
+    setIsCartOpen(false);
   };
 
   const handleNavItemClick = (item) => {
@@ -220,7 +231,10 @@ const NavbarMobile = () => {
               imgSrc={navLogo}
               className="w-[111px] h-[27px]"
             />
-            <button className="relative cursor-pointer pr-[10px]">
+            <button 
+              onClick={handleCartOpen}
+              className="relative cursor-pointer pr-[10px]"
+            >
               <span className="text-[26px] text-head">
                 {navIconItems[3].icon}
               </span>
@@ -232,7 +246,7 @@ const NavbarMobile = () => {
         </Container>
       </nav>
 
-      {/* ── Backdrop ───────────────────────────────────────────────────── */}
+      {/* ── Menu Drawer Backdrop ───────────────────────────────────────────────────── */}
       <div
         onClick={handleClose}
         className={`fixed inset-0 bg-black/30 z-[998] transition-opacity duration-300 ${
@@ -242,7 +256,7 @@ const NavbarMobile = () => {
         }`}
       />
 
-      {/* ── Drawer ─────────────────────────────────────────────────────── */}
+      {/* ── Menu Drawer ─────────────────────────────────────────────────────── */}
       <div
         className={`fixed top-0 left-0 w-[280px] h-full bg-white z-[999] overflow-hidden transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "-translate-x-full"
@@ -256,6 +270,7 @@ const NavbarMobile = () => {
             onClose={handleClose}
             navLogo={navLogo}
             cartBadge={navIconItems[3].badge}
+            onCartClick={handleCartOpen}
           />
           <DrawerSearch />
 
@@ -300,6 +315,7 @@ const NavbarMobile = () => {
             onClose={handleClose}
             navLogo={navLogo}
             cartBadge={navIconItems[3].badge}
+            onCartClick={handleCartOpen}
           />
           <DrawerSearch />
           <TabRow activeTab={activeTab} onTabChange={setActiveTab} />
@@ -332,6 +348,7 @@ const NavbarMobile = () => {
             onClose={handleClose}
             navLogo={navLogo}
             cartBadge={navIconItems[3].badge}
+            onCartClick={handleCartOpen}
           />
           <DrawerSearch />
           <TabRow activeTab={activeTab} />
@@ -370,6 +387,7 @@ const NavbarMobile = () => {
             onClose={handleClose}
             navLogo={navLogo}
             cartBadge={navIconItems[3].badge}
+            onCartClick={handleCartOpen}
           />
           <DrawerSearch />
 
@@ -417,6 +435,7 @@ const NavbarMobile = () => {
             onClose={handleClose}
             navLogo={navLogo}
             cartBadge={navIconItems[3].badge}
+            onCartClick={handleCartOpen}
           />
           <DrawerSearch />
 
@@ -447,6 +466,25 @@ const NavbarMobile = () => {
 
           <DrawerFooter />
         </div>
+      </div>
+
+      {/* ── Cart Backdrop ───────────────────────────────────────────────────── */}
+      <div
+        onClick={handleCartClose}
+        className={`fixed inset-0 bg-black/30 z-[1000] transition-opacity duration-300 ${
+          isCartOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+      />
+
+      {/* ── Cart Drawer (Right Side) ─────────────────────────────────────────────────────── */}
+      <div
+        className={`fixed top-0 right-0 h-full bg-white z-[1001] transition-transform duration-300 ease-in-out ${
+          isCartOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <AddToCart unMount={handleCartClose} />
       </div>
     </>
   );

@@ -28,7 +28,7 @@ const AddToCart = ({ unMount }) => {
   }, [unMount]);
 
   return (
-    <div ref={navtabRef} className="w-105 h-full bg-white flex flex-col">
+    <div ref={navtabRef} className=" w-full lg:w-105 h-full bg-white flex flex-col">
       {/* Header */}
       <div className="flex justify-between items-center px-6 py-5 border-b border-footer">
         <p className="texts_16_medium text-head tracking-wider">
@@ -102,7 +102,7 @@ const AddToCart = ({ unMount }) => {
         {/* View Cart */}
         <Link
           to="/cart"
-          className="w-full border border-head text-center texts_14_medium text-head pt-5.5 pb-3.5 cursor-pointer hover:bg-head hover:text-white transition-all"
+          className="w-full border border-head text-center texts_14_medium text-head py-3 lg:pt-5.5 lg:pb-3.5 cursor-pointer hover:bg-head hover:text-white transition-all "
         >
           VIEW CART
         </Link>
@@ -110,7 +110,7 @@ const AddToCart = ({ unMount }) => {
         {/* Checkout */}
         <Link
           to="/cart/shoping-and-checkout"
-          className="w-full bg-head text-white pt-5.5 pb-3.5
+          className="w-full bg-head text-white py-3.5 lg:pt-5.5 lg:pb-3.5
           hover:bg-[#DB4444] transition-all mt-1 leading-6 text-center texts_14_medium cursor-pointer"
         >
           CHECKOUT
