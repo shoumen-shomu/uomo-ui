@@ -29,11 +29,10 @@ const NavbarLg = () => {
 
   const handleUnMount = (value) => {
     setIsOpen(value);
-    console.log(value);
   };
 
   return (
-    <nav className="pt-7.25 pb-4.75 relative z-999!">
+    <nav className="pt-7.25 pb-4.75 relative ">
       <Container>
         <div className="flex justify-between">
           <div className="flex  items-center  gap-x-14 ">
@@ -56,7 +55,7 @@ const NavbarLg = () => {
                   >
                     <Link
                       to={items.path}
-                      className="texts_14_medium text-head relative  after:absolute after:content-[''] after:w-[0%] after:h-[1.5px] after:bg-head after:bottom-4.75 after:left-0 hover:after:w-[60%]  after:duration-500 after:ease-in-out   pb-6 "
+                      className="texts_14_medium text-head relative  after:absolute after:content-[''] after:w-[0%] after:h-[2px] after:bg-head after:bottom-4.75 after:left-0 hover:after:w-[60%]  after:duration-500 after:ease-in-out   pb-6 "
                     >
                       {items.label}
                     </Link>

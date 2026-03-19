@@ -12,7 +12,7 @@ const Navbar = () => {
   const { notFoundPage } = allImages;
 
   return (
-    <div className="fixed top-0 left-0 w-full z-[999] ">
+    <div className="fixed top-0 left-0 w-full z-[800] ">
       <div
         className={`hidden lg:block ${
           pathname === "/404" || pathname === "/coming-soon"
@@ -22,7 +22,9 @@ const Navbar = () => {
       >
         <NavbarLg />
       </div>
-      <div className={`lg:hidden block bg-white shadow-[0_4px_24px_rgba(0,0,0,0.12)]`}>
+      <div
+        className={`lg:hidden block bg-white shadow-[0_4px_24px_rgba(0,0,0,0.12)]`}
+      >
         <NavbarMobile />
       </div>
     </div>
