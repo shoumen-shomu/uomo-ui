@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Images from "./Images";
 import { FaHeart } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const Product = ({
   imgSrc,
@@ -11,6 +12,7 @@ const Product = ({
   discountPrice,
 }) => {
   const [isLiked, setIsLiked] = useState(false);
+
   return (
     <>
       <div className="lg:max-w-82.5 w-full relative group ">
@@ -24,9 +26,12 @@ const Product = ({
 
           {/* Add To Cart Start */}
 
-          <button className="texts_14_medium text-head bg-white  w-full pt-4 pb-2.5 text-center absolute  bottom-4 left-1/2 -translate-x-1/2 translate-y-[50%] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 ease-in-out duration-500 whitespace-nowrap cursor-pointer">
+          <Link
+            to={"/shop-single"}
+            className="texts_14_medium text-head bg-white  w-full pt-4 pb-2.5 text-center absolute  bottom-4 left-1/2 -translate-x-1/2 translate-y-[50%] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 ease-in-out duration-500 whitespace-nowrap cursor-pointer"
+          >
             ADD TO CART
-          </button>
+          </Link>
 
           {/* Add To Cart End*/}
         </div>
