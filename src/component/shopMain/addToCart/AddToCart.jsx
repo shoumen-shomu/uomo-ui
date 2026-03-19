@@ -28,7 +28,10 @@ const AddToCart = ({ unMount }) => {
   }, [unMount]);
 
   return (
-    <div ref={navtabRef} className=" w-full lg:w-105 h-full bg-white flex flex-col">
+    <div
+      ref={navtabRef}
+      className=" w-full lg:w-105 h-full bg-white flex flex-col"
+    >
       {/* Header */}
       <div className="flex justify-between items-center px-6 py-5 border-b border-footer">
         <p className="texts_16_medium text-head tracking-wider">
@@ -36,7 +39,7 @@ const AddToCart = ({ unMount }) => {
         </p>
         <span
           className="text-2xl cursor-pointer"
-          onClick={() => unMount("hello world")}
+          onClick={() => unMount(false)}
         >
           {close}
         </span>
