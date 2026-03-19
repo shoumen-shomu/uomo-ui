@@ -249,7 +249,7 @@ const NavbarMobile = () => {
       {/* ── Menu Drawer Backdrop ───────────────────────────────────────────────────── */}
       <div
         onClick={handleClose}
-        className={`fixed inset-0 bg-black/30 z-[998] transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black/30 z-[800] transition-opacity duration-300 ${
           isOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"

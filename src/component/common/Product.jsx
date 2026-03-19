@@ -13,12 +13,14 @@ const Product = ({
   const [isLiked, setIsLiked] = useState(false);
   return (
     <>
-      <div className="lg:w-82.5 w-full relative group ">
+      <div className="lg:max-w-82.5 w-full relative group ">
         <div className="relative overflow-hidden ">
-          <Images className={"w-full object-cover"} imgSrc={imgSrc} imgAlt={imgAlt}  />
+          <Images
+            className={"w-full object-cover"}
+            imgSrc={imgSrc}
+            imgAlt={imgAlt}
+          />
           {/* Badge Start */}
-
-          
 
           {/* Add To Cart Start */}
 
