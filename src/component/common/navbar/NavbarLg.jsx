@@ -20,6 +20,7 @@ const NavbarLg = () => {
 
   const [hoverItems, setHoverITems] = useState(null);
   const [open, setIsOpen] = useState(null);
+   
 
   //  for handle evetnt
 

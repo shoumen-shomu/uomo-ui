@@ -12,9 +12,21 @@ import "swiper/css";
 import { Navigation } from "swiper/modules";
 import "swiper/css/navigation";
 import { useState } from "react";
+import AddToCart from "../addToCart/AddToCart";
 
 const Top = () => {
+  //for manage state
   let [count, setCount] = useState(3);
+  const [open, isOpen] = useState(false);
+ 
+
+  const handleUnMount = (value) => {
+    isOpen(value);
+  };
+  const handleShow = () => {
+    isOpen(true);
+  };
+
   const handleMinus = () => {
     if (count > 0) {
       setCount(count - 1);
@@ -27,7 +39,18 @@ const Top = () => {
   };
 
   return (
-    <div className="mt-[100px] mb-6  lg:mt-[125px] lg:mb-25">
+    <section className="mt-[100px] relative  mb-6  lg:mt-[125px] lg:mb-25">
+      {open && (
+        <div
+          className="fixed z-[999] bg-[#22222258] h-screen w-full top-0 left-0"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="h-full absolute  right-0">
+            <AddToCart unMount={handleUnMount} />
+          </div>
+        </div>
+      )}
+
       <Container>
         <div className="flex flex-col xl:flex-row gap-y-8 xl:gap-x-15">
           {/* Left Side: Images */}
@@ -130,7 +153,10 @@ const Top = () => {
                   +
                 </button>
               </div>
-              <button className="h-12  lg:w-[280px] lg:h-[60px] bg-head text-white text-[12px] lg:texts_14_medium  tracking-widest cursor-pointer uppercase px-10 lg:px-0">
+              <button
+                className="h-12 lg:w-[280px] lg:h-[60px] bg-head text-white text-[12px] lg:texts_14_medium  tracking-widest cursor-pointer uppercase px-10 lg:px-0"
+                onClick={handleShow}
+              >
                 ADD TO CART
               </button>
             </div>
@@ -165,7 +191,7 @@ const Top = () => {
           </div>
         </div>
       </Container>
-    </div>
+    </section>
   );
 };
 
