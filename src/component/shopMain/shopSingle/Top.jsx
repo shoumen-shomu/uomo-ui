@@ -27,7 +27,7 @@ const Top = () => {
   };
 
   return (
-    <div className="mt-[74px] mb-6  lg:mt-12.5 lg:mb-25">
+    <div className="mt-[100px] mb-6  lg:mt-[125px] lg:mb-25">
       <Container>
         <div className="flex flex-col xl:flex-row gap-y-8 xl:gap-x-15">
           {/* Left Side: Images */}
