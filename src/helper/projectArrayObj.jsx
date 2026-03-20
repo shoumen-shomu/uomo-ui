@@ -327,4 +327,13 @@ const shopList1 = [
   { id: 9, title: "SHOES", value: "shoes" },
 ];
 
-export { navItems, quickLinks, cartItems, navTabsData, footerData, shopList1 };
+
+const homeTrendyFilters = [
+  { label: "ALL", filter: ".all" },
+  { label: "NEWARRIVALS", filter: ".newArrivals" },
+  { label: "BEST SELLER", filter: ".bestSeller" },
+  { label: "TOP RATING", filter: ".topRating" },
+];
+
+
+export { navItems, quickLinks, cartItems, navTabsData, footerData, shopList1,homeTrendyFilters };
