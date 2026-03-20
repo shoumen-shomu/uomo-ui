@@ -68,6 +68,12 @@
   --color-footer: #e4e4e4;
 }
 
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 /* head */
 /* .head_70_bold {
   @apply font-bold text-[70px]/[80px];

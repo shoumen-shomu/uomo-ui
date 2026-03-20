@@ -7,11 +7,51 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import allIcons from "@/helper/iconProvider";
+import useAllProductThirty from "@/coustomHook/useAllProductThirty";
+import ProductSkeleton from "@/component/common/ProductSkeleton";
 
 const LimitedEdition = () => {
   const { chevron } = allIcons;
 
   const swiperRef = useRef(null);
+
+  // for api data
+  const {
+    data: productData,
+    isLoading: productLoading,
+    isError: prductError,
+  } = useAllProductThirty();
+
+  if (productLoading) {
+    return (
+      <section className="mt-[37px] lg:mt-22.75">
+        <Container>
+          <div className="hidden lg:block ">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-[30px]">
+              <ProductSkeleton />
+              <ProductSkeleton />
+              <ProductSkeleton />
+              <ProductSkeleton />
+            </div>
+          </div>
+          <div className="hidden lg:hidden md:block">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-[30px]">
+              <ProductSkeleton />
+              <ProductSkeleton />
+              <ProductSkeleton />
+            </div>
+          </div>
+          <div className="block lg:hidden md:hidden">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-[30px]">
+              <ProductSkeleton />
+              <ProductSkeleton />
+            </div>
+          </div>
+        </Container>
+      </section>
+    );
+  }
+
   return (
     <>
       <section className=" mt-[37px] lg:mt-22.75">
@@ -43,81 +83,19 @@ const LimitedEdition = () => {
                 nextEl: ".lg-swiper-button-next",
               }}
             >
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Hub Accent Mirror"}
-                  itemPrice={"29"}
-                />
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Hosking Blue Area Rug"}
-                  itemPrice={"62"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Hanneman Pouf"}
-                  itemPrice={"17"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Cushion Futon Slipcover"}
-                  itemPrice={"129"}
-                  discountPrice={"99"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Hanneman Pouf"}
-                  itemPrice={"17"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Hub Accent Mirror"}
-                  itemPrice={"29"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Hosking Blue Area Rug"}
-                  itemPrice={"62"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Cushion Futon Slipcover"}
-                  itemPrice={"129"}
-                  discountPrice={"99"}
-                />
-              </SwiperSlide>
+              {productData?.map((items, index) => {
+                return (
+                  <SwiperSlide key={index}>
+                    <Product
+                      imgSrc={items?.thumbnail}
+                      imgAlt={items?.thumbnail}
+                      catagory={items?.catagory}
+                      itemName={items?.title}
+                      itemPrice={items?.price}
+                    />
+                  </SwiperSlide>
+                );
+              })}
             </Swiper>
           </div>
           <div className=" lg:hidden md:hidden block mt-3 flex flex-row gap-7.5 relative">

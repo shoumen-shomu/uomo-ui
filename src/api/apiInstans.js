@@ -1,7 +1,7 @@
 import { instance } from "./axios";
 
 // for all products
-const allProduct = async () => {
+const allProductThirty = async () => {
   try {
     const response = await instance.get("/products");
 
@@ -12,4 +12,4 @@ const allProduct = async () => {
   }
 };
 
-export { allProduct };
+export { allProductThirty };
