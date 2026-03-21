@@ -3,15 +3,21 @@ import { Link } from "react-router-dom";
 import Container from "@/component/common/Container";
 import { shopList1, sortOptions } from "@/helper/projectArrayObj";
 import allIcons from "@/helper/iconProvider";
-import Product from "@/component/common/Product";
 import allImages from "@/helper/imagesProvider";
-import { Progress } from "@/components/ui/progress";
-import Button from "@/component/common/Button";
+
 import ShopFilter from "./ShopFilter";
 import Images from "@/component/common/Images";
+import useAllProduct from "@/coustomHook/useAllProduct";
+import ShopAllProdVirtual from "@/component/common/ShopAllProdVirtual";
 
 const ShopBanner = () => {
-  const [visibleItems, setVisibleItems] = useState(36);
+  // for api and mamage RTQ
+  const {
+    data: allProductData,
+    isError: allProductDataError,
+    isLoading: allProcutDataLoading,
+  } = useAllProduct();
+
   const [open, isOpen] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
   const [selectedSort, setSelectedSort] = useState("default");
@@ -62,15 +68,6 @@ const ShopBanner = () => {
   const handleSortChange = (value) => {
     setSelectedSort(value);
     setFilterOpen(false);
-  };
-
-  const totalItems = 100;
-  const percentage = (visibleItems / totalItems) * 100;
-
-  const handleLoadMore = () => {
-    if (visibleItems < totalItems) {
-      setVisibleItems((prev) => Math.min(prev + 12, totalItems));
-    }
   };
 
   // for icons & img
@@ -134,7 +131,9 @@ const ShopBanner = () => {
       <div className="mt-6 sm:mt-8 lg:mt-9 mb-16 sm:mb-20 lg:mb-25">
         <Container>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0">
-            <p className="text-head texts_14_medium">HOME / THE SHOP</p>
+            <p className="text-head texts_14_medium">
+              <Link to={"/"}>HOME</Link> / THE SHOP
+            </p>
             <div className="flex flex-wrap items-center gap-3 sm:gap-4 md:gap-5 lg:gap-x-7.5 w-full sm:w-auto">
               {/*  Filter part start - FIXED */}
 
@@ -193,43 +192,8 @@ const ShopBanner = () => {
             </div>
           </div>
           <div>
-            <div className="pt-6 sm:pt-8 lg:pt-10 pb-8 sm:pb-10 lg:pb-12.5 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-7.5">
-              {[...new Array(16)].map((_, index) => {
-                return (
-                  <Product
-                    key={index}
-                    imgAlt={"shop-page-img"}
-                    catagory={"Dresses"}
-                    itemName={"Colorful Jacket"}
-                    itemPrice={"$29"}
-                    discountPrice={"$5"}
-                    imgSrc={shopimg}
-                  />
-                );
-              })}
-            </div>
-            <div className="flex flex-col items-center w-full max-w-full sm:max-w-[90%] md:max-w-75 mx-auto uppercase px-4 sm:px-0">
-              <p className="texts_14_medium text-black pb-1.25">
-                Showing {visibleItems} of {totalItems} Items
-              </p>
-
-              <Progress
-                value={percentage}
-                className="h-full w-full bg-[#E4E4E4] [&>div]:bg-black transition-all duration-500 items-center rounded-[10px]"
-              />
-
-              {visibleItems < totalItems && (
-                <Link>
-                  {" "}
-                  <Button
-                    onClick={handleLoadMore}
-                    className={
-                      "texts_14_medium text-black hover:after:w-15 pt-4.25"
-                    }
-                    btnText={"SHOW MORE"}
-                  />
-                </Link>
-              )}
+            <div className="pt-6 sm:pt-8 lg:pt-10 pb-8 sm:pb-10 lg:pb-12.5">
+              <ShopAllProdVirtual allProductItems={allProductData} />
             </div>
           </div>
         </Container>
