@@ -375,6 +375,23 @@ input:focus-visible {
   color: #222222;
 }
 
+/* for scrollbar */
+
+::-webkit-scrollbar{
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: transparent;
+}
+
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+
 .dashed-border {
   border: none;
   background:
