@@ -1,58 +1,104 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Product from "./Product";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { Progress } from "@/components/ui/progress";
 
-
 const ShopAllProdVirtual = ({ allProductItems }) => {
-  const [showItems, setShowItems] = useState(4); 
+  const [showItems, setShowItems] = useState(4);
+  const [itemsPerRow, setItemsPerRow] = useState(4);
+  const [screenSize, setScreenSize] = useState("lg");
   const parentRef = React.useRef(null);
 
- 
+  const calculateItemsPerRow = useCallback(() => {
+    const width = window.innerWidth;
+
+    if (width < 640) {
+      setScreenSize("sm");
+      setItemsPerRow(1);
+    } else if (width < 1024) {
+      setScreenSize("md");
+      setItemsPerRow(3);
+    } else {
+      setScreenSize("lg");
+      setItemsPerRow(4);
+    }
+  }, []);
+
+  const getContainerHeight = useCallback(() => {
+    if (screenSize === "sm") return 800;
+    if (screenSize === "md") return 800;
+    return 2000; // lg
+  }, [screenSize]);
+
+  const getEstimatedRowHeight = () => {
+    if (screenSize === "sm") return 500;
+    if (screenSize === "md") return 450;
+    return 500;
+  };
+
   const handleScroll = useCallback(() => {
-    if (!parentRef.current) return;
+    if (!parentRef.current || !allProductItems?.length) return;
 
     const scrollTop = parentRef.current.scrollTop;
     const scrollHeight = parentRef.current.scrollHeight;
     const clientHeight = parentRef.current.clientHeight;
 
-  
+    const estimatedRowHeight = getEstimatedRowHeight();
+    const visibleRows = Math.ceil(clientHeight / estimatedRowHeight) + 1;
 
-    const itemsPerRow = 4;
-    const estimatedRowHeight = 500;
-    
-
-    const visibleRows = Math.ceil(clientHeight / estimatedRowHeight) + 1; 
     const calculatedItems = Math.min(
-      Math.ceil(scrollTop / estimatedRowHeight) * itemsPerRow + 
-      visibleRows * itemsPerRow,
-      allProductItems?.length
+      Math.ceil(scrollTop / estimatedRowHeight) * itemsPerRow +
+        visibleRows * itemsPerRow,
+      allProductItems.length,
     );
 
     setShowItems(calculatedItems);
 
-   
     if (scrollTop + clientHeight >= scrollHeight - 100) {
-      setShowItems(allProductItems?.length);
+      setShowItems(allProductItems.length);
     }
-  }, [allProductItems?.length]);
+  }, [itemsPerRow, allProductItems?.length, screenSize]);
 
+  useEffect(() => {
+    calculateItemsPerRow();
+
+    window.addEventListener("resize", calculateItemsPerRow);
+    return () => window.removeEventListener("resize", calculateItemsPerRow);
+  }, [calculateItemsPerRow]);
+
+  useEffect(() => {
+    setShowItems(itemsPerRow);
+  }, [itemsPerRow]);
 
   const rowVirtualizer = useVirtualizer({
-    count: Math.ceil(allProductItems?.length / 4),
+    count: Math.ceil(allProductItems?.length / itemsPerRow),
     getScrollElement: () => parentRef.current,
-    estimateSize: () => 500,
+    estimateSize: () => getEstimatedRowHeight(),
+    overscan: 5,
   });
+
+  const getGridClassName = () => {
+    if (screenSize === "sm") {
+      return "grid grid-cols-1 gap-4 px-4";
+    }
+
+    if (screenSize === "md") {
+      return "grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5 px-4 sm:px-0";
+    }
+
+    return "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-7.5 px-4 sm:px-0";
+  };
 
   return (
     <div>
       <div
         ref={parentRef}
         style={{
-          height: `2000px`,
+          height: `${getContainerHeight()}px`,
           overflow: "auto",
         }}
-        onScroll={handleScroll} 
+        onScroll={handleScroll}
+        className="w-full"
       >
         <div
           style={{
@@ -62,8 +108,10 @@ const ShopAllProdVirtual = ({ allProductItems }) => {
           }}
         >
           {rowVirtualizer.getVirtualItems().map((virtualItem) => {
-            const start = virtualItem.index * 4;
-            const products = allProductItems.slice(start, start + 4);
+            const start = virtualItem.index * itemsPerRow;
+            const end = Math.min(start + itemsPerRow, allProductItems?.length);
+            const products = allProductItems?.slice(start, end) || [];
+
             return (
               <div
                 key={virtualItem.key}
@@ -75,12 +123,12 @@ const ShopAllProdVirtual = ({ allProductItems }) => {
                   height: `${virtualItem.size}px`,
                   transform: `translateY(${virtualItem.start}px)`,
                 }}
-                className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-7.5"
+                className={getGridClassName()}
               >
-                {products?.map((items, index) => {
+                {products.map((items, index) => {
                   return (
                     <Product
-                      key={index}
+                      key={`${virtualItem.key}-${index}`}
                       imgAlt={items.title}
                       catagory={items.catagory}
                       itemName={items.title}
@@ -96,15 +144,23 @@ const ShopAllProdVirtual = ({ allProductItems }) => {
         </div>
       </div>
 
-    
       <div className="mt-[50px] flex flex-col items-center w-full max-w-full sm:max-w-[90%] md:max-w-75 mx-auto uppercase px-4 sm:px-0">
         <p className="texts_14_medium text-black pb-1.25">
-          Showing {showItems} of {allProductItems?.length} Items
+          Showing {Math.min(showItems, allProductItems?.length || 0)} of{" "}
+          {allProductItems?.length} Items
         </p>
         <Progress
-          value={(showItems / allProductItems?.length) * 100} 
+          value={
+            allProductItems?.length
+              ? (Math.min(showItems, allProductItems.length) /
+                  allProductItems.length) *
+                100
+              : 0
+          }
           className="h-full w-full bg-[#E4E4E4] [&>div]:bg-black transition-all duration-500 items-center rounded-[10px]"
         />
+
+        
       </div>
     </div>
   );
