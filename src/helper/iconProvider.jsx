@@ -8,6 +8,7 @@ import { IoMdClose } from "react-icons/io";
 import { IoFilterSharp } from "react-icons/io5";
 import { GoChevronLeft } from "react-icons/go";
 import { GoChevronRight } from "react-icons/go";
+import { FiChevronDown } from "react-icons/fi";
 
 import {
   FaFacebookF,
@@ -95,6 +96,7 @@ const allIcons = {
     { id: 1, icon: <GoChevronLeft /> },
     { id: 2, icon: <GoChevronRight /> },
   ],
+  chevronDown: <FiChevronDown />,
 };
 
 export default allIcons;

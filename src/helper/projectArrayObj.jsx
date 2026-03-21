@@ -57,7 +57,7 @@ const navItems = [
           { name: "Charts", link: "/shop" },
           { name: "Icon Box", link: "/shop" },
           { name: "Product Tabs", link: "/shop" },
-          { name: "Products Grid", link: "/shop"},
+          { name: "Products Grid", link: "/shop" },
           { name: "Tabs", link: "/shop" },
           { name: "Video Players", link: "/shop" },
           { name: "Team", link: "/shop" },
@@ -87,16 +87,16 @@ const navItems = [
           { name: "Masonry grid", link: "/elements/blog-posts" },
           { name: "Infinit scrolling", link: "/elements/blog-posts" },
           { name: "With background", link: "/elements/blog-posts" },
-          { name: "Blog flat", link: "/elements/blog-posts"},
+          { name: "Blog flat", link: "/elements/blog-posts" },
           { name: "Default flat", link: "/elements/blog-posts" },
-          { name: "Blog mask", link: "/elements/blog-posts"},
+          { name: "Blog mask", link: "/elements/blog-posts" },
         ],
       },
       {
         title: "SINGLE POST",
         links: [
           { name: "Standard Post", link: "/elements/blog-posts" },
-          { name: "Image Post", link: "/elements/blog-posts"},
+          { name: "Image Post", link: "/elements/blog-posts" },
           { name: "Video Post", link: "/elements/blog-posts" },
           { name: "Audio Post", link: "/elements/blog-posts" },
           { name: "Gallery Post", link: "/elements/blog-posts" },
@@ -297,7 +297,7 @@ const footerData = {
         { id: 1, name: "New Arrivals", link: "/shop" },
         { id: 2, name: "Accessories", link: "/shop" },
         { id: 3, name: "Men", link: "/shop" },
-        { id: 4, name: "Women", link: "/shop"},
+        { id: 4, name: "Women", link: "/shop" },
         { id: 5, name: "Shop All", link: "/shop" },
       ],
     },
@@ -327,7 +327,6 @@ const shopList1 = [
   { id: 9, title: "SHOES", value: "shoes" },
 ];
 
-
 const homeTrendyFilters = [
   { label: "ALL", filter: ".all" },
   { label: "NEWARRIVALS", filter: ".newArrivals" },
@@ -335,5 +334,21 @@ const homeTrendyFilters = [
   { label: "TOP RATING", filter: ".topRating" },
 ];
 
+const sortOptions = [
+  { id: 1, value: "popularity", label: "Popularity" },
+  { id: 2, value: "rating", label: "Average rating" },
+  { id: 3, value: "latest", label: "Newness" },
+  { id: 4, value: "price-low", label: "Price: low to high" },
+  { id: 5, value: "price-high", label: "Price: high to low" },
+];
 
-export { navItems, quickLinks, cartItems, navTabsData, footerData, shopList1,homeTrendyFilters };
+export {
+  navItems,
+  quickLinks,
+  cartItems,
+  navTabsData,
+  footerData,
+  shopList1,
+  homeTrendyFilters,
+  sortOptions,
+};
