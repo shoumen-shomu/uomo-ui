@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Container from "@/component/common/Container";
-import { shopList1 } from "@/helper/projectArrayObj";
+import { shopList1, sortOptions } from "@/helper/projectArrayObj";
 import allIcons from "@/helper/iconProvider";
 import Product from "@/component/common/Product";
 import allImages from "@/helper/imagesProvider";
@@ -13,17 +13,37 @@ import Images from "@/component/common/Images";
 const ShopBanner = () => {
   const [visibleItems, setVisibleItems] = useState(36);
   const [open, isOpen] = useState(false);
-  // for images
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [selectedSort, setSelectedSort] = useState("default");
 
+  // for images and icons
+  const { chevronDown } = allIcons;
   const { shopBanner } = allImages;
 
+  const handleFilterOpen = () => {
+    setFilterOpen(!filterOpen);
+  };
+
   // for ref
+  const dropdownRef = useRef(null);
   const handleRef = useRef(null);
+
+  useEffect(() => {
+    const handleFilterClicked = (e) => {
+      //  Fixed: Check if click is outside the entire dropdown wrapper
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setFilterOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleFilterClicked);
+
+    return () => document.removeEventListener("click", handleFilterClicked);
+  }, []);
 
   useEffect(() => {
     const clicked = (e) => {
       if (handleRef.current && handleRef.current.contains(e.target)) {
-        console.log("Dom aChe!");
         isOpen(false);
       }
     };
@@ -33,9 +53,15 @@ const ShopBanner = () => {
     return () => document.removeEventListener("click", clicked);
   }, []);
 
-  // for hanndle event
+  // for handle event
   const handleOpen = () => {
     isOpen(!open);
+  };
+
+  //  Add handler for sort selection
+  const handleSortChange = (value) => {
+    setSelectedSort(value);
+    setFilterOpen(false);
   };
 
   const totalItems = 100;
@@ -46,10 +72,15 @@ const ShopBanner = () => {
       setVisibleItems((prev) => Math.min(prev + 12, totalItems));
     }
   };
-  //for icons & img
 
+  // for icons & img
   const { filter, close } = allIcons;
   const { shopimg } = allImages;
+
+  //  Get selected label
+  const selectedLabel =
+    sortOptions.find((opt) => opt.value === selectedSort)?.label ||
+    "DEFAULT SORTING";
 
   return (
     <section className="z-0">
@@ -105,36 +136,47 @@ const ShopBanner = () => {
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0">
             <p className="text-head texts_14_medium">HOME / THE SHOP</p>
             <div className="flex flex-wrap items-center gap-3 sm:gap-4 md:gap-5 lg:gap-x-7.5 w-full sm:w-auto">
-              {/* Filter part start */}
+              {/*  Filter part start - FIXED */}
+
+              <div ref={dropdownRef} className="relative">
+                {/*  Button is now inside the ref */}
+                <div
+                  onClick={handleFilterOpen}
+                  className="border-b-2 border-head text-head texts_14_medium flex items-center cursor-pointer gap-x-[10px]"
+                >
+                  {selectedLabel}{" "}
+                  <span
+                    className={`text-xl transition-transform ${
+                      filterOpen ? "rotate-180" : ""
+                    }`}
+                  >
+                    {chevronDown}
+                  </span>
+                </div>
+
+                {/*  Dropdown menu inside the ref */}
+                {filterOpen && (
+                  <div className="shadow-lg flex flex-col items-start left-0 top-10 absolute z-50 py-5 px-8 bg-white texts_14_medium !leading-[35px] min-w-[220px] border-2 border-footer rounded-md">
+                    {sortOptions.map((items) => {
+                      return (
+                        <button
+                          key={items.value}
+                          onClick={() => handleSortChange(items.value)}
+                          className={`cursor-pointer relative transition duration-500 ease-in-out ${
+                            selectedSort === items.value
+                              ? "text-second-red font-semibold"
+                              : "hover:translate-x-[10px] hover:text-second-red"
+                          }`}
+                        >
+                          {items.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
 
               {/* Filter part end */}
-
-              <select className="border-b-2 border-head flex-1 sm:flex-initial min-w-[160px]">
-                <option className="text-head texts_14_medium" value="default">
-                  Default Sorting
-                </option>
-                <option
-                  className="text-head texts_14_medium"
-                  value="popularity"
-                >
-                  Popularity
-                </option>
-                <option className="text-head texts_14_medium" value="rating">
-                  Average Rating
-                </option>
-                <option className="text-head texts_14_medium" value="latest">
-                  Latest
-                </option>
-                <option className="text-head texts_14_medium" value="price-low">
-                  Price: Low to High
-                </option>
-                <option
-                  className="text-head texts_14_medium"
-                  value="price-high"
-                >
-                  Price: High to Low
-                </option>
-              </select>
               <div className="hidden md:block h-6 w-0.5 bg-gray-300 cursor-pointer"></div>
               <div className="hidden md:flex justify-between items-center gap-x-3 cursor-pointer">
                 <button className="texts_14_medium text-head">VIEW</button>
