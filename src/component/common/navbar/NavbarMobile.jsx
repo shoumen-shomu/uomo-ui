@@ -19,6 +19,8 @@ import allImages from "@/helper/imagesProvider";
 import { navItems, navTabsData } from "@/helper/projectArrayObj";
 import AddToCart from "@/component/shopMain/addToCart/AddToCart";
 import useSearchingItems from "@/store/searchingItems";
+import usePriceValue from "@/store/PriceRanger";
+import useBrandItems from "@/store/Brand";
 
 const socialIcons = [
   { id: 1, icon: FaFacebookF, link: "https://www.facebook.com" },
@@ -64,6 +66,9 @@ const DrawerSearch = () => {
   const [searchValue, setSearchValue] = useState("");
   const [debounchValue, setDebounchValue] = useState("");
   const [catchDebounchValue, setCatchDebounchValue] = useState("");
+  // for handle event and manage state by justand & useState
+  const setMaxValue = usePriceValue((state) => state.setMaxValue);
+  const setBrandValue = useBrandItems((state) => state.setBrandValue);
 
   const handleChangeSearch = (e) => {
     setSearchValue(e.target.value);
@@ -72,11 +77,18 @@ const DrawerSearch = () => {
   const handleChangeClicked = () => {
     setCatchDebounchValue(debounchValue);
     setSearchValue("");
+
+    setMaxValue(1000000);
+    setBrandValue([]);
+    setCategoryItem("");
   };
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       setCatchDebounchValue(debounchValue);
       setSearchValue("");
+      setMaxValue(1000000);
+      setBrandValue([]);
+      setCategoryItem("");
     }
   };
 

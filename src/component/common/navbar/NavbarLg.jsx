@@ -11,14 +11,18 @@ import Login from "../../auth/Login";
 import AddToCart from "../../shopMain/addToCart/AddToCart";
 import NavTabs from "../../navtabs/NavTabs";
 import useSearchingItems from "@/store/searchingItems";
+import useCategory from "@/store/category";
+import useBrandItems from "@/store/Brand";
+import usePriceValue from "@/store/PriceRanger";
 
 const NavbarLg = () => {
   // for handle event and manage state by justand & useState
-
-  const searchValues = useSearchingItems((state) => state.searchValues);
+  const setMaxValue = usePriceValue((state) => state.setMaxValue);
+  const setBrandValue = useBrandItems((state) => state.setBrandValue);
   const setSearchingValue = useSearchingItems(
     (state) => state.setSearchingValue,
   );
+  const setCategoryItem = useCategory((state) => state.setCategoryItem);
 
   const [searchValue, setSearchValue] = useState("");
   const [debounchValue, setDebounchValue] = useState("");
@@ -31,11 +35,17 @@ const NavbarLg = () => {
   const handleChangeClicked = () => {
     setCatchDebounchValue(debounchValue);
     setSearchValue("");
+    setMaxValue(1000000);
+    setBrandValue([]);
+    setCategoryItem("");
   };
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       setCatchDebounchValue(debounchValue);
       setSearchValue("");
+      setMaxValue(1000000);
+      setBrandValue([]);
+      setCategoryItem("");
     }
   };
 

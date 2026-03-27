@@ -3,6 +3,7 @@ import allIcons from "@/helper/iconProvider";
 import useBrandItems from "@/store/Brand";
 import useCategory from "@/store/category";
 import usePriceValue from "@/store/PriceRanger";
+import useSearchingItems from "@/store/searchingItems";
 import React, { useEffect, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { IoSearchOutline } from "react-icons/io5";
@@ -24,10 +25,23 @@ const XIcon = () => (
 );
 
 const ShopFilter = ({ onClose }) => {
-  const { category, setCategoryItem } = useCategory();
+  // for zustand stroage
+  const setMaxValue = usePriceValue((state) => state.setMaxValue);
+  const setBrandValue = useBrandItems((state) => state.setBrandValue);
+  const setSearchingValue = useSearchingItems(
+    (state) => state.setSearchingValue,
+  );
+  const setCategoryItem = useCategory((state) => state.setCategoryItem);
+  const category = useCategory((state) => state.category);
+
+  const brandValue = useBrandItems((state) => state.brandValue);
+  const maxValue = usePriceValue((state) => state.maxValue);
 
   const handleCategory = (items) => {
-    setCategoryItem(items);
+    setCategoryItem(category === items ? "" : items);
+    setMaxValue(1000000);
+    setBrandValue([]);
+    setSearchingValue("");
   };
 
   const {
@@ -53,16 +67,11 @@ const ShopFilter = ({ onClose }) => {
 
   const [selectedColors, setSelectedColors] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
-  const [selectedBrands, setSelectedBrands] = useState([]);
+  // const [selectedBrands, setSelectedBrands] = useState([]);
   const [priceMax, setPriceMax] = useState(1000000);
   const [brandSearch, setBrandSearch] = useState("");
   const [activeFilters, setActiveFilters] = useState([]);
-
-  const setMaxValue = usePriceValue((state) => state.setMaxValue);
-  const setBrandValue = useBrandItems((state) => state.setBrandValue);
-  const brandValue = useBrandItems((state) => state.brandValue);
-  const maxValue = usePriceValue((state) => state.maxValue);
-
+  const selectedBrands = useBrandItems((state) => state.brandValue);
   useEffect(() => {
     setBrandValue(selectedBrands);
   }, [selectedBrands]);
@@ -130,10 +139,13 @@ const ShopFilter = ({ onClose }) => {
       prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s],
     );
 
-  const toggleBrand = (name) =>
-    setSelectedBrands((prev) =>
-      prev.includes(name) ? prev.filter((x) => x !== name) : [...prev, name],
-    );
+  const toggleBrand = (name) => {
+    if (brandValue.includes(name)) {
+      setBrandValue(brandValue.filter((b) => b !== name));
+    } else {
+      setBrandValue([...brandValue, name]);
+    }
+  };
 
   return (
     <div className="max-w-105 bg-white h-full shadow-lg flex flex-col overflow-hidden">
@@ -272,8 +284,13 @@ const ShopFilter = ({ onClose }) => {
                     <span className="flex items-center gap-2 texts_14_medium text-head">
                       <input
                         type="checkbox"
-                        checked={selectedBrands.includes(name)}
-                        onChange={() => toggleBrand(name)}
+                        checked={brandValue.includes(name)}
+                        onChange={() => {
+                          toggleBrand(name);
+                          setCategoryItem("");
+                          setMaxValue(1000000);
+                          setSearchingValue("");
+                        }}
                         className="w-3.5 h-3.5 cursor-pointer accent-head"
                       />
                       {name}
