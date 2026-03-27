@@ -69,10 +69,10 @@ const Product = ({
               <p className="texts_16_regular text-head">${itemPrice}</p>
             )}
           </div>
-        </div>
+              </div>
         {/* Product Description End */}
       </div>
-    </>
+    </>     
   );
 };
 
