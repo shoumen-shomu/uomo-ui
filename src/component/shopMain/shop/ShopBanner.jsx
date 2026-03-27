@@ -9,6 +9,7 @@ import ShopFilter from "./ShopFilter";
 import Images from "@/component/common/Images";
 import useAllProduct from "@/coustomHook/useAllProduct";
 import ShopAllProdVirtual from "@/component/common/ShopAllProdVirtual";
+import useShortItem from "@/store/short";
 
 const ShopBanner = () => {
   // for api and mamage RTQ
@@ -21,6 +22,14 @@ const ShopBanner = () => {
   const [open, isOpen] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
   const [selectedSort, setSelectedSort] = useState("default");
+
+  // for short items
+  const shortItem = useShortItem((state) => state.shortItem);
+  const setShortItem = useShortItem((state) => state.setShortItem);
+  
+  useEffect(() => {
+    setShortItem(selectedSort);
+  }, [selectedSort]);
 
   // for images and icons
   const { chevronDown } = allIcons;
