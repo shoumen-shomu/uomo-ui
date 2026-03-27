@@ -12,17 +12,25 @@ import "swiper/css/navigation";
 import { useState } from "react";
 import AddToCart from "../addToCart/AddToCart";
 import { Link } from "react-router-dom";
+import useCartStore from "@/store/cartSlice";
 
 const Top = ({ product }) => {
   // for manage state
   let [count, setCount] = useState(3);
   const [open, isOpen] = useState(false);
 
+  // for zustand state
+  const addToCart = useCartStore((state) => state.addToCart);
+
+ 
+
   const handleUnMount = (value) => {
     isOpen(value);
   };
   const handleShow = () => {
+    if (!product?.id) return;
     isOpen(true);
+    addToCart(product);
   };
 
   const handleMinus = () => {
