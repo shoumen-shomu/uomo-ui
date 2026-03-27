@@ -92,6 +92,7 @@ const LimitedEdition = () => {
                       catagory={items?.catagory}
                       itemName={items?.title}
                       itemPrice={items?.price}
+                      id={items?.id}
                     />
                   </SwiperSlide>
                 );
@@ -121,81 +122,20 @@ const LimitedEdition = () => {
                 nextEl: ".xs-swiper-button-next",
               }}
             >
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Hub Accent Mirror"}
-                  itemPrice={"29"}
-                />
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Hosking Blue Area Rug"}
-                  itemPrice={"62"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Hanneman Pouf"}
-                  itemPrice={"17"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Cushion Futon Slipcover"}
-                  itemPrice={"129"}
-                  discountPrice={"99"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Hanneman Pouf"}
-                  itemPrice={"17"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Hub Accent Mirror"}
-                  itemPrice={"29"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Hosking Blue Area Rug"}
-                  itemPrice={"62"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Cushion Futon Slipcover"}
-                  itemPrice={"129"}
-                  discountPrice={"99"}
-                />
-              </SwiperSlide>
+              {productData?.map((items, index) => {
+                return (
+                  <SwiperSlide key={index}>
+                    <Product
+                      imgSrc={items?.thumbnail}
+                      imgAlt={items?.thumbnail}
+                      catagory={items?.catagory}
+                      itemName={items?.title}
+                      itemPrice={items?.price}
+                      id={items?.id}
+                    />
+                  </SwiperSlide>
+                );
+              })}
             </Swiper>
           </div>
           <div className=" hidden  md:block lg:hidden mt-5 flex flex-row gap-7.5 relative">
@@ -220,81 +160,20 @@ const LimitedEdition = () => {
                 nextEl: ".md-swiper-button-next",
               }}
             >
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Hub Accent Mirror"}
-                  itemPrice={"29"}
-                />
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Hosking Blue Area Rug"}
-                  itemPrice={"62"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Hanneman Pouf"}
-                  itemPrice={"17"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Cushion Futon Slipcover"}
-                  itemPrice={"129"}
-                  discountPrice={"99"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Hanneman Pouf"}
-                  itemPrice={"17"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Hub Accent Mirror"}
-                  itemPrice={"29"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Hosking Blue Area Rug"}
-                  itemPrice={"62"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Product
-                  imgSrc={producttwo}
-                  imgAlt={producttwo}
-                  catagory={"Dresses"}
-                  itemName={"Cushion Futon Slipcover"}
-                  itemPrice={"129"}
-                  discountPrice={"99"}
-                />
-              </SwiperSlide>
+              {productData?.map((items, index) => {
+                return (
+                  <SwiperSlide key={index}>
+                    <Product
+                      imgSrc={items?.thumbnail}
+                      imgAlt={items?.thumbnail}
+                      catagory={items?.catagory}
+                      itemName={items?.title}
+                      itemPrice={items?.price}
+                      id={items?.id}
+                    />
+                  </SwiperSlide>
+                );
+              })}
             </Swiper>
           </div>
         </Container>
@@ -303,4 +182,4 @@ const LimitedEdition = () => {
   );
 };
 
-export default LimitedEdition; /*  */
+export default LimitedEdition;
