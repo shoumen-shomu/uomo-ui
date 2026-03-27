@@ -129,12 +129,14 @@ const ShopAllProdVirtual = ({ allProductItems }) => {
                   return (
                     <Product
                       key={`${virtualItem.key}-${index}`}
-                      imgAlt={items.title}
-                      catagory={items.catagory}
-                      itemName={items.title}
-                      itemPrice={items.price}
-                      discountPrice={items.discount}
-                      imgSrc={items.thumbnail}
+                      imgAlt={items?.title}
+                      catagory={items?.catagory}
+                      itemName={items?.title}
+                      itemPrice={items?.price}
+                      discountPrice={items?.discount}
+                      imgSrc={items?.thumbnail}
+                      id={items?.id}
+                      product={items}
                     />
                   );
                 })}

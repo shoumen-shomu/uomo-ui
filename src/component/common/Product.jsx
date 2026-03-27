@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Images from "./Images";
 import { FaHeart } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import useWishlistStore from "@/store/wishlist";
 
 const Product = ({
   imgSrc,
@@ -10,8 +11,36 @@ const Product = ({
   itemName,
   itemPrice,
   discountPrice,
+  id,
+  product,
 }) => {
-  const [isLiked, setIsLiked] = useState(false);
+  const addToWishlist = useWishlistStore((state) => state.addToWishlist);
+  const removeFromWishlist = useWishlistStore(
+    (state) => state.removeFromWishlist,
+  );
+  const isLiked = useWishlistStore((state) =>
+    state.wishlistItems.some((i) => i.id === id),
+  );
+
+  const handleWishlist = () => {
+    console.log("clicked, id:", id);
+    console.log("isLiked:", isLiked);
+
+    if (isLiked) {
+      removeFromWishlist(id);
+    } else {
+      const itemToAdd = product || {
+        id,
+        title: itemName,
+        price: itemPrice,
+        category: catagory,
+        thumbnail: imgSrc,
+      };
+      console.log("adding to wishlist:", itemToAdd); // ← এটা দেখুন
+      addToWishlist(itemToAdd);
+      console.log("added!"); // ← এটা print হচ্ছে?
+    }
+  };
 
   return (
     <>
@@ -22,29 +51,20 @@ const Product = ({
             imgSrc={imgSrc}
             imgAlt={imgAlt}
           />
-          {/* Badge Start */}
-
           {/* Add To Cart Start */}
-
           <Link
-            to={"/shop-single"}
+            to={`/shop-single/${id}`}
             className="texts_14_medium text-head bg-white  w-full pt-4 pb-2.5 text-center absolute  bottom-4 left-1/2 -translate-x-1/2 translate-y-[50%] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 ease-in-out duration-500 whitespace-nowrap cursor-pointer"
           >
             ADD TO CART
           </Link>
-
           {/* Add To Cart End*/}
         </div>
-
         {/* Product Description Start */}
         <div className="mt-3.5">
           <div className="flex justify-between items-center">
             <p className="texts_14_regular text-second">{catagory}</p>
-
-            <div
-              onClick={() => setIsLiked(!isLiked)}
-              className="cursor-pointer"
-            >
+            <div onClick={handleWishlist} className="cursor-pointer">
               {isLiked ? (
                 <FaHeart className="text-red cursor-pointer" size={14} />
               ) : (
@@ -69,10 +89,10 @@ const Product = ({
               <p className="texts_16_regular text-head">${itemPrice}</p>
             )}
           </div>
-              </div>
+        </div>
         {/* Product Description End */}
       </div>
-    </>     
+    </>
   );
 };
 

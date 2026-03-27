@@ -13,11 +13,6 @@ const useFilteredProducts = (allProducts) => {
   const maxValue = usePriceValue((state) => state.maxValue);
   const shortItem = useShortItem((state) => state.shortItem);
 
-  console.log("Search:", searchValues);
-  console.log("Category:", category);
-  console.log("Brand:", brandValue);
-  console.log("Max Price:", maxValue);
-  console.log("Sort:", shortItem);
 
   const filtered = useMemo(() => {
     if (!allProducts) return [];

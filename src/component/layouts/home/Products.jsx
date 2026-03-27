@@ -105,10 +105,12 @@ const Products = () => {
                 <div key={index} className={`mix ${categoryClasses}`}>
                   <Product
                     imgSrc={items?.thumbnail}
-                    imgAlt={items.title}
-                    catagory={items.category}
-                    itemName={items.title}
-                    itemPrice={items.price}
+                    imgAlt={items?.title}
+                    catagory={items?.category}
+                    itemName={items?.title}
+                    itemPrice={items?.price}
+                    id={items?.id}
+                    product={items}
                   />
                 </div>
               );

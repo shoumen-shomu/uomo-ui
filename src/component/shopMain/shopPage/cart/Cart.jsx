@@ -2,73 +2,33 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
-import { create } from "zustand";
 import { FiPlus } from "react-icons/fi";
 import { FaMinus } from "react-icons/fa6";
 import { LiaDollarSignSolid } from "react-icons/lia";
-
-// ─── Dummy Products ────────────────────────────────────────────────────────────
-const DUMMY_ITEMS = [
-  {
-    id: 1,
-    title: "Zessi Dresses",
-    price: 99,
-    quantity: 3,
-    thumbnail: "https://placehold.co/80x80/d1d5db/9ca3af",
-  },
-  {
-    id: 2,
-    title: "Kirby T-Shirt",
-    price: 99,
-    quantity: 3,
-    color: "Yellow",
-    size: "L",
-    thumbnail: "https://placehold.co/80x80/d1d5db/9ca3af",
-  },
-  {
-    id: 3,
-    title: "Cableknit Shawl",
-    price: 99,
-    quantity: 3,
-    thumbnail: "https://placehold.co/80x80/d1d5db/9ca3af",
-  },
-];
-
-// ─── Zustand Store ─────────────────────────────────────────────────────────────
-export const useCartStore = create((set) => ({
-  items: DUMMY_ITEMS,
-  addToCart: (product) =>
-    set((state) => {
-      const existing = state.items.find((i) => i.id === product.id);
-      if (existing) {
-        return {
-          items: state.items.map((i) =>
-            i.id === product.id ? { ...i, quantity: i.quantity + 1 } : i,
-          ),
-        };
-      }
-      return { items: [...state.items, { ...product, quantity: 1 }] };
-    }),
-  removeCart: (id) =>
-    set((state) => ({ items: state.items.filter((i) => i.id !== id) })),
-  updateQuantity: (id, quantity) =>
-    set((state) => ({
-      items: state.items.map((i) => (i.id === id ? { ...i, quantity } : i)),
-    })),
-  clearCart: () => set({ items: [] }),
-}));
+import useCartStore from "@/store/cartSlice";
 
 // ─── Main Cart ─────────────────────────────────────────────────────────────────
 const Cart = () => {
-  const { items: cartItems, removeCart, updateQuantity } = useCartStore();
+  const cartItems = useCartStore((state) => state.cartItems);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const updateQuantity = useCartStore((state) => state.updateQuantity);
+  const clearCart = useCartStore((state) => state.clearCart);
 
-  const increment = (item) => updateQuantity(item.id, item.quantity + 1);
+  const increment = (item) => updateQuantity(item.id, (item.quantity || 1) + 1);
   const decrement = (item) => {
-    if (item.quantity > 1) updateQuantity(item.id, item.quantity - 1);
+    if ((item.quantity || 1) > 1) updateQuantity(item.id, item.quantity - 1);
+  };
+
+  // image বের করার helper
+  const getImage = (item) => {
+    if (item.thumbnail) return item.thumbnail;
+    if (item.image) return item.image;
+    if (item.images?.length > 0) return item.images[0];
+    return "https://placehold.co/80x80/d1d5db/9ca3af";
   };
 
   const subtotal = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
+    (acc, item) => acc + item.price * (item.quantity || 1),
     0,
   );
   const vat = Math.round(subtotal * 0.015);
@@ -103,9 +63,7 @@ const Cart = () => {
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ delay: index * 0.04 }}
                   className="
-                    /* mobile: stack vertically */
                     flex flex-col gap-3
-                    /* md+: back to gridhobe */
                     md:grid md:grid-cols-[3fr_0.8fr_1.2fr_0.8fr_30px] md:gap-4 md:items-center
                     py-5 md:py-7.5
                     border-b border-[#E4E4E4] border-t
@@ -117,13 +75,13 @@ const Cart = () => {
                     <div className="shrink-0">
                       <img
                         className="w-16 h-16 md:w-30 md:h-30 object-cover bg-gray-200 rounded-sm"
-                        src={cart.thumbnail}
-                        alt={cart.title}
+                        src={getImage(cart)}
+                        alt={cart.title || cart.name}
                       />
                     </div>
                     <div>
                       <h3 className="text-[14px] md:text-[16px] font-normal text-head">
-                        {cart.title}
+                        {cart.title || cart.name}
                       </h3>
                       {cart.color && (
                         <p className="text-[12px] md:text-[13px] text-gray-500 mt-0.5">
@@ -158,7 +116,7 @@ const Cart = () => {
                         <FaMinus />
                       </button>
                       <span className="flex-1 text-center text-[13px] md:text-[14px] select-none">
-                        {cart.quantity}
+                        {cart.quantity || 1}
                       </span>
                       <button
                         onClick={() => increment(cart)}
@@ -174,13 +132,13 @@ const Cart = () => {
                     <span className="text-[12px] font-medium text-gray-400 md:hidden">Subtotal</span>
                     <span className="text-[14px] md:text-[16px] font-medium flex items-center text-head justify-start">
                       <LiaDollarSignSolid />
-                      {(cart.price * cart.quantity).toFixed(0)}
+                      {(cart.price * (cart.quantity || 1)).toFixed(0)}
                     </span>
                   </div>
 
                   {/* Remove */}
                   <button
-                    onClick={() => removeCart(cart.id)}
+                    onClick={() => removeFromCart(cart.id)}
                     className="absolute top-4 right-0 md:static text-gray-400 hover:text-[#DB4444] transition-colors cursor-pointer"
                   >
                     <IoCloseOutline className="text-[20px]" />
@@ -207,6 +165,7 @@ const Cart = () => {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={clearCart}
                 className="pt-5.5 pb-3.5 px-6 md:px-13.75 text-sm font-medium text-head bg-[#E4E4E4] hover:bg-[#DB4444] hover:text-white transition-all select-none whitespace-nowrap cursor-pointer"
               >
                 UPDATE CART
@@ -232,7 +191,7 @@ const Cart = () => {
                 </span>
                 <span className="text-[14px] font-medium flex items-center pb-3.25">
                   <LiaDollarSignSolid />
-                  {subtotal}
+                  {subtotal.toFixed(2)}
                 </span>
               </div>
 
@@ -287,7 +246,7 @@ const Cart = () => {
                   Total
                 </span>
                 <span className="text-sm text-head leading-6 font-medium">
-                  ${total}
+                  ${total.toFixed(2)}
                 </span>
               </div>
             </motion.div>
@@ -329,7 +288,7 @@ const Cart = () => {
             Add some products to your cart to see them here.
           </p>
           <Link
-            to="/"
+            to="/shop"
             className="bg-[#DB4444] text-white px-10 py-3 rounded-sm hover:bg-black transition-all text-[14px] font-bold"
           >
             Go Shopping
