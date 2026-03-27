@@ -1,7 +1,8 @@
 import useAllProduct from "@/coustomHook/useAllProduct";
 import allIcons from "@/helper/iconProvider";
 import useCategory from "@/store/category";
-import React, { useState } from "react";
+import usePriceValue from "@/store/PriceRanger";
+import React, { useEffect, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { IoSearchOutline } from "react-icons/io5";
 
@@ -58,13 +59,22 @@ const ShopFilter = ({ onClose }) => {
   const [selectedColors, setSelectedColors] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState(["Zara"]);
-  const [priceMax, setPriceMax] = useState(493);
+  const [priceMax, setPriceMax] = useState(1000000);
   const [brandSearch, setBrandSearch] = useState("");
   const [activeFilters, setActiveFilters] = useState([
     { id: "blues", label: "BLUES" },
     { id: "maxprice", label: "MAX PRICE: $493" },
     { id: "zara", label: "Zara" },
   ]);
+
+  //  for price ranger & state management zustand
+
+  const setMaxValue = usePriceValue((state) => state.setMaxValue);
+  const maxValue = usePriceValue((state) => state.maxValue);
+
+  useEffect(() => {
+    setMaxValue(priceMax);
+  }, [priceMax]);
 
   const toggle = (section) =>
     setOpen((prev) => ({ ...prev, [section]: !prev[section] }));
@@ -290,14 +300,14 @@ const ShopFilter = ({ onClose }) => {
             <div className="mt-[23px]">
               <input
                 type="range"
-                min="29"
-                max="937"
+                min="1"
+                max="1000000"
                 value={priceMax}
                 onChange={(e) => setPriceMax(Number(e.target.value))}
                 className="w-full accent-head cursor-pointer"
               />
               <div className="flex justify-between texts_14_medium text-head mt-2">
-                <span>Min Price: $29</span>
+                <span>Min Price: $1</span>
                 <span>Max: ${priceMax}</span>
               </div>
             </div>
