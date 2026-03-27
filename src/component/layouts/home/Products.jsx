@@ -110,6 +110,7 @@ const Products = () => {
                     itemName={items?.title}
                     itemPrice={items?.price}
                     id={items?.id}
+                    product={items}
                   />
                 </div>
               );

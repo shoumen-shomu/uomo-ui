@@ -136,6 +136,7 @@ const ShopAllProdVirtual = ({ allProductItems }) => {
                       discountPrice={items?.discount}
                       imgSrc={items?.thumbnail}
                       id={items?.id}
+                      product={items}
                     />
                   );
                 })}

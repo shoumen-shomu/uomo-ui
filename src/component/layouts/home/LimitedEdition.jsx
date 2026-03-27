@@ -170,6 +170,7 @@ const LimitedEdition = () => {
                       itemName={items?.title}
                       itemPrice={items?.price}
                       id={items?.id}
+                      product={items}
                     />
                   </SwiperSlide>
                 );

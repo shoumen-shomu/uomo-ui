@@ -28,6 +28,7 @@ const Trend_product = () => {
               itemName={item?.title}
               itemPrice={item?.price}
               id={item?.id}
+              product={item}
               discountPrice={
                 item?.discountPercentage
                   ? (
