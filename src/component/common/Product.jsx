@@ -10,6 +10,7 @@ const Product = ({
   itemName,
   itemPrice,
   discountPrice,
+  id,
 }) => {
   const [isLiked, setIsLiked] = useState(false);
 
@@ -27,7 +28,7 @@ const Product = ({
           {/* Add To Cart Start */}
 
           <Link
-            to={"/shop-single"}
+            to={`/shop-single/${id}`}
             className="texts_14_medium text-head bg-white  w-full pt-4 pb-2.5 text-center absolute  bottom-4 left-1/2 -translate-x-1/2 translate-y-[50%] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 ease-in-out duration-500 whitespace-nowrap cursor-pointer"
           >
             ADD TO CART
@@ -69,10 +70,10 @@ const Product = ({
               <p className="texts_16_regular text-head">${itemPrice}</p>
             )}
           </div>
-              </div>
+        </div>
         {/* Product Description End */}
       </div>
-    </>     
+    </>
   );
 };
 

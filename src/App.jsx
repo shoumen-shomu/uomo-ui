@@ -30,7 +30,7 @@ import LookBookPg from "./page/LookBookPg";
 import AboutPg from "./page/AboutPg";
 import ContactUsPg from "./page/ContactUsPg";
 import StoreLocatorPg from "./page/StoreLocatorPg";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const router = createBrowserRouter([
   {
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
 
       // for shop page route
       { path: "shop", element: <Shop /> },
-      { path: "shop-single", element: <ShopSinglePg /> },
+      { path: "/shop-single/:id", element: <ShopSinglePg /> },
       { path: "contact", element: <ContactUsPg /> },
       { path: "store-locator", element: <StoreLocatorPg /> },
 
