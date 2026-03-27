@@ -1,5 +1,10 @@
+import useAllProduct from "@/coustomHook/useAllProduct";
 import allIcons from "@/helper/iconProvider";
-import React, { useState } from "react";
+import useBrandItems from "@/store/Brand";
+import useCategory from "@/store/category";
+import usePriceValue from "@/store/PriceRanger";
+import useSearchingItems from "@/store/searchingItems";
+import React, { useEffect, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { IoSearchOutline } from "react-icons/io5";
 
@@ -20,7 +25,35 @@ const XIcon = () => (
 );
 
 const ShopFilter = ({ onClose }) => {
-  //  for icons
+  // for zustand stroage
+  const setMaxValue = usePriceValue((state) => state.setMaxValue);
+  const setBrandValue = useBrandItems((state) => state.setBrandValue);
+  const setSearchingValue = useSearchingItems(
+    (state) => state.setSearchingValue,
+  );
+  const setCategoryItem = useCategory((state) => state.setCategoryItem);
+  const category = useCategory((state) => state.category);
+
+  const brandValue = useBrandItems((state) => state.brandValue);
+  const maxValue = usePriceValue((state) => state.maxValue);
+
+  const handleCategory = (items) => {
+    setCategoryItem(category === items ? "" : items);
+    setMaxValue(1000000);
+    setBrandValue([]);
+    setSearchingValue("");
+  };
+
+  const {
+    data: allProductData,
+    isError: allProductDataError,
+    isLoading: allProcutDataLoading,
+  } = useAllProduct();
+
+  const uniqueCategories = React.useMemo(() => {
+    if (!allProductData) return [];
+    return [...new Set(allProductData.map((item) => item.category))];
+  }, [allProductData]);
 
   const { close } = allIcons;
 
@@ -34,14 +67,18 @@ const ShopFilter = ({ onClose }) => {
 
   const [selectedColors, setSelectedColors] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
-  const [selectedBrands, setSelectedBrands] = useState(["Zara"]);
-  const [priceMax, setPriceMax] = useState(493);
+  // const [selectedBrands, setSelectedBrands] = useState([]);
+  const [priceMax, setPriceMax] = useState(1000000);
   const [brandSearch, setBrandSearch] = useState("");
-  const [activeFilters, setActiveFilters] = useState([
-    { id: "blues", label: "BLUES" },
-    { id: "maxprice", label: "MAX PRICE: $493" },
-    { id: "zara", label: "Zara" },
-  ]);
+  const [activeFilters, setActiveFilters] = useState([]);
+  const selectedBrands = useBrandItems((state) => state.brandValue);
+  useEffect(() => {
+    setBrandValue(selectedBrands);
+  }, [selectedBrands]);
+
+  useEffect(() => {
+    setMaxValue(priceMax);
+  }, [priceMax]);
 
   const toggle = (section) =>
     setOpen((prev) => ({ ...prev, [section]: !prev[section] }));
@@ -59,18 +96,26 @@ const ShopFilter = ({ onClose }) => {
 
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
-  const brands = [
-    { name: "Adidas", count: 2 },
-    { name: "Balmain", count: 7 },
-    { name: "Balenciaga", count: 10 },
-    { name: "Burberry", count: 39 },
-    { name: "Kenzo", count: 95 },
-    { name: "Givenchy", count: 1092 },
-    { name: "Zara", count: 48 },
-  ];
+  const productBrandRefine = (productData) => {
+    if (!productData) return {};
 
-  const filteredBrands = brands.filter((b) =>
-    b.name.toLowerCase().includes(brandSearch.toLowerCase()),
+    return productData.reduce((acc, product) => {
+      let brand = product?.brand || "Unknown Brand";
+
+      if (acc[brand]) {
+        acc[brand] = acc[brand] + 1;
+      } else {
+        acc[brand] = 1;
+      }
+
+      return acc;
+    }, {});
+  };
+
+  const filteredBrand = productBrandRefine(allProductData);
+
+  const filteredBrandEntries = Object.entries(filteredBrand).filter(([name]) =>
+    name.toLowerCase().includes(brandSearch.toLowerCase()),
   );
 
   const removeFilter = (id) =>
@@ -81,7 +126,7 @@ const ShopFilter = ({ onClose }) => {
     setSelectedColors([]);
     setSelectedSizes([]);
     setSelectedBrands([]);
-    setPriceMax(937);
+    setPriceMax(1000000);
   };
 
   const toggleColor = (id) =>
@@ -94,13 +139,16 @@ const ShopFilter = ({ onClose }) => {
       prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s],
     );
 
-  const toggleBrand = (name) =>
-    setSelectedBrands((prev) =>
-      prev.includes(name) ? prev.filter((x) => x !== name) : [...prev, name],
-    );
+  const toggleBrand = (name) => {
+    if (brandValue.includes(name)) {
+      setBrandValue(brandValue.filter((b) => b !== name));
+    } else {
+      setBrandValue([...brandValue, name]);
+    }
+  };
 
   return (
-    <div className="max-w-105  bg-white  h-full shadow-lg flex flex-col overflow-hidden">
+    <div className="max-w-105 bg-white h-full shadow-lg flex flex-col overflow-hidden">
       {/* Header */}
       <div className="flex justify-between items-center bg-footer pt-8.25 pb-6.5 pl-10 pr-10 shrink-0">
         <h3 className="texts_16_medium text-head uppercase">Filter By</h3>
@@ -124,30 +172,25 @@ const ShopFilter = ({ onClose }) => {
           </button>
           {open.categories && (
             <div className="grid grid-cols-2 gap-y-2.5 mt-3.5">
-              {[
-                "Dresses",
-                "Shorts",
-                "Sweatshirts",
-                "Swimwear",
-                "Jackets",
-                "T-Shirts & Tops",
-                "Jeans",
-                "Trousers",
-                "Men",
-                "Jumpers & Cardigans",
-              ].map((cat) => (
-                <span
-                  key={cat}
-                  className="texts_14_medium text-head cursor-pointer"
-                >
-                  {cat}
-                </span>
-              ))}
+              {uniqueCategories?.map((cat) => {
+                const active = cat === category;
+                return (
+                  <button
+                    key={cat}
+                    className={` capitalize texts_14_medium text-start cursor-pointer  ${
+                      active ? "text-second-red" : "text-head"
+                    }`}
+                    onClick={() => handleCategory(cat)}
+                  >
+                    {cat}
+                  </button>
+                );
+              })}
             </div>
           )}
         </div>
 
-        <div className=" mx-10" />
+        <div className="mx-10" />
 
         {/* Color */}
         <div className="pl-10 pt-9.5 pr-10 pb-4">
@@ -166,7 +209,7 @@ const ShopFilter = ({ onClose }) => {
                   onClick={() => toggleColor(color.id)}
                   className={`w-4 h-4 rounded-full ${color.bg} cursor-pointer ${
                     selectedColors.includes(color.id)
-                      ? "ring-2  ring-head ring-offset-3"
+                      ? "ring-2 ring-head ring-offset-3"
                       : ""
                   }`}
                 />
@@ -175,7 +218,7 @@ const ShopFilter = ({ onClose }) => {
           )}
         </div>
 
-        <div className=" mx-10" />
+        <div className="mx-10" />
 
         {/* Sizes */}
         <div className="pl-10 pt-9.5 pr-10 pb-4">
@@ -205,7 +248,7 @@ const ShopFilter = ({ onClose }) => {
           )}
         </div>
 
-        <div className=" mx-10" />
+        <div className="mx-10" />
 
         {/* Brands */}
         <div className="pl-10 pt-9.5 pr-10 pb-4">
@@ -232,24 +275,28 @@ const ShopFilter = ({ onClose }) => {
                 </span>
               </div>
 
-              {/* Brand list */}
               <div className="flex flex-col">
-                {filteredBrands.map((brand) => (
+                {filteredBrandEntries.map(([name, count]) => (
                   <label
-                    key={brand.name}
+                    key={name}
                     className="flex justify-between items-center py-2.5 cursor-pointer"
                   >
                     <span className="flex items-center gap-2 texts_14_medium text-head">
                       <input
                         type="checkbox"
-                        checked={selectedBrands.includes(brand.name)}
-                        onChange={() => toggleBrand(brand.name)}
+                        checked={brandValue.includes(name)}
+                        onChange={() => {
+                          toggleBrand(name);
+                          setCategoryItem("");
+                          setMaxValue(1000000);
+                          setSearchingValue("");
+                        }}
                         className="w-3.5 h-3.5 cursor-pointer accent-head"
                       />
-                      {brand.name}
+                      {name}
                     </span>
                     <span className="texts_14_regular text-second">
-                      {brand.count}
+                      {count}
                     </span>
                   </label>
                 ))}
@@ -258,7 +305,7 @@ const ShopFilter = ({ onClose }) => {
           )}
         </div>
 
-        <div className=" mx-10" />
+        <div className="mx-10" />
 
         {/* Price */}
         <div className="pl-10 pt-9.5 pr-10 pb-4">
@@ -273,14 +320,14 @@ const ShopFilter = ({ onClose }) => {
             <div className="mt-[23px]">
               <input
                 type="range"
-                min="29"
-                max="937"
+                min="1"
+                max="1000000"
                 value={priceMax}
                 onChange={(e) => setPriceMax(Number(e.target.value))}
                 className="w-full accent-head cursor-pointer"
               />
               <div className="flex justify-between texts_14_medium text-head mt-2">
-                <span>Min Price: $29</span>
+                <span>Min Price: $1</span>
                 <span>Max: ${priceMax}</span>
               </div>
             </div>

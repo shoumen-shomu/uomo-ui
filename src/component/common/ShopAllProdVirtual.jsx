@@ -159,8 +159,6 @@ const ShopAllProdVirtual = ({ allProductItems }) => {
           }
           className="h-full w-full bg-[#E4E4E4] [&>div]:bg-black transition-all duration-500 items-center rounded-[10px]"
         />
-
-        
       </div>
     </div>
   );
