@@ -1,4 +1,6 @@
+import useAllProduct from "@/coustomHook/useAllProduct";
 import allIcons from "@/helper/iconProvider";
+import useCategory from "@/store/category";
 import React, { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { IoSearchOutline } from "react-icons/io5";
@@ -20,8 +22,29 @@ const XIcon = () => (
 );
 
 const ShopFilter = ({ onClose }) => {
-  //  for icons
+  // for state , handle event and Zustand
+  const { category, setCategoryItem } = useCategory();
 
+  const handleCategory = (items) => {
+    setCategoryItem(items);
+  };
+
+  // for api data
+
+  const {
+    data: allProductData,
+    isError: allProductDataError,
+    isLoading: allProcutDataLoading,
+  } = useAllProduct();
+
+  // for category
+  const uniqueCategories = React.useMemo(() => {
+    if (!allProductData) return [];
+
+    return [...new Set(allProductData.map((item) => item.category))];
+  }, [allProductData]);
+
+  //  for icons
   const { close } = allIcons;
 
   const [open, setOpen] = useState({
@@ -124,25 +147,19 @@ const ShopFilter = ({ onClose }) => {
           </button>
           {open.categories && (
             <div className="grid grid-cols-2 gap-y-2.5 mt-3.5">
-              {[
-                "Dresses",
-                "Shorts",
-                "Sweatshirts",
-                "Swimwear",
-                "Jackets",
-                "T-Shirts & Tops",
-                "Jeans",
-                "Trousers",
-                "Men",
-                "Jumpers & Cardigans",
-              ].map((cat) => (
-                <span
-                  key={cat}
-                  className="texts_14_medium text-head cursor-pointer"
-                >
-                  {cat}
-                </span>
-              ))}
+              {uniqueCategories?.map((cat) => {
+                const active = cat === category;
+
+                return (
+                  <button
+                    key={cat}
+                    className={`texts_14_medium text-start text-head cursor-pointer ${active ? "text-second-red" : "text-head"}`}
+                    onClick={() => handleCategory(cat)}
+                  >
+                    {cat}
+                  </button>
+                );
+              })}
             </div>
           )}
         </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../Container";
 import allImages from "@/helper/imagesProvider";
 import Images from "../Images";
@@ -10,8 +10,49 @@ import Button from "../Button";
 import Login from "../../auth/Login";
 import AddToCart from "../../shopMain/addToCart/AddToCart";
 import NavTabs from "../../navtabs/NavTabs";
+import useSearchingItems from "@/store/searchingItems";
 
 const NavbarLg = () => {
+  // for handle event and manage state by justand & useState
+
+  const searchValues = useSearchingItems((state) => state.searchValues);
+  const setSearchingValue = useSearchingItems(
+    (state) => state.setSearchingValue,
+  );
+
+  const [searchValue, setSearchValue] = useState("");
+  const [debounchValue, setDebounchValue] = useState("");
+  const [catchDebounchValue, setCatchDebounchValue] = useState("");
+
+  const handleChangeSearch = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleChangeClicked = () => {
+    setCatchDebounchValue(debounchValue);
+    setSearchValue("");
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      setCatchDebounchValue(debounchValue);
+      setSearchValue("");
+    }
+  };
+
+  useEffect(() => {
+    if (!catchDebounchValue) return;
+
+    setSearchingValue(catchDebounchValue);
+  }, [catchDebounchValue, setSearchingValue]);
+
+  useEffect(() => {
+    const debounch = setTimeout(() => {
+      setDebounchValue(searchValue);
+    }, 800);
+
+    return () => clearTimeout(debounch);
+  }, [searchValue]);
+
   // for icon and images
   const { navLogo } = allImages;
   const { navIconItems, close } = allIcons;
@@ -20,7 +61,6 @@ const NavbarLg = () => {
 
   const [hoverItems, setHoverITems] = useState(null);
   const [open, setIsOpen] = useState(null);
-   
 
   //  for handle evetnt
 
@@ -361,8 +401,14 @@ const NavbarLg = () => {
                                 type="text"
                                 className="w-full py-[10px] border-b-2 border-second text-head   "
                                 placeholder="SEARCH PRODUCTS"
+                                onChange={handleChangeSearch}
+                                onKeyDown={handleKeyDown}
+                                value={searchValue}
                               />
-                              <span className="absolute top-1/2  translate-y-[-65%] text-[22px] right-0 cursor-pointer">
+                              <span
+                                className="absolute top-1/2  translate-y-[-65%] text-[22px] right-0 cursor-pointer"
+                                onClick={handleChangeClicked}
+                              >
                                 {items.icon}
                               </span>
                             </div>
