@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { LiaDollarSignSolid } from "react-icons/lia";
-import { useCartStore } from "../cart/Cart";
+
 import { FaAngleDown } from "react-icons/fa6";
+import useCartStore from "@/store/cartSlice";
 
 // ─── Main ShopCheckout ─────────────────────────────────────────────────────────
 
 const ShopCheckout = () => {
-  const { items: cartItems } = useCartStore();
+  const cartItems = useCartStore((state) => state.cartItems);
   const [paymentMethod, setPaymentMethod] = useState("bank");
 
   const subtotal = cartItems.reduce(

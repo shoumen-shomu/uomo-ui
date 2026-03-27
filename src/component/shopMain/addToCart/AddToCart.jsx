@@ -17,7 +17,6 @@ const AddToCart = ({ unMount }) => {
     0,
   );
 
-  // Container এর বাইরে click করলে চলে যাবে
   const navtabRef = useRef(null);
   useEffect(() => {
     const handleDocumentClick = (event) => {
@@ -31,11 +30,11 @@ const AddToCart = ({ unMount }) => {
     };
   }, [unMount]);
 
-  // product এর image বের করার helper
+  
   const getImage = (item) => {
-    if (item.thumbnail) return item.thumbnail; // single thumbnail
-    if (item.image) return item.image; // single image
-    if (item.images?.length > 0) return item.images[0]; // images array এর প্রথমটি
+    if (item.thumbnail) return item.thumbnail; 
+    if (item.image) return item.image; 
+    if (item.images?.length > 0) return item.images[0]; 
     return null;
   };
 

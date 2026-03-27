@@ -7,13 +7,14 @@ const useCartStore = create((set) => ({
     set((state) => {
       const exists = state.cartItems.some((i) => i.id === item.id);
       if (exists) {
+       
         return {
           cartItems: state.cartItems.map((i) =>
             i.id === item.id ? { ...i, quantity: (i.quantity || 1) + 1 } : i,
           ),
         };
       }
-
+     
       return {
         cartItems: [...state.cartItems, { ...item, quantity: 1 }],
       };
@@ -27,6 +28,7 @@ const useCartStore = create((set) => ({
   updateQuantity: (id, quantity) =>
     set((state) => {
       if (quantity < 1) {
+       
         return {
           cartItems: state.cartItems.filter((item) => item.id !== id),
         };
