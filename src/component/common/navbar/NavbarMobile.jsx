@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GoSearch } from "react-icons/go";
 import { IoMdClose } from "react-icons/io";
@@ -18,6 +18,7 @@ import allIcons from "@/helper/iconProvider";
 import allImages from "@/helper/imagesProvider";
 import { navItems, navTabsData } from "@/helper/projectArrayObj";
 import AddToCart from "@/component/shopMain/addToCart/AddToCart";
+import useSearchingItems from "@/store/searchingItems";
 
 const socialIcons = [
   { id: 1, icon: FaFacebookF, link: "https://www.facebook.com" },
@@ -52,16 +53,64 @@ const DrawerHeader = ({ onClose, navLogo, cartBadge, onCartClick }) => (
   </div>
 );
 
-const DrawerSearch = () => (
-  <div className="flex items-center gap-[10px]  px-5 py-4 mb-3 border-b border-footer">
-    <input
-      type="text"
-      placeholder="Search products..."
-      className="flex-1 texts_14_regular text-head bg-transparent placeholder:text-second"
-    />
-    <GoSearch className="text-[18px] text-head" />
-  </div>
-);
+const DrawerSearch = () => {
+  // for handle event and manage state by justand & useState
+
+  const searchValues = useSearchingItems((state) => state.searchValues);
+  const setSearchingValue = useSearchingItems(
+    (state) => state.setSearchingValue,
+  );
+
+  const [searchValue, setSearchValue] = useState("");
+  const [debounchValue, setDebounchValue] = useState("");
+  const [catchDebounchValue, setCatchDebounchValue] = useState("");
+
+  const handleChangeSearch = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleChangeClicked = () => {
+    setCatchDebounchValue(debounchValue);
+    setSearchValue("");
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      setCatchDebounchValue(debounchValue);
+      setSearchValue("");
+    }
+  };
+
+  useEffect(() => {
+    if (!catchDebounchValue) return;
+    console.log(catchDebounchValue);
+
+    setSearchingValue(catchDebounchValue);
+  }, [catchDebounchValue, setSearchingValue]);
+
+  useEffect(() => {
+    const debounch = setTimeout(() => {
+      setDebounchValue(searchValue);
+    }, 800);
+
+    return () => clearTimeout(debounch);
+  }, [searchValue]);
+
+  return (
+    <div className="flex items-center gap-[10px]  px-5 py-4 mb-3 border-b border-footer">
+      <input
+        type="text"
+        placeholder="Search products..."
+        className="flex-1 texts_14_regular text-head bg-transparent placeholder:text-second"
+        onChange={handleChangeSearch}
+        onKeyDown={handleKeyDown}
+        value={searchValue}
+      />
+      <button onClick={handleChangeClicked}>
+        <GoSearch className="text-[18px] text-head" />
+      </button>
+    </div>
+  );
+};
 
 const DrawerFooter = () => (
   <div className="px-5 pt-[29px] pb-5 border-t border-footer">
@@ -231,7 +280,7 @@ const NavbarMobile = () => {
               imgSrc={navLogo}
               className="w-[111px] h-[27px]"
             />
-            <button 
+            <button
               onClick={handleCartOpen}
               className="relative cursor-pointer pr-[10px]"
             >
@@ -300,7 +349,7 @@ const NavbarMobile = () => {
                   </span>
                   <IoChevronForward className="text-[16px] text-head shrink-0" />
                 </button>
-              )
+              ),
             )}
           </div>
 
