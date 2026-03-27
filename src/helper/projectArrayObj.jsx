@@ -335,6 +335,7 @@ const homeTrendyFilters = [
 ];
 
 const sortOptions = [
+  { id: 0, value: "", label: "Default Sorting" }, // ← default টা সবার আগে
   { id: 1, value: "popularity", label: "Popularity" },
   { id: 2, value: "rating", label: "Average rating" },
   { id: 3, value: "latest", label: "Newness" },

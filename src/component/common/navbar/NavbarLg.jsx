@@ -48,7 +48,7 @@ const NavbarLg = () => {
   useEffect(() => {
     const debounch = setTimeout(() => {
       setDebounchValue(searchValue);
-    }, 800);
+    }, 500);
 
     return () => clearTimeout(debounch);
   }, [searchValue]);

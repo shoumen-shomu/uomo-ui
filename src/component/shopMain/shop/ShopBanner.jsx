@@ -4,12 +4,12 @@ import Container from "@/component/common/Container";
 import { shopList1, sortOptions } from "@/helper/projectArrayObj";
 import allIcons from "@/helper/iconProvider";
 import allImages from "@/helper/imagesProvider";
-
 import ShopFilter from "./ShopFilter";
 import Images from "@/component/common/Images";
 import useAllProduct from "@/coustomHook/useAllProduct";
 import ShopAllProdVirtual from "@/component/common/ShopAllProdVirtual";
 import useShortItem from "@/store/short";
+import useFilteredProducts from "@/coustomHook/useFilteredProducts";
 
 const ShopBanner = () => {
   // for api and mamage RTQ
@@ -19,14 +19,16 @@ const ShopBanner = () => {
     isLoading: allProcutDataLoading,
   } = useAllProduct();
 
+  const value = useFilteredProducts(allProductData);
+
   const [open, isOpen] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
-  const [selectedSort, setSelectedSort] = useState("default");
+  const [selectedSort, setSelectedSort] = useState("");
 
   // for short items
   const shortItem = useShortItem((state) => state.shortItem);
   const setShortItem = useShortItem((state) => state.setShortItem);
-  
+
   useEffect(() => {
     setShortItem(selectedSort);
   }, [selectedSort]);
@@ -202,7 +204,7 @@ const ShopBanner = () => {
           </div>
           <div>
             <div className="pt-6 sm:pt-8 lg:pt-10 pb-8 sm:pb-10 lg:pb-12.5">
-              <ShopAllProdVirtual allProductItems={allProductData} />
+              <ShopAllProdVirtual allProductItems={value} />
             </div>
           </div>
         </Container>

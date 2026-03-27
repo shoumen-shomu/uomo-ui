@@ -165,7 +165,7 @@ const ShopFilter = ({ onClose }) => {
                 return (
                   <button
                     key={cat}
-                    className={`texts_14_medium text-start cursor-pointer ${
+                    className={` capitalize texts_14_medium text-start cursor-pointer  ${
                       active ? "text-second-red" : "text-head"
                     }`}
                     onClick={() => handleCategory(cat)}
