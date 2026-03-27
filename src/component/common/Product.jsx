@@ -18,7 +18,7 @@ const Product = ({
       <div className="lg:max-w-82.5 w-full relative group ">
         <div className="relative overflow-hidden ">
           <Images
-            className={"w-full object-cover"}
+            className={"w-[250px] object-cover"}
             imgSrc={imgSrc}
             imgAlt={imgAlt}
           />
