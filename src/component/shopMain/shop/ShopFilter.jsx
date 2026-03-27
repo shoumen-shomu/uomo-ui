@@ -1,5 +1,6 @@
 import useAllProduct from "@/coustomHook/useAllProduct";
 import allIcons from "@/helper/iconProvider";
+import useBrandItems from "@/store/Brand";
 import useCategory from "@/store/category";
 import usePriceValue from "@/store/PriceRanger";
 import React, { useEffect, useState } from "react";
@@ -58,7 +59,13 @@ const ShopFilter = ({ onClose }) => {
   const [activeFilters, setActiveFilters] = useState([]);
 
   const setMaxValue = usePriceValue((state) => state.setMaxValue);
+  const setBrandValue = useBrandItems((state) => state.setBrandValue);
+  const brandValue = useBrandItems((state) => state.brandValue);
   const maxValue = usePriceValue((state) => state.maxValue);
+
+  useEffect(() => {
+    setBrandValue(selectedBrands);
+  }, [selectedBrands]);
 
   useEffect(() => {
     setMaxValue(priceMax);
@@ -80,7 +87,6 @@ const ShopFilter = ({ onClose }) => {
 
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
- 
   const productBrandRefine = (productData) => {
     if (!productData) return {};
 
