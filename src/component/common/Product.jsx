@@ -45,7 +45,7 @@ const Product = ({
   return (
     <>
       <div
-        className="lg:max-w-82.5 w-full relative group shadow-[0_4px_16px_rgba(99,102,241,0.15)]"
+        className="lg:max-w-82.5 w-full h-fit  relative group shadow-[0_4px_16px_rgba(99,102,241,0.15)]"
       >
         <div className="relative overflow-hidden ">
           <Images
@@ -74,7 +74,7 @@ const Product = ({
               )}
             </div>
           </div>
-          <p className="texts_16_regular text-head pt-0.5 line-clamp-2">
+          <p className="texts_16_regular truncate text-head pt-0.5 line-clamp-2">
             {itemName}
           </p>
           <div className="flex gap-2 items-center">
