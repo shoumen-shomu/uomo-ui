@@ -31,9 +31,9 @@ const ShopAllProdVirtual = ({ allProductItems }) => {
   }, [screenSize]);
 
   const getEstimatedRowHeight = () => {
-    if (screenSize === "sm") return 500;
-    if (screenSize === "md") return 450;
-    return 500;
+    if (screenSize === "sm") return 380;
+    if (screenSize === "md") return 380;
+    return 400;
   };
 
   const handleScroll = useCallback(() => {
