@@ -21,6 +21,7 @@ import AddToCart from "@/component/shopMain/addToCart/AddToCart";
 import useSearchingItems from "@/store/searchingItems";
 import usePriceValue from "@/store/PriceRanger";
 import useBrandItems from "@/store/Brand";
+import useCategory from "@/store/category";
 
 const socialIcons = [
   { id: 1, icon: FaFacebookF, link: "https://www.facebook.com" },
@@ -71,6 +72,7 @@ const DrawerSearch = () => {
   // for handle event and manage state by justand & useState
   const setMaxValue = usePriceValue((state) => state.setMaxValue);
   const setBrandValue = useBrandItems((state) => state.setBrandValue);
+  const setCategoryItem = useCategory((state) => state.setCategoryItem);
 
   const handleChangeSearch = (e) => {
     setSearchValue(e.target.value);
@@ -82,7 +84,7 @@ const DrawerSearch = () => {
     setMaxValue(1000000);
     setBrandValue([]);
     setCategoryItem("");
-    navigate("/shop")
+    navigate("/shop");
   };
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -91,7 +93,7 @@ const DrawerSearch = () => {
       setMaxValue(1000000);
       setBrandValue([]);
       setCategoryItem("");
-      navigate("/shop")
+      navigate("/shop");
     }
   };
 
