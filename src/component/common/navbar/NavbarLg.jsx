@@ -3,7 +3,7 @@ import Container from "../Container";
 import allImages from "@/helper/imagesProvider";
 import Images from "../Images";
 import { navItems, quickLinks } from "@/helper/projectArrayObj";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import allIcons from "@/helper/iconProvider";
 import NavDownImg from "@/assets/images/nav-dropImage.png";
 import Button from "../Button";
@@ -16,6 +16,9 @@ import useBrandItems from "@/store/Brand";
 import usePriceValue from "@/store/PriceRanger";
 
 const NavbarLg = () => {
+  // for navigate
+  const navigate = useNavigate();
+
   // for handle event and manage state by justand & useState
   const setMaxValue = usePriceValue((state) => state.setMaxValue);
   const setBrandValue = useBrandItems((state) => state.setBrandValue);
@@ -38,6 +41,7 @@ const NavbarLg = () => {
     setMaxValue(1000000);
     setBrandValue([]);
     setCategoryItem("");
+    navigate("/shop");
   };
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -46,6 +50,7 @@ const NavbarLg = () => {
       setMaxValue(1000000);
       setBrandValue([]);
       setCategoryItem("");
+      navigate("/shop");
     }
   };
 

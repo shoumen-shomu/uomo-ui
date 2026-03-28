@@ -44,7 +44,9 @@ const Product = ({
 
   return (
     <>
-      <div className="lg:max-w-82.5 w-full relative group ">
+      <div
+        className="lg:max-w-82.5 w-full h-fit  relative group shadow-[0_4px_16px_rgba(99,102,241,0.15)]"
+      >
         <div className="relative overflow-hidden ">
           <Images
             className={"w-[250px] object-cover"}
@@ -54,14 +56,14 @@ const Product = ({
           {/* Add To Cart Start */}
           <Link
             to={`/shop-single/${id}`}
-            className="texts_14_medium text-head bg-white  w-full pt-4 pb-2.5 text-center absolute  bottom-4 left-1/2 -translate-x-1/2 translate-y-[50%] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 ease-in-out duration-500 whitespace-nowrap cursor-pointer"
+            className="texts_14_medium text-white  bg-head  w-full pt-4 pb-2.5 text-center absolute  bottom-4 left-1/2 -translate-x-1/2 translate-y-[50%] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 ease-in-out duration-500 whitespace-nowrap cursor-pointer"
           >
             ADD TO CART
           </Link>
           {/* Add To Cart End*/}
         </div>
         {/* Product Description Start */}
-        <div className="mt-3.5">
+        <div className="mt-3.5 px-5 pb-3">
           <div className="flex justify-between items-center">
             <p className="texts_14_regular text-second">{catagory}</p>
             <div onClick={handleWishlist} className="cursor-pointer">
@@ -72,7 +74,7 @@ const Product = ({
               )}
             </div>
           </div>
-          <p className="texts_16_regular text-head pt-0.5 line-clamp-2">
+          <p className="texts_16_regular truncate text-head pt-0.5 line-clamp-2">
             {itemName}
           </p>
           <div className="flex gap-2 items-center">

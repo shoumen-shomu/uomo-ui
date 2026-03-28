@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GoSearch } from "react-icons/go";
 import { IoMdClose } from "react-icons/io";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
@@ -56,6 +56,8 @@ const DrawerHeader = ({ onClose, navLogo, cartBadge, onCartClick }) => (
 );
 
 const DrawerSearch = () => {
+  // for navigate
+  const navigate = useNavigate();
   // for handle event and manage state by justand & useState
 
   const searchValues = useSearchingItems((state) => state.searchValues);
@@ -77,10 +79,10 @@ const DrawerSearch = () => {
   const handleChangeClicked = () => {
     setCatchDebounchValue(debounchValue);
     setSearchValue("");
-
     setMaxValue(1000000);
     setBrandValue([]);
     setCategoryItem("");
+    navigate("/shop")
   };
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -89,6 +91,7 @@ const DrawerSearch = () => {
       setMaxValue(1000000);
       setBrandValue([]);
       setCategoryItem("");
+      navigate("/shop")
     }
   };
 
