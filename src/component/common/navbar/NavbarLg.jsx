@@ -16,6 +16,9 @@ import useBrandItems from "@/store/Brand";
 import usePriceValue from "@/store/PriceRanger";
 
 const NavbarLg = () => {
+ 
+  // navigate
+
   // for handle event and manage state by justand & useState
   const setMaxValue = usePriceValue((state) => state.setMaxValue);
   const setBrandValue = useBrandItems((state) => state.setBrandValue);
